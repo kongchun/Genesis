@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <title>Genesis 商业地理 | 智慧商圈，精准营销，智能选址</title>
+    <link rel="stylesheet" href="css/vendor.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8hr2ZB5zsFI6dcId9Uj6ORy2kuLIP8vA"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"> <img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="images/logo.png"></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="nav-parent"><a href="#" taget="_blank">商圈热度</a>
+                        <ul class="nav nav-children trading">
+                            <li>
+                                <a>
+                                    <input type="checkbox" class="lw" value="卢湾商圈"><span class="text"> 卢湾商圈</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" class="sl" value="三林商圈"><span class="text"> 三林商圈</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" class="dn" value="大宁商圈" disabled><span class="text unavailable"> 大宁商圈</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" class="bwt" value="北外滩商圈" disabled><span class="text unavailable"> 北外滩商圈</span></a>
+                            </li>
+                    
+                            <li class="line"><h4>衣食住行</h4></li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="餐饮类"><span class="text"> 餐饮类</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="购物类"><span class="text "> 购物类</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 旅游类</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 车房类</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 金融类</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 教育类</span></a>
+                            </li>
+                            <li class="line"><h4>人群特征</h4></li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 男性</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 女性</span></a>
+                            </li>
+                                                        <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 小于20岁</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 20-25岁</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 25-30岁</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 30-40岁</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 40-60岁</span></a>
+                            </li>
+                           <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 60以上</span></a>
+                            </li>
+                            <li>
+                             <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 高消费能力</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 中消费能力</span></a>
+                            </li>
+                           <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 低消费能力</span></a>
+                            </li>
+                                                        <li>
+                             <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 高社交活跃度</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 中社交活跃度</span></a>
+                            </li>
+                           <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 低社交活跃度</span></a>
+                            </li>
+                            <li><span class="small unavailable">高级版本支持100+特征选择</span></li>
+                        </ul>
+                    </li>
+                                        <li class="nav-parent"><a href="#">品牌数据</a>
+                        <ul class="nav nav-children brand">
+                            <li class="line"><h4>超市</h4></li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="乐购"><span class="text"> 乐购</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="华润万家"><span class="text"> 华润万家</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="家乐福"><span class="text"> 家乐福</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="世纪华联"><span class="text"> 世纪华联</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="永辉"><span class="text "> 永辉</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="苏果"><span class="text "> 苏果</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="卜蜂莲花"><span class="text "> 卜蜂莲花</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="麦德龙"><span class="text "> 麦德龙</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="大润发"><span class="text "> 大润发</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="物美"><span class="text "> 物美</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="乐天玛特"><span class="text "> 乐天玛特</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="欧尚"><span class="text "> 欧尚</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="万宁"><span class="text "> 万宁</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="沃尔玛"><span class="text "> 沃尔玛</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="易买得"><span class="text "> 易买得</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="惠康超市"><span class="text "> 惠康超市</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="百佳超市"><span class="text "> 百佳超市</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="易买得"><span class="text "> 易买得</span></a>
+                            </li>
+                             <li class="line"><h4>药妆</h4></li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="屈臣氏"><span class="text"> 屈臣氏</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="莎莎"><span class="text"> 莎莎</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="鸥美药妆"><span class="text"> 鸥美药妆</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="丝芙兰"><span class="text"> 丝芙兰</span></a>
+                            </li>
+<!--                             <li>
+    <a>
+        <input type="checkbox" value="亿莎"><span class="text"> 亿莎</span></a>
+</li> -->
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="悦诗风吟"><span class="text "> 悦诗风吟</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="卓悦"><span class="text "> 卓悦</span></a>
+                            </li>
+                           <!--  <li>
+                                <a>
+                                    <input type="checkbox" value="采活"><span class="text "> 采活</span></a>
+                            </li> -->
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="蝶翠诗"><span class="text "> 蝶翠诗</span></a>
+                            </li>
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox" value="幻彩"><span class="text "> 幻彩</span></a>
+                            </li> -->
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox" value="惠之林"><span class="text "> 惠之林</span></a>
+                            </li> -->
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="娇兰佳人"><span class="text "> 娇兰佳人</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="千色"><span class="text "> 千色</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="妍丽"><span class="text "> 妍丽</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="名创优品"><span class="text "> 名创优品</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="谜尚"><span class="text "> 谜尚</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="珠宝服饰"><span class="text "> 珠宝服饰</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="C&A"><span class="text "> C&A</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="GAP"><span class="text "> GAP</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="H&M"><span class="text "> H&M</span></a>
+                            </li>
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox" value="Zara"><span class="text "> Zara</span></a>
+                            </li> -->
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="迪卡侬"><span class="text "> 迪卡侬</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="优衣库"><span class="text "> 优衣库</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="六福"><span class="text "> 六福</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="周大福"><span class="text "> 周大福</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="周生生"><span class="text "> 周生生</span></a>
+                            </li>
+                            <li class="line"><h4>电影</h4></li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="万达国际电影城"><span class="text "> 万达国际电影城</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="星美国际影城"><span class="text "> 星美国际影城</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="保利国际影城"><span class="text "> 保利国际影城</span></a>
+                            </li>
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox" value="博纳国际电影城"><span class="text "> 博纳国际电影城</span></a>
+                            </li> -->
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="大地数字影院"><span class="text "> 大地数字影院</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="横店影视电影城"><span class="text "> 横店影视电影城</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="金逸国际电影城"><span class="text "> 金逸国际电影城</span></a>
+                            </li>
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox" value="UME国际影城"><span class="text "> UME国际影城</span></a>
+                            </li> -->
+                            <li class="line"><h4>餐饮</h4></li>
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox" value="Costa"><span class="text "> Costa</span></a>
+                            </li> -->
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="必胜客"><span class="text "> 必胜客</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="汉堡王"><span class="text "> 汉堡王</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="肯德基"><span class="text "> 肯德基</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="麦当劳"><span class="text "> 麦当劳</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="太平洋咖啡"><span class="text "> 太平洋咖啡</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="味千"><span class="text "> 味千</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="星巴克"><span class="text "> 星巴克</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="呷哺呷哺"><span class="text "> 呷哺呷哺</span></a>
+                            </li>
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox" value="庆丰包子铺"><span class="text "> 庆丰包子铺</span></a>
+                            </li> -->
+                            <li class="line"><h4>4S店</h4></li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="上海大众"><span class="text "> 上海大众</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="一汽大众"><span class="text "> 一汽大众</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="斯柯达"><span class="text "> 斯柯达</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="进口大众"><span class="text "> 进口大众</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="宾利"><span class="text "> 宾利</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="兰博基尼"><span class="text "> 兰博基尼</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="广汽本田"><span class="text "> 广汽本田</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="东风本田"><span class="text "> 东风本田</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="本田讴歌"><span class="text "> 本田讴歌</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="一汽大众奥迪"><span class="text "> 一汽大众奥迪</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="凯迪拉克"><span class="text "> 凯迪拉克</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="别克"><span class="text "> 别克</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="雪佛兰"><span class="text "> 雪佛兰</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="欧宝"><span class="text "> 欧宝</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="萨博"><span class="text "> 萨博</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="宝马"><span class="text "> 宝马</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="宝马MINI"><span class="text "> 宝马MINI</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="劳斯莱斯"><span class="text "> 劳斯莱斯</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="东风日产"><span class="text "> 东风日产</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="郑州日产"><span class="text "> 郑州日产</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="英菲尼迪"><span class="text "> 英菲尼迪</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="雷诺"><span class="text "> 雷诺</span></a>
+                            </li>
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox"  value="梅赛德斯-奔驰"><span class="text "> 梅赛德斯-奔驰</span></a>
+                            </li> -->
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox"  value="精灵"><span class="text "> 精灵</span></a>
+                            </li> -->
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="丰田"><span class="text "> 丰田</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="一汽丰田"><span class="text "> 一汽丰田</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="广汽丰田"><span class="text "> 广汽丰田</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="雷克萨斯"><span class="text "> 雷克萨斯</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="斯巴鲁"><span class="text "> 斯巴鲁</span></a>
+                            </li>
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox"  value="东风雪铁龙"><span class="text "> 东风雪铁龙</span></a>
+                            </li> -->
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox"  value="东风标致"><span class="text "> 东风标致</span></a>
+                            </li> -->
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="DS"><span class="text "> DS</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="三菱"><span class="text "> 三菱</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="菲亚特"><span class="text "> 菲亚特</span></a>
+                            </li>
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox"  value="阿尔法-罗密欧"><span class="text "> 阿尔法-罗密欧</span></a>
+                            </li> -->
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="法拉利"><span class="text "> 法拉利</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="玛莎拉蒂"><span class="text "> 玛莎拉蒂</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="现代"><span class="text "> 现代</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="进口现代"><span class="text "> 进口现代</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="北京现代"><span class="text "> 北京现代</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="起亚"><span class="text "> 起亚</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="进口起亚"><span class="text "> 进口起亚</span></a>
+                            </li>
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox"  value="东风悦达起亚"><span class="text "> 东风悦达起亚</span></a>
+                            </li> -->
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="福特"><span class="text "> 福特</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="马自达"><span class="text "> 马自达</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="林肯"><span class="text "> 林肯</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="捷豹"><span class="text "> 捷豹</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="路虎"><span class="text "> 路虎</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="保时捷"><span class="text "> 保时捷</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="东风"><span class="text "> 东风</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="吉利"><span class="text "> 吉利</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="沃尔沃"><span class="text "> 沃尔沃</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="奇瑞"><span class="text "> 奇瑞</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="克莱斯勒"><span class="text "> 克莱斯勒</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="吉普"><span class="text "> 吉普</span></a>
+                            </li>
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox"  value="道奇"><span class="text "> 道奇</span></a>
+                            </li> -->
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="荣威"><span class="text "> 荣威</span></a>
+                            </li>
+<!--                             <li>
+                                <a>
+                                    <input type="checkbox"  value="名爵"><span class="text "> 名爵</span></a>
+                            </li> -->
+                            <li>
+                                <a>
+                                    <input type="checkbox"  value="观致"><span class="text "> 观致</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent"><a href="#">公共设施</a>
+                        <ul class="nav nav-children brand">
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="加油站"><span class="text"> 加油站</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="ATM"><span class="text "> 银行ATM</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 学校</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 医院</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 环境监测站</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 垃圾处理场</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent"><a href="#">公司数据</a>
+                        <ul class="nav nav-children brand">
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="中国人保"><span class="text"> 中国人民保险公司</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="中国人寿"><span class="text"> 中国人寿保险公司</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 中国平安保险公司</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 中国再保险公司</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 中国太平洋保险</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 新华人寿保险公司</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 证券公司</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 财务公司</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 广告装饰</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 建筑公司</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 医药公司</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 机械电子</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 冶金化工</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 网络科技</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 商业贸易</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 电信公司</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 矿产公司</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 知名企业</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent"><a href="#">行政人口</a>
+                        <ul class="nav nav-children district">
+                            <li>
+                                <a>
+                                    <input type="checkbox" class="people"><span class="text"> 总人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 户籍人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 男性人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 女性人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 总户数</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 平均每户人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 城镇人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 乡村人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 0岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 1-4岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 5-9岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 10-14岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 15-19岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 20-24岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 25-29岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 30-34岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 35-39岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 40-44岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 45-49岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 50-54岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 55-59岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 60-64岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 65-69岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 70-74岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 75-79岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 80-84岁人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 85岁及以上</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 未上过学人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 小学人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 初中人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 高中人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 大学专科人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 大学本科及以上人口</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 购买住房的家庭户数</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 租赁住房的家庭户数</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 自建住房的家庭户数</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled name="people"><span class="text unavailable"> 使用其他住房的家庭户数</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent"><a href="#" taget="_blank">房价指数</a>
+                        <ul class="nav nav-children house">
+                            <li>
+                                <a>
+                                    <input type="checkbox" class="housePrice"><span class="text"> 住宅价格</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" class="shopPrice"><span class="text"> 商铺租金</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 房价热度</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent"><a href="#">公交布局</a>
+                        <ul class="nav nav-children bus">
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 公交站数量</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 公交线路数量</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent"><a href="#">轨道交通</a>
+                        <ul class="nav nav-children subway">
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="1"><span class="text"> 1号线</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="2"><span class="text"> 2号线</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="3"><span class="text "> 3号线</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" value="4"><span class="text "> 4号线</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 5号线</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 6号线</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 7号线</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 8号线</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 9号线</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 10号线</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 11号线</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 12号线</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 13号线</span></a>
+                            </li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" disabled><span class="text unavailable"> 16号线</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+
+
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/data.js"></script>
+    <script src="js/vendor.js"></script>
+    <!--     <script src="js/vendor.bundle.js"></script> -->
+    <script src="js/bundle.js"></script>
+</body>
+
+</html>
+
