@@ -14,7 +14,7 @@ router.post('/login', function(req, res, next) {
 		password: req.body.password
 	};
 	read.checkUser(user).then(function(data) {
-		req.session.user = data
+		req.session.user = data.data;
 		res.send(data);
 	})
 });

@@ -90,7 +90,7 @@ gulp.task('bundle-js', ["app-js"], function() {
 
 
 gulp.task('css', function() {
-	return gulp.src(['src/css/style.css', 'src/css/register.css'])
+	return gulp.src(['src/css/style.css', 'src/css/register.css', 'src/css/list.css'])
 		.pipe(plumber())
 		.pipe(less())
 		.pipe(autoprefixer())
@@ -115,7 +115,7 @@ gulp.task('html', function() {
 
 gulp.task('build-static', ['vendor-css', 'css', 'vendor-js', 'vendor-map-js', 'bundle-js', 'images', 'html']);
 
-gulp.task("build", ["app-js", "html"])
+gulp.task("build", ["app-js", "html", "css"])
 
 //-------------------------------------------------------------------------------------------------
 var server = require('gulp-express');
@@ -123,6 +123,7 @@ var server = require('gulp-express');
 gulp.task('watch', function() {
 	gulp.watch('src/app/*.js', ['build']);
 	gulp.watch('src/**/*.html', ['build']);
+	gulp.watch('src/**/*.css', ['build']);
 });
 
 gulp.task('server', ["build", "watch"], function() {
@@ -136,6 +137,7 @@ gulp.task('server', ["build", "watch"], function() {
 	// gulp.watch('public/**/*.css', server.notify);
 	// gulp.watch(['app.js', 'routes/**/*.js'], server.run);
 	gulp.watch('public/**/*.js', server.notify);
+	gulp.watch('public/**/*.css', server.notify);
 	gulp.watch(['app.js', 'routes/**/*.js', 'server/**/*.js'], server.run);
 
 })

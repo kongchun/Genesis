@@ -9,7 +9,7 @@ $(function() {
 			password: password
 		}, function(data) {
 			if (data.result) {
-				location.href = "choose";
+				location.href = "list";
 			} else {
 				alert("µÇÂ¼Ê§°Ü£¡");
 			}

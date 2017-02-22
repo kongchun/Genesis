@@ -28,12 +28,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li id="header-user" class="dropdown user">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
-                            <span class="username">荒野猎人</span>
+                            <span class="username"><%= user.account %></span>
                             <i class="fa fa-angle-down"></i>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="javascript:alert('模拟退出')"><i class="fa fa-power-off"></i> 退出</a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>
@@ -73,7 +70,9 @@
                 <div class="tab-body">
                     <div class="tab-content">
                         <div class="item-ctn list-item">
+                            <% if (list.length) { %>
                             <ul class="list-unstyled row-list">
+                                 <% list.forEach(function(item){ %>  
                                 <li id="item01">
                                     <ul class="list-inline list-unstyled cloumn-list">
                                         <li>
@@ -83,10 +82,10 @@
                                               data-id="b666c18a-fe1e-4bd3-8da7-2dbf50133ba4"><i
                                                 class="icon-q_signup"></i></span></span>
                                         <span class="item-detail">
-                                            <span class="item-prop prop-name">我的地图</span>
+                                            <span class="item-prop prop-name"><%=item.mapName%></span>
                                             <span>
                                             
-                                                <span class="item-prop prop-date">--</span>
+                                                <span class="item-prop prop-date"><%=new Date(item.date)%></span>
                                                
                                             </span>
                                            
@@ -95,9 +94,9 @@
                                         <li><!-- <span class="item-del"></span> --></li>
                                     </ul>
                                 </li>
-                               
+                                <% }) %>  
                             </ul>
-                           
+                            <% } %> 
                         </div>
                     </div>
                 </div>

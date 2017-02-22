@@ -1,1 +1,1 @@
-$(function(){$("#btn_login").click(function(){var o=$("#account").val(),n=$("#password").val();$.post("api/login",{account:o,password:n},function(o){o.result?location.href="choose":alert("��¼ʧ�ܣ�")},"json")})});
+$(function(){$("#btn_login").click(function(){var n=$("#account").val(),o=$("#password").val();$.post("api/login",{account:n,password:o},function(n){n.result?location.href="list":alert("登录失败！")},"json")})});
