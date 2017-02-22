@@ -1,0 +1,388 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+a:link, a:hover, a:visited {
+    text-decoration: none;
+}
+a:link, a:hover, a:visited {
+    text-decoration: none;
+}
+body{
+    background-color: #f4f4f4;
+}
+.hide {
+    display: none;
+}
+#main{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.main-ctn {
+    max-width: 970px;
+    position: relative;
+    bottom: 0;
+    margin: 40px auto;
+    height: calc(100% - 140px);
+    min-height:500px;
+    width: 100%;
+    background-color: #fff;
+    padding-left: 0;
+    padding-right: 0;
+}
+/*主要功能区头部Begin*/
+.main-ctn .main-header {
+    /*background-color: #fff;*/
+    border-bottom: 1px solid #f4f4f4;
+    height: 80px;
+    text-align: center;
+}
+.main-header ul {
+    margin-top: 27px;
+}
+
+.main-header ul > li > span,
+.main-header ul > li > a {
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+}
+
+.main-header ul > li > span {
+    margin-right: 10px;
+    width: 100%;
+    border-radius: 2px;
+
+}
+
+.main-header ul > li > a {
+    float: left;
+    position: relative;
+    margin-top: -30px;
+    padding-left: 10px;
+    padding-top: 0;
+}
+
+.main-header ul > li > a:hover,
+.main-header ul > li > a.active {
+    border: none;
+    background-color: transparent;
+}
+
+.header-left, .header-center, .header-right {
+    font-weight: normal;
+    color: #fff;
+    height: 90px;
+    display: inline-block;
+}
+
+.header-left, .header-right {
+    position: absolute;
+    top: 0;
+}
+/*主要功能区头部End*/
+/*内容区域头部左侧功能 Begin*/
+.header-left {
+    left: 50px;
+    float: left;
+}
+
+.header-left > ul > li > div {
+    height: 36px;
+    line-height: 36px;
+    font-size: 16px;
+}
+
+.header-left a {
+    font-size: 14px;
+    color: #fff;
+}
+
+.header-left > ul > li:first-child > span {
+    box-shadow: 0 0 0 1px #f4f4f4;
+}
+
+.header-left > ul > li:first-child:hover > span {
+    /*box-shadow: none;*/
+    box-shadow: 0 0 0 2px #ddd;
+}
+
+.header-left > ul > li:hover > span {
+    background-color: #fff;
+    opacity: 0.4;
+}
+/*内容区域头部左侧功能 End*/
+
+/*内容头部区右侧功能 Begin*/
+.header-right {
+    right: 50px;
+    float: right;
+    position: absolute;
+}
+
+.header-right > ul > li > a {
+    font-size: 32px;
+    color: #666;
+    opacity: 0.7;
+}
+
+.header-right > ul > li:hover > a {
+    opacity: 1;
+}
+/*内容头部区右侧功能 End*/
+
+/*内容区中间Tab区 Begin*/
+.header-center > ul.nav-tabs {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, .6);
+    display: inline-flex;
+    flex-wrap: nowrap;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.header-center > ul.nav-tabs > li {
+    width: 100px;
+}
+
+.header-center > ul.nav-tabs > li > span {
+    border-radius: 0;
+}
+
+.header-center > ul.nav-tabs > li:not(:first-child) > span {
+    border-left: 2px solid #fff;
+    opacity: 0.6;
+}
+
+.header-center > ul.nav-tabs > li.active > span {
+    background-color: #fff;
+    opacity: 0.4;
+}
+
+.header-center > ul.nav-tabs > li.active + li > span {
+    border-left: none;
+}
+
+.header-center > ul.nav-tabs > li > a {
+    width: 100%;
+}
+
+.header-center > ul.nav-tabs > li:hover > a,
+.header-center > ul.nav-tabs > li.active > a {
+    background-color: transparent;
+    color: #fff;
+}
+
+/*内容区中间Tab区 End*/
+.main-ctn .tab-body .tab-content {
+    padding: 0 20px;
+}
+.item-ctn {
+    margin: 0 20px;
+}
+.item-ctn ul.row-list {
+    max-width: 868px;
+    margin: auto;
+    min-width: 400px;
+}
+
+.item-ctn ul.row-list > li {
+    border-bottom: 1px solid #f4f4f4;
+}
+.item-ctn ul.row-list > li > ul {
+    margin: 0 5%;
+    width: 90%;
+}
+.item-ctn ul.row-list > li > ul {
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.item-ctn ul.row-list > li > ul > li {
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-thumbnail {
+    display: inline-block;
+    width: 232px;
+    height: 176px;
+    padding: 0;
+    background-image: url(../images/map/blueblack.jpg);
+    background-size: 232px 176px;
+    background-repeat: no-repeat;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 0;
+    background-position: center;
+}
+
+.item-detail {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.item-prop {
+    font-weight: normal;
+    height: 16px;
+}
+.prop-name {
+    font-family: "Microsoft Yahei", "微软雅黑", Arial, serif;
+}
+
+.item-prop {
+    font-weight: normal;
+    height: 16px;
+}
+.prop-type {
+    min-width: 22px;
+    color: #fff;
+    text-align: center;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    text-transform: capitalize;
+    margin-right: 5px;
+    font-size: 12px;
+    padding: 2px;
+    height: 16px;
+    line-height: 12px
+}
+.prop-date {
+    font-family: "NotoSansHans-Light", "Microsoft Yahei", "微软雅黑", Arial, serif;
+    font-size: 12px;
+    color: #999;
+    padding-right: 20px;
+    height: 12px;
+}
+.prop-size {
+    font-family: "NotoSansHans-Light", "Microsoft Yahei", "微软雅黑", Arial, serif;
+    font-size: 12px;
+    color: #999;
+    height: 12px;
+}
+.prop-bookmark {
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    color: #999;
+    height: 24px;
+    line-height: 24px;
+    display: inline-block;
+    padding: 0 10px;
+}
+.type-editor {
+    background-color: #397ea8;
+}
+
+.item-page-view {
+    color: #999;
+    font-size: 14px;
+}
+.item-icon {
+    font-size: 14px;
+    padding-left: 5px;
+}
+.item-page-view > .item-pv {
+    padding-right: 3px;
+    font-size: 14px;
+}
+.item-share {
+    font-size: 20px;
+    color: #397ea8;
+    cursor: pointer;
+}
+.item-ctn .row-list > li > ul > li:last-child > span {
+    visibility: hidden;
+    color: #E14E74;
+    font-size: 20px;
+    line-height: 34px;
+}
+.item-del {
+    width: 24px;
+    height: 24px;
+    color: #E14E74;
+    background-image: url(../images/deleteBtn.png);
+    background-size: 24px 24px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    float: right;
+    cursor: pointer;
+}
+
+.item-ctn ul.row-list > li:hover {
+    background-color: #f2f2f2;
+}
+.item-ctn .row-list > li:hover > ul > li > span {
+    visibility: visible;
+}
+
+#main_plan .img-thumbnail {
+    height: 80px;
+    width: 80px;
+    background-size: 80px 80px;
+    margin: 18px 16px;
+    border: 1px solid #d8d8d8;
+    display: inline-block;
+}
+#main_plan .item-prop {
+    display: inline-block;
+    margin: 7px 7px 7px 0;
+}
+#main_plan .item-prop {
+    display: inline-block;
+    margin: 7px 7px 7px 0;
+}
+#main_plan .prop-name {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+#main_plan .item-detail {
+    /*width: calc(100% - 80px);*/
+}
+#main_plan ul.row-list > li > ul > li:first-child {
+    flex-shrink: 0;
+    flex-grow: 3;
+    display: inline-flex;
+    justify-content: flex-start;
+}
+#main_plan .item-ctn .row-list > li > ul > li:first-child {
+    /*margin-left: 5%;*/
+    width: 50%;
+}
+#main_plan .item-ctn ul.row-list > li, #main_plan .item-ctn ul.row-list > li > ul {
+    height: 116px;
+}
+#main_plan .item-ctn .row-list > li > ul > li {
+    width: 10%;
+}
+#main_plan .item-ctn .more-data {
+    height: 116px;
+    line-height: 116px;
+    text-align: center;
+}
+
+#main_plan .item-ctn .row-list > li > ul > li:last-child {
+    width: auto;
+}
+
+

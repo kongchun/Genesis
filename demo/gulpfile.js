@@ -69,7 +69,7 @@ gulp.task('browserify', function() {
 
 
 gulp.task('styles', function() {
-	return gulp.src(['src/css/style.css','src/css/register.css'])
+	return gulp.src(['src/css/style.css','src/css/register.css','src/css/list.css','src/css/Geop_fonts.css'])
 		.pipe(plumber())
 		.pipe(less())
 		.pipe(autoprefixer())
