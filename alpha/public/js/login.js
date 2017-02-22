@@ -1,0 +1,1 @@
+$(function(){$("#btn_login").click(function(){var o=$("#account").val(),n=$("#password").val();$.post("api/login",{account:o,password:n},function(o){o.result?location.href="choose":alert("��¼ʧ�ܣ�")},"json")})});

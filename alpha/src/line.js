@@ -6,7 +6,6 @@ var nameIndex = {};
 
 function getPolyline(path, color) {
 	var points = path.map((i) => {
-
 		return new BMap.Point(i.lng, i.lat);
 	})
 	var polyline = new BMap.Polyline(points, {

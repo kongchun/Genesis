@@ -35,9 +35,17 @@ gulp.task('vendor-js', function() {
 			'node_modules/bootstrap/dist/js/bootstrap.js',
 			//'node_modules/headroom.js/dist/headroom.js',
 			//'node_modules/headroom.js/dist/jQuery.headroom.js'
+		]).pipe(concat('vendor.js'))
+		.pipe(uglify())
+		//.pipe(gulpif(production, uglify({mangle: false})))
+		.pipe(gulp.dest('public/js'));
+});
+
+gulp.task('vendor-map-js', function() {
+	return gulp.src([
 			'src/echarts.min.js', "src/macarons.js", "src/bmap.min.js", //echart
 			'src/RichMarker.js', 'src/GeoUtils.js', "src/heatmap.js", "src/gps.js"
-		]).pipe(concat('vendor.js'))
+		]).pipe(concat('map.js'))
 		.pipe(uglify())
 		//.pipe(gulpif(production, uglify({mangle: false})))
 		.pipe(gulp.dest('public/js'));
@@ -62,8 +70,12 @@ var data_src = ["src/data/brand", "src/data/district",
 // 		.pipe(gulp.dest('public/js'));
 // });
 
-gulp.task('bundle-js', function() {
-	//gulp.src('src/app/*.js').pipe(uglify()).pipe(gulp.dest('dist/js'));
+gulp.task("app-js", function() {
+	return gulp.src('src/app/*.js').pipe(uglify()).pipe(gulp.dest('public/js'));
+})
+
+gulp.task('bundle-js', ["app-js"], function() {
+
 	return browserify(['src/main.js'])
 		//.external("public/data.js")
 		.transform(babelify, {
@@ -101,14 +113,19 @@ gulp.task('html', function() {
 });
 
 
-gulp.task('build-static', ['vendor-css', 'css', 'vendor-js', 'bundle-js', 'images', 'html']);
+gulp.task('build-static', ['vendor-css', 'css', 'vendor-js', 'vendor-map-js', 'bundle-js', 'images', 'html']);
 
-
+gulp.task("build", ["app-js", "html"])
 
 //-------------------------------------------------------------------------------------------------
 var server = require('gulp-express');
 
-gulp.task('server', function() {
+gulp.task('watch', function() {
+	gulp.watch('src/app/*.js', ['build']);
+	gulp.watch('src/**/*.html', ['build']);
+});
+
+gulp.task('server', ["build", "watch"], function() {
 	process.env.NODE_ENV = 'development';
 	process.env.debug = 'alpha:*';
 	//process.env.DB_URL = '10.82.0.1';
@@ -118,4 +135,7 @@ gulp.task('server', function() {
 	// gulp.watch('public/**/bundle.js', server.notify);
 	// gulp.watch('public/**/*.css', server.notify);
 	// gulp.watch(['app.js', 'routes/**/*.js'], server.run);
+	gulp.watch('public/**/*.js', server.notify);
+	gulp.watch(['app.js', 'routes/**/*.js', 'server/**/*.js'], server.run);
+
 })
