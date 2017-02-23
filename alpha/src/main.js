@@ -19,8 +19,37 @@ $(function() {
 	pie.init(chart, map);
 	initEvent(chart, map);
 
-
+	initPageEvent();
 })
+
+function initPageEvent() {
+	$("#save").click(function() {
+		var id = $(this).data("id");
+		var arr = [];
+		$("input:checked", ".nav-sidebar").each(function(i, item) {
+			arr.push($(item).val())
+		})
+		var data = (arr.join(","))
+
+		$.post("api/map/save", {
+			id: id,
+			data: data
+		}, function(data) {
+			if (data) {
+				alert("保存成功!")
+			} else {
+				alert("保存失败!")
+			}
+		}, "json")
+	})
+
+	var data = $(".nav-sidebar").data("id");
+	$("input", ".nav-sidebar").each(function(i, item) {
+		if (data.indexOf($(item).val()) > -1) {
+			$(item).click()
+		}
+	})
+}
 
 
 var ChartMap = {

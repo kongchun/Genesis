@@ -42,13 +42,21 @@
                 <div class="main-header">
                     <div class="header-left tool">
                         <ul class="list-unstyled list-inline">
-                            <li>
+<!--                             <li>
+    <span></span>
+    <a href="#" class="new">
+        <i class="icon-q_add"></i>
+        新建
+    </a>
+</li> -->
+                             <li>
                                 <span></span>
                                 <a href="#" class="new">
                                     <i class="icon-q_add"></i>
-                                    新建
+                                    试用账号无法新建地图
                                 </a>
                             </li>
+                            
                         </ul>
                     </div>
                     <div class="header-center">
@@ -72,20 +80,21 @@
                         <div class="item-ctn list-item">
                             <% if (list.length) { %>
                             <ul class="list-unstyled row-list">
-                                 <% list.forEach(function(item){ %>  
-                                <li id="item01">
+                                 <% list.forEach(function(item){ %> 
+
+                                <li data-id="<%=item._id%>">
+                                 <a href="map?id=<%=item._id%>">
                                     <ul class="list-inline list-unstyled cloumn-list">
                                         <li>
                                         <span class="img-thumbnail"
-                                              style="background-image:url(images/plan_legend3.jpg)">
-                                        <span class="edit-mesh item-edit"
-                                              data-id="b666c18a-fe1e-4bd3-8da7-2dbf50133ba4"><i
-                                                class="icon-q_signup"></i></span></span>
+                                              style="background-image:url(images/list_img.png)">
+                                        <span class="edit-mesh item-edit">
+                                        <i  class="icon-q_signup"></i></span></span>
                                         <span class="item-detail">
                                             <span class="item-prop prop-name"><%=item.mapName%></span>
                                             <span>
                                             
-                                                <span class="item-prop prop-date"><%=new Date(item.date)%></span>
+                                                <span class="item-prop prop-date"><%=item.date%></span>
                                                
                                             </span>
                                            
@@ -93,6 +102,7 @@
                                         </li>
                                         <li><!-- <span class="item-del"></span> --></li>
                                     </ul>
+                                    </a>
                                 </li>
                                 <% }) %>  
                             </ul>

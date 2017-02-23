@@ -115,7 +115,7 @@ gulp.task('html', function() {
 
 gulp.task('build-static', ['vendor-css', 'css', 'vendor-js', 'vendor-map-js', 'bundle-js', 'images', 'html']);
 
-gulp.task("build", ["app-js", "html", "css"])
+gulp.task("build", ["bundle-js", "html", "css"])
 
 //-------------------------------------------------------------------------------------------------
 var server = require('gulp-express');
@@ -124,12 +124,13 @@ gulp.task('watch', function() {
 	gulp.watch('src/app/*.js', ['build']);
 	gulp.watch('src/**/*.html', ['build']);
 	gulp.watch('src/**/*.css', ['build']);
+	gulp.watch('src/main.js', ['build']);
 });
 
 gulp.task('server', ["build", "watch"], function() {
 	process.env.NODE_ENV = 'development';
 	process.env.debug = 'alpha:*';
-	//process.env.DB_URL = '10.82.0.1';
+	process.env.DB_URL = '10.82.0.1';
 	//process.env.port = '80';
 	// Start the server at the beginning of the task
 	server.run(['./bin/www']);
