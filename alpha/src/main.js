@@ -6,6 +6,7 @@ var brand = require("./brand.js");
 var house = require("./house.js");
 var shop = require("./shop.js");
 var pie = require("./pieDistrict.js");
+var message = require("./message.js");
 $(function() {
 	initNav();
 	ChartMap.init();
@@ -20,6 +21,8 @@ $(function() {
 	initEvent(chart, map);
 
 	initPageEvent();
+
+	message.init();
 })
 
 function initPageEvent() {
@@ -36,9 +39,9 @@ function initPageEvent() {
 			data: data
 		}, function(data) {
 			if (data) {
-				alert("保存成功!")
+				message.alert("保存成功!", "success")
 			} else {
-				alert("保存失败!")
+				message.alert("保存失败!")
 			}
 		}, "json")
 	})
@@ -50,6 +53,7 @@ function initPageEvent() {
 		}
 	})
 }
+
 
 
 var ChartMap = {
@@ -206,7 +210,7 @@ function initEvent(chart, map) {
 	var brandChk = $(".brand input");
 	brandChk.change(function() {
 		if ($("input:checked").length > 5) {
-			alert("最多勾选5条");
+			message.alert("最多勾选5条");
 			this.checked = false;
 			return false;
 		}

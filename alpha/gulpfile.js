@@ -71,7 +71,13 @@ var data_src = ["src/data/brand", "src/data/district",
 // });
 
 gulp.task("app-js", function() {
-	return gulp.src('src/app/*.js').pipe(uglify()).pipe(gulp.dest('public/js'));
+	//return gulp.src('src/app/*.js').pipe(uglify()).pipe(gulp.dest('public/js'));
+	return browserify('src/app/login.js').transform(babelify, {
+			presets: ['es2015', 'react', 'stage-0']
+		}).bundle()
+		.pipe(source('login.js'))
+		.pipe(streamify(uglify()))
+		.pipe(gulp.dest('public/js'));
 })
 
 gulp.task('bundle-js', ["app-js"], function() {

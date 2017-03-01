@@ -1,4 +1,6 @@
+var message = require("../message.js");
 $(function() {
+
 	$("#btn_login").click(function() {
 
 		var account = $("#account").val();
@@ -11,8 +13,10 @@ $(function() {
 			if (data.result) {
 				location.href = "list";
 			} else {
-				alert("��¼ʧ�ܣ�");
+				message.alert("用户名或密码不正确!");
 			}
 		}, "json")
 	})
+
+
 })
