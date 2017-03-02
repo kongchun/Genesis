@@ -71,8 +71,11 @@ router.get('/map', function(req, res, next) {
 
 
 router.get('/logout', function(req, res, next) {
+	if (!req.session.user) {
+		res.redirect('login.html');
+	}
 	if (req.session.user) {
-		res.session.user = null;
+		req.session.user = null;
 	}
 	res.redirect('login.html');
 });

@@ -17,9 +17,13 @@ gulp.task('vendor-css', function() {
 	gulp.src('node_modules/bootstrap/fonts/*.*')
 		.pipe(gulp.dest('public/fonts'));
 
+	gulp.src('node_modules/font-awesome/fonts/*.*')
+		.pipe(gulp.dest('public/fonts'));
+
 	return gulp.src([
 			'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
 			'node_modules/bootstrap/dist/css/bootstrap.min.css',
+			'node_modules/font-awesome/css/font-awesome.css',
 			'node_modules/animate.css/animate.css'
 		])
 		.pipe(concat('vendor.css'))
@@ -121,7 +125,7 @@ gulp.task('html', function() {
 
 gulp.task('build-static', ['vendor-css', 'css', 'vendor-js', 'vendor-map-js', 'bundle-js', 'images', 'html']);
 
-gulp.task("build", ["bundle-js", "html", "css"])
+gulp.task("build", ["html", "css"])
 
 //-------------------------------------------------------------------------------------------------
 var server = require('gulp-express');

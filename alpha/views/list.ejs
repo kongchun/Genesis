@@ -25,12 +25,17 @@
                 <a class="navbar-brand" href="index.html"> <img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="images/logo.png"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
+                   
                 <ul class="nav navbar-nav navbar-right">
-                    <li id="header-user" class="dropdown user">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
-                            <span class="username"><%= user.account %></span>
-                            <i class="fa fa-angle-down"></i>
+                    <li class="dropdown user" id="header-user">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                           <i class="fa fa-user"></i>
+                            <span class="username"> <%= user.account %></span>
+                            <i class="fa"></i>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="logout"><i class="fa fa-power-off"></i> 退出</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>

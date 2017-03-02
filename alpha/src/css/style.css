@@ -117,7 +117,43 @@ a {
 }
 .navbar-brand {
 	padding:10px 15px;
+  width:230px;
 }
+
+.navbar-brand img{
+  position: absolute;
+}
+
+.navbar #navbar-left li {
+  background-color: #6f94b8;
+  border-right: 1px solid #507aa4;
+  font-weight: 400;
+}
+.navbar #navbar-left li:first-child {
+  border-left: 1px solid #507aa4;
+}
+.navbar .nav > li > a:hover,
+.navbar .nav > li > a:focus,
+.navbar .nav .open > a,
+.navbar .nav .open > a:hover,
+.navbar .nav .open > a:focus {
+  background-color: #80a0c1 !important;
+    background-image: none;
+    box-shadow:none;
+}
+
+.navbar .nav > li > a.no-hover:hover{
+  background-color: white;
+}
+
+.dropdown.user img {
+    margin-right: 5px;
+    border-radius: 99px;
+    height: 29px;
+    width: 29px;
+    /* filter: url(data:image/svg+xml;filter: gray;utf8,<svg xmlns=\'http://www.w3.org/2000/sv…0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale); */
+}
+
 
 #map label{
 	max-width: 500px;

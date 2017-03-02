@@ -24,17 +24,32 @@
                 <a class="navbar-brand" href="index.html"> <img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="images/logo.png"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-             <form class="navbar-form navbar-right">
-                    <button id="save" data-id="<%=map._id%>" type="button" class="btn btn-default" aria-label="Left Align">
-                           <span  class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> 保存地图
-                        </button>
-                </form>
+                <ul class="nav navbar-nav navbar-left">
+                <li>
+                <a class="no-hover">
+                    <span class="name"><%=map.mapName%></span>
+                </a>
+                </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-left" id="navbar-left">
+                <li>
+                <a href="#" id="save" data-id="<%=map._id%>">
+                    <i class="fa fa-save"></i>
+                    <span class="name">保存</span>
+                </a>
+                </li>
+                </ul>
                     <ul class="nav navbar-nav navbar-right">
-                    <li id="header-user" class="dropdown user">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
-                            <span class="username"><%= user.account %> - <%=map.mapName%></span>
+                    <li class="dropdown user" id="header-user">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                           <i class="fa fa-user"></i>
+                            <span class="username"> <%= user.account %></span>
                             <i class="fa fa-angle-down"></i>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="logout"><i class="fa fa-power-off"></i> 退出</a></li>
+                        </ul>
                     </li>
                 </ul>
                
