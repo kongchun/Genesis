@@ -9,6 +9,9 @@ var pie = require("./pieDistrict.js");
 var message = require("./message.js");
 $(function() {
 	initNav();
+	initPageEvent();
+
+
 	ChartMap.init();
 	var chart = ChartMap.getChart();
 	var map = ChartMap.getMap();
@@ -20,9 +23,7 @@ $(function() {
 	pie.init(chart, map);
 	initEvent(chart, map);
 
-	initPageEvent();
 
-	message.init();
 })
 
 function initPageEvent() {
@@ -52,8 +53,22 @@ function initPageEvent() {
 			$(item).click()
 		}
 	})
+	initScrollBar()
+
 }
 
+function initScrollBar() {
+	var menu = $('.sidebar-menu');
+	var sidebarHeight = $(window).height() - $('.navbar').height() + 1;
+	menu.slimScroll({
+		size: '7px',
+		color: '#a1b2bd',
+		opacity: .3,
+		height: sidebarHeight,
+		allowPageScroll: true,
+		disableFadeOut: false
+	});
+}
 
 
 var ChartMap = {
@@ -257,7 +272,7 @@ function initNav() {
 			dom.addClass("nav-expanded")
 			$(".nav-children", dom).show();
 		}
-
+		initScrollBar();
 	})
 
 

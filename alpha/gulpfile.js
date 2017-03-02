@@ -37,6 +37,7 @@ gulp.task('vendor-js', function() {
 	return gulp.src([
 			'node_modules/jquery/dist/jquery.js',
 			'node_modules/bootstrap/dist/js/bootstrap.js',
+			'src/lib/*.js',
 			//'node_modules/headroom.js/dist/headroom.js',
 			//'node_modules/headroom.js/dist/jQuery.headroom.js'
 		]).pipe(concat('vendor.js'))

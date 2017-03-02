@@ -41,12 +41,15 @@ body {
     left: 0;
     z-index: 1000;
     display: block;
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
-    border-right: 1px solid #eee;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #f4f4f4;
+    border-right: 1px solid #e7e7e7;
   }
+}
+
+.sidebar-menu{
+   padding: 20px;
 }
 
 /* Sidebar navigation */
@@ -58,6 +61,9 @@ body {
 .nav-sidebar > li > a {
   padding-right: 20px;
   padding-left: 20px;
+      border-bottom: 1px solid #ffffff !important;
+    border-top: 1px solid #e7e7e7 !important;
+    color: #555555 !important;
 }
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
@@ -413,17 +419,19 @@ a {
 
 
 .sidebar ul.nav.nav-sidebar li.nav-parent > a:after {
-  font-family: 'Glyphicons Halflings';
-  content: "\e114";
+  float: right;
+  margin-top: 1px;
+  margin-right: 5px;
+  display: inline;
+  font-family: FontAwesome;
+  height: auto;
   font-size: 16px;
-  font-size: 1.6rem;
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 14px 25px;
+   content: "\f0d9";
+  font-weight: 300;
+  text-shadow: none;
 }
 .sidebar ul.nav.nav-sidebar li.nav-parent.nav-expanded > a:after {
-  content: "\e113";
+  content: "\f0d7";
 }
 
  .nav-children {
