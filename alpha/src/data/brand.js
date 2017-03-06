@@ -4620,9 +4620,9 @@ export var brand = {
 			"district": "黄浦",
 			"count": 0
 		}, {
-			"district": "闸北",
-			"count": 1
-		}, {
+		// 	"district": "闸北",
+		// 	"count": 1
+		// }, {
 			"district": "浦东",
 			"count": 2
 		}, {
@@ -4886,9 +4886,9 @@ export var brand = {
 			"district": "浦东",
 			"count": 1
 		}, {
-			"district": "闸北",
-			"count": 1
-		}, {
+		// 	"district": "闸北",
+		// 	"count": 1
+		// }, {
 			"district": "松江",
 			"count": 2
 		}, {
@@ -5582,9 +5582,9 @@ export var brand = {
 			"district": "普陀",
 			"count": 1
 		}, {
-			"district": "闸北",
-			"count": 1
-		}, {
+			// 	"district": "闸北",
+		// 	"count": 1
+		// }, {
 			"district": "黄浦",
 			"count": 0
 		}, {
@@ -9815,9 +9815,9 @@ export var brand = {
 			"district": "虹口",
 			"count": 1
 		}, {
-			"district": "闸北",
-			"count": 7
-		}, {
+		// 	"district": "闸北",
+		// 	"count": 7
+		// }, {
 			"district": "黄浦",
 			"count": 0
 		}, {

@@ -1,5 +1,10 @@
 var data = require("./data/brand.js");
-var color = ["#D8534C", "#FE971F", "#A4E501", "#8DC0F3", "#DF43C8"];
+var color = [
+	'#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
+	'#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
+	'#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
+	'#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089'
+];
 var brand = data.brand;
 var pub = data.pub;
 var company = data.company;
@@ -12,30 +17,32 @@ var marker = [];
 
 export var toggleShow = function(pie, chart, map, arr) {
 	showCollection(map, arr);
-	//showLabel(map, arr);
 	showPie(pie, arr);
 };
-//showLabel(1, ["ATM"])
-//showPie(1, ["ATM", "乐购"]);
+
 
 function showPie(pie, arr) {
 	let obj = {};
-	arr.forEach((it, i) => {
-			allData[it].district_count.forEach((j) => {
-				var district = j.district;
-				if (i == 0) {
-					obj[district] = []
-				}
-				var count = j.count;
+	pie.districtLabels.forEach((i) => {
+		obj[i] = {};
+		arr.forEach((j) => {
+			//console.log(j, "xxx")
+			obj[i][j] = 0;
+		});
+	});
 
-				obj[district].push({
-					name: it,
-					value: count
-				});
-			})
-		})
-		//console.log(obj)
-	pie.setData(obj);
+	//数据降维
+	arr.forEach((prop) => {
+		allData[prop].district_count.forEach((i) => {
+			//console.log(prop)
+			//console.log(i);
+			if (obj[i.district][prop] === 0) {
+				obj[i.district][prop] = i.count;
+			}
+		});
+	})
+
+	pie.setData(obj, arr);
 }
 
 function showLabel(map, arr) {

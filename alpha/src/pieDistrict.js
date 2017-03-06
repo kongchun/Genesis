@@ -3,6 +3,24 @@ var districtPoint = data.district;
 let districtChart = {};
 let parentChart = null;
 
+var placeHolderStyle = {
+	normal: {
+		color: 'rgba(255,255,255,0.8)',
+		label: {
+			show: false
+		},
+
+		labelLine: {
+			show: false
+		}
+	},
+	emphasis: {
+		color: 'rgba(0,0,0,0)'
+	}
+};
+
+export let districtLabels = [];
+
 export var init = function(chart, map) {
 	parentChart = chart;
 	var count = 0;
@@ -10,72 +28,84 @@ export var init = function(chart, map) {
 		var district = prop;
 		var position = districtPoint[prop];
 		var id = "districtPoint" + count++;
-		// console.log({
-		// 	district,
-		// 	position
-		// })
-		districtChart[district] = initPieMarker(map, id, district, position)
+		districtLabels.push(district);
+		districtChart[district] = initPieMarker(map, id, district, position);
 	}
 }
 
 export var clear = function() {
-	for (let prop in districtChart) {
-		districtChart[prop].setOption({
-			series: [{
-				data: []
-			}]
-		})
-	}
+	// for (let prop in districtChart) {
+	// 	districtChart[prop].setOption({
+	// 		series: [{
+	// 			data: []
+	// 		}]
+	// 	})
+	// }
 }
 
 
-export var setData = function(data) {
+export var setData = function(data, label) {
 
-	var count = 0;
-	var parentData = [];
-	var label = [];
-	for (let prop in data) {
-		var district = prop;
-		var pieData = data[prop] || [];
-		if (count == 0) {
-			pieData.forEach((it) => {
-				label.push(it.name);
-				parentData.push({
-					name: it.name
-				})
-			})
+	districtLabels.forEach((district) => {
+		var count = 0;
+		var dt = (data[district]);
+		var newPieData = [];
+		var innerPieData = [{
+			value: 0,
+			itemStyle: placeHolderStyle
+		}];
+		for (let prop in dt) {
+			newPieData.push({
+				name: prop,
+				value: dt[prop]
+			});
+			count += dt[prop];
 		}
-		var newPieData = pieData.filter((it) => {
-			return it.value > 0;
-		})
+		//console.log(newPieData);
 
-		//console.log(district, pieData);
+		if (count === 0) {
+			newPieData = [];
+			innerPieData = [];
+		}
 		districtChart[district].setOption({
 			title: {
+				show: count > 0,
 				text: district
 			},
+
 			series: [{
 				data: newPieData
+			}, {
+				tooltip: {
+					show: false
+				},
+				type: 'pie',
+				radius: [0, 25],
+				data: innerPieData
 			}]
 		})
-		count++;
-	}
-	if (label.length == 0) {
-		clear();
-	}
+	});
+
+	let labelName = label.map((i) => {
+		return {
+			name: i
+		};
+	});
+	//修改parentChart
 	parentChart.setOption({
 		legend: {
+			show: (label.length > 0),
 			data: label
 		},
 		series: [{
-			data: parentData
+			data: labelName
 		}]
-	})
+	});
 }
 
 
 
-function initPieMarker(map, id, area, position) {
+function initPieMarker(map, id, district, position) {
 	var htm = '<div id="' + id + '" style="width:100px;height:100px;"></div>';
 	var point = new BMap.Point(position.lng, position.lat);
 	var myRichMarkerObject = new BMapLib.RichMarker(htm, point, {
@@ -92,7 +122,6 @@ function initPieMarker(map, id, area, position) {
 			formatter: "{a} <br/>{b}: {c} ({d}%)"
 		},
 		title: {
-			//text:"园区",
 			left: "center",
 			top: "center",
 			textStyle: {
@@ -101,7 +130,7 @@ function initPieMarker(map, id, area, position) {
 			}
 		},
 		series: [{
-			name: area,
+			name: district,
 			type: 'pie',
 			avoidLabelOverlap: false,
 			label: {
@@ -113,6 +142,7 @@ function initPieMarker(map, id, area, position) {
 			},
 			radius: ['25', '40'],
 			data: []
+
 		}]
 	}
 	myChart.setOption(option);

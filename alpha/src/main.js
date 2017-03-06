@@ -9,7 +9,7 @@ var pie = require("./pieDistrict.js");
 var message = require("./message.js");
 $(function() {
 	initNav();
-	initPageEvent();
+
 
 
 	ChartMap.init();
@@ -23,7 +23,7 @@ $(function() {
 	pie.init(chart, map);
 	initEvent(chart, map);
 
-
+	initPageEvent();
 })
 
 function initPageEvent() {
@@ -49,6 +49,7 @@ function initPageEvent() {
 
 	var data = $(".nav-sidebar").data("id");
 	$("input", ".nav-sidebar").each(function(i, item) {
+
 		if (data.indexOf($(item).val()) > -1) {
 			$(item).click()
 		}
@@ -224,8 +225,8 @@ function initEvent(chart, map) {
 
 	var brandChk = $(".brand input");
 	brandChk.change(function() {
-		if ($("input:checked").length > 5) {
-			message.alert("最多勾选5条");
+		if ($("input:checked").length > 10) {
+			message.alert("最多勾选10条");
 			this.checked = false;
 			return false;
 		}
