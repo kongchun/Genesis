@@ -13,7 +13,30 @@ exports.checkUser = function(user) {
 		return null
 	})
 };
-
+exports.addUser = function(user) {
+	return db.open("user").then(function() {
+		return db.collection.insert(user);
+	}).then(function(data) {
+		db.close()
+		return data
+	}).catch(function(e) {
+		db.close()
+		console.log(e);
+		return null
+	})
+};
+exports.checkUserName = function(user) {
+	return db.open("user").then(function() {
+		return db.collection.findOne(user);
+	}).then(function(data) {
+		db.close();
+		return data
+	}).catch(function(e) {
+		db.close()
+		console.log(e);
+		return null
+	})
+};
 
 exports.getMapListById = function(id) {
 	return db.open("user_map").then(function() {
