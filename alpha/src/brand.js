@@ -110,7 +110,6 @@ function markerDistrict(map, district, point, text) {
 
 
 function showCollection(map, arr) {
-
 	collections.forEach((i) => {
 		map.removeOverlay(i)
 	})
@@ -120,9 +119,8 @@ function showCollection(map, arr) {
 		map.addOverlay(pointCollection);
 		collections.push(pointCollection);
 	})
-
 }
-
+/*地图上map的legend*/
 function loadBrand(name, i = 0) {
 	var data = getDataByTypeName(name);
 	var points = getPoints(data.area);

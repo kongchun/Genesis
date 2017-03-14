@@ -9,9 +9,6 @@ var pie = require("./pieDistrict.js");
 var message = require("./message.js");
 $(function() {
 	initNav();
-
-
-
 	ChartMap.init();
 	var chart = ChartMap.getChart();
 	var map = ChartMap.getMap();
@@ -22,7 +19,6 @@ $(function() {
 
 	pie.init(chart, map);
 	initEvent(chart, map);
-
 	initPageEvent();
 })
 
@@ -71,7 +67,6 @@ function initScrollBar() {
 	});
 }
 
-
 var ChartMap = {
 	chart: null,
 	map: null,
@@ -92,7 +87,6 @@ var ChartMap = {
 				center: [121.523859, 31.258039],
 				zoom: 12,
 				roam: true,
-
 				mapStyle: {
 					styleJson: [{
 						"featureType": "all",
@@ -249,12 +243,17 @@ function initEvent(chart, map) {
 
 	var shopPrice = $(".house .shopPrice");
 	shopPrice.change(function() {
-		console.log(this.checked)
 		if ($(this)[0].checked) {
 			shop.show(map);
 		} else {
 			shop.hide(map);
 		}
+	})
+	$("#clearAll").click(function(){
+		$("input:checked").each(function(){
+			$(this).prop('checked',false);
+			$(this).change();
+		})
 	})
 }
 

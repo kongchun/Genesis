@@ -37,7 +37,7 @@ body {
   .sidebar {
     position: fixed;
     top: 51px;
-    bottom: 0;
+    bottom: 50px;
     left: 0;
     z-index: 1000;
     display: block;
@@ -45,6 +45,7 @@ body {
     overflow: hidden;
     background-color: #f4f4f4;
     border-right: 1px solid #e7e7e7;
+      border-bottom: 1px solid #e7e7e7;
   }
 }
 
@@ -57,6 +58,7 @@ body {
   margin-right: -21px; /* 20px padding + 1px border */
   margin-bottom: 20px;
   margin-left: -20px;
+    border-bottom: 1px solid #e7e7e7;
 }
 .nav-sidebar > li > a {
   padding-right: 20px;
@@ -471,3 +473,14 @@ a {
     margin-left: 14px;
     padding-bottom: 2px;
 }
+/*清除所有选项*/
+.clearAll{
+    position: fixed;
+    bottom: 0px;
+}
+#clearAll{
+    width:200px;
+    margin: 5px;
+    letter-spacing: 2px;
+}
+
