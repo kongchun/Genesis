@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <title>Genesis 商业地理 | 智慧商圈，精准营销，智能选址</title>
+    <link rel="stylesheet" href="css/vendor.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/analysis.css"/>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8hr2ZB5zsFI6dcId9Uj6ORy2kuLIP8vA"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"> <img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="images/logo.png"></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a href="#" class="no-hover"><span class="name">云数据</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="no-hover"><span class="name">商业分析</span></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1 col-md-1 sidebar">
+                <div class="sidebar-menu">
+                    <ul class="nav nav-sidebar">
+                    <li class="first-category"><a href="#">商圈</a></li>
+                    <li class="first-category"><a href="#">行业</a></li>
+                    <li class="first-category"><a href="#">分析</a></li>
+                </ul>
+                </div>
+            </div>
+            <div id="second-category" class="col-md-2 col-sm-2" style="display: none;">
+                  <div class="second-category">
+                    <div class="select-analy">
+                        <div class="select-analy-bg">选择分析条件</div>
+                    </div>
+                    <ul class="nav district">
+
+                            <li class="district-item">
+                                <a>
+                                    <input type="checkbox" class="hp" name="district" value="黄浦区"><span class="text"> 黄浦区</span></a>
+                            </li>
+                            <li class="color-gray">
+                                <a>
+                                    <input type="checkbox" class="pd" name="district" value="浦东区" disabled><span class="text color-gray"> 浦东区</span></a>
+                            </li>
+                            <li class="color-gray">
+                                <a>
+                                    <input type="checkbox" class="xh" name="district" value="徐汇区" disabled><span class="text color-gray"> 徐汇区</span></a>
+                            </li>
+                            <li class="color-gray">
+                                <a>
+                                    <input type="checkbox" class="lw" name="district" value="卢湾区" disabled><span class="text color-gray"> 卢湾区</span></a>
+                            </li>
+
+                        </ul>
+                    <ul class="nav brand">
+                          <li class="firm-item">
+                              <span>当前行业：</span><span class="firm-name">未选择</span>
+                          </li>
+                          <li class="brand-item">
+                              <div class="item-header"><strong>休闲娱乐</strong></div>
+                              <div class="item-body">
+                                  <ul>
+                                      <li> <input type="radio" name="休闲娱乐" value="电影院"/>电影院</li>
+                                      <li class="color-gray"> <input type="radio" name="休闲娱乐" value="酒吧" disabled/>酒吧</li>
+                                      <li class="color-gray"> <input type="radio" name="休闲娱乐" value="KTV" disabled/>KTV</li>
+                                      <li class="color-gray"> <input type="radio" name="休闲娱乐" value="中医养生" disabled/>中医养生</li>
+                                      <li class="color-gray"> <input type="radio" name="休闲娱乐" value="足疗按摩" disabled/>足疗按摩</li>
+                                  </ul>
+                              </div>
+                          </li>
+                          <li class="brand-item">
+                              <div class="item-header"><strong>餐饮</strong></div>
+                              <div class="item-body">
+                                  <ul>
+                                      <li class="color-gray"> <input type="radio" name="餐饮" value="西餐" disabled/>西餐</li>
+                                      <li class="color-gray"> <input type="radio" name="餐饮" value="广东菜" disabled/>广东菜</li>
+                                      <li class="color-gray"> <input type="radio" name="餐饮" value="川菜" disabled/>川菜</li>
+                                      <li class="color-gray"> <input type="radio" name="餐饮" value="日本菜" disabled/>日本菜</li>
+                                      <li class="color-gray"> <input type="radio" name="餐饮" value="韩国料理" disabled/>韩国料理</li>
+                                  </ul>
+                              </div>
+                          </li>
+                      </ul>
+                    <ul class="nav analysis">
+                        <li class="analysis-item">
+                            <div class="item-header"><strong>房价</strong></div>
+                            <div class="item-body">
+                                <ul>
+                                    <li class="color-gray"> <input type="checkbox"  value="住宅价格" disabled/>住宅价格</li>
+                                    <li class="color-gray"> <input type="checkbox"  value="商铺租金" disabled/>商铺租金</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="analysis-item">
+                            <div class="item-header"><strong>同行业分析</strong></div>
+                            <div class="item-body movie-panel-ul" style="display: none;">
+                                <ul>
+                                    <li> <input type="checkbox"  name="analysis-input" value="金逸影院"/>金逸影院</li>
+                                    <li class="color-gray"> <input type="checkbox"  name="analysis-input" value="万达影院" disabled/>万达影院</li>
+                                    <li class="color-gray"> <input type="checkbox"  name="analysis-input" value="星美国际影城" disabled/>星美国际影城</li>
+                                    <li class="color-gray"> <input type="checkbox"  name="analysis-input" value="海上明珠国际影城" disabled/>海上明珠国际影城</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="analysis-item">
+                            <div class="item-header"><strong>公共设施</strong></div>
+                            <div class="item-body">
+                                <ul>
+                                    <li class="color-gray"> <input type="checkbox"  value="加油站" disabled/>加油站</li>
+                                    <li class="color-gray"> <input type="checkbox"  value="ATM机" disabled/>ATM机</li>
+                                    <li class="color-gray"> <input type="checkbox"  value="公共卫生间" disabled/>公共卫生间</li>
+                                    <li class="color-gray"> <input type="checkbox"  value="便利店" disabled/>便利店</li>
+                                    <li class="color-gray"> <input type="checkbox"  value="便民服务店" disabled/>便民服务店</li>
+                                </ul>
+                            </div>
+                        </li>
+                      </ul>
+                    <div>
+                      <div class="btn-next">
+                          <button href="#" class="btn btn-default">图形分析</button>
+                          <button href="#" class="btn btn-default">地图分析</button>
+                      </div>
+                  </div>
+                  </div>
+            </div>
+            <div class="third-category">
+                <span>这是第三层</span>
+                <div class="colapsed-arrow"><button class="btn btn-primary">收起</button></div>
+            </div>
+            <div class="col-sm-11 col-sm-offset-1 col-md-11 col-md-offset-1 main">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/data.js"></script>
+    <script src="js/vendor.js"></script>
+    <script src="js/map.js"></script>
+    <!--     <script src="js/vendor.bundle.js"></script> -->
+    <script src="js/bundle.js"></script>
+</body>
+
+</html>
+
