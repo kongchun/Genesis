@@ -420,7 +420,7 @@ a {
 }
 
 
-.sidebar ul.nav.nav-sidebar li.nav-parent > a:after {
+.sidebar ul.nav.nav-sidebar li.nav-parent > a:after{
   float: right;
   margin-top: 1px;
   margin-right: 5px;
@@ -435,7 +435,18 @@ a {
 .sidebar ul.nav.nav-sidebar li.nav-parent.nav-expanded > a:after {
   content: "\f0d7";
 }
-
+.sidebar ul.nav.nav-sidebar li.first-category > a:after{
+    float: right;
+    margin-top: 1px;
+    margin-right: 5px;
+    display: inline;
+    font-family: FontAwesome;
+    height: auto;
+    font-size: 16px;
+    content: "\f105";
+    font-weight: 300;
+    text-shadow: none;
+}
  .nav-children {
     box-shadow: none;
     background: white;

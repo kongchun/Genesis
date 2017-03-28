@@ -101,7 +101,7 @@ gulp.task('bundle-js', ["app-js"], function() {
 
 
 gulp.task('css', function() {
-	return gulp.src(['src/css/style.css', 'src/css/register.css', 'src/css/list.css'])
+	return gulp.src(['src/css/style.css', 'src/css/register.css', 'src/css/list.css',"src/css/analysis.css"])
 		.pipe(plumber())
 		.pipe(less())
 		.pipe(autoprefixer())

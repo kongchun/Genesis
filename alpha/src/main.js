@@ -7,6 +7,7 @@ var house = require("./house.js");
 var shop = require("./shop.js");
 var pie = require("./pieDistrict.js");
 var message = require("./message.js");
+var analysis = require("./analysis.js");
 $(function() {
 	initNav();
 	ChartMap.init();
@@ -66,7 +67,17 @@ function initScrollBar() {
 		disableFadeOut: false
 	});
 }
-
+function initSecondCategory(currentContent){
+	var contentBarHeight = $(window).height() - $('.navbar').height() + 1;
+	$(currentContent).slimScroll({
+		size: '7px',
+		color: '#a1b2bd',
+		opacity: .3,
+		height: contentBarHeight,
+		allowPageScroll: true,
+		disableFadeOut: false
+	})
+}
 var ChartMap = {
 	chart: null,
 	map: null,
@@ -274,7 +285,105 @@ function initNav() {
 		}
 		initScrollBar();
 	})
+	$("li.first-category").click(function(e) {
+		var index = $(this).index();
+		if(index==0){
+			$("ul.district").show();
+			$(".select-analy-bg").text("选择所属行政区");
+			$(".btn-next").hide();
+		}else if(index==1){
+			$("ul.brand").show();
+			$(".select-analy-bg").text("选择所属的行业");
+			$(".btn-next").hide();
+		}else{
+			$("ul.analysis").show();
+			$(".select-analy-bg").text("选择分析条件");
+			$(".btn-next").show();
+		}
+		var mapParent = $("#map").parent("div");
+		var contentCategory = $("#second-category");
+        /*var contentsDiv = contentCategory.find("div.second-category");*/
+		var width = $(".sidebar").width();
+		if(mapParent.hasClass("col-md-offset-1")){
+			mapParent.removeClass("col-md-offset-1").removeClass("col-sm-offset-1");
+			mapParent.addClass("col-md-offset-3").addClass("col-sm-offset-3");
+			contentCategory.css('left',width);
+			$("#second-category").show();
+		}else{
+			mapParent.removeClass("col-md-offset-3").removeClass("col-sm-offset-3");
+			mapParent.addClass("col-md-offset-1").addClass("col-sm-offset-1");
+			contentCategory.css('left',0);
+			$(".third-category").hide();
+			$("#second-category").hide();
+			$("ul.district").hide();
+			$("ul.brand").hide();
+			$("ul.analysis").hide();
+		}
+		/*initSecondCategory($(contentsDiv).find("ul"));*/
+	})
+	$(".btn-next button").click(function(){
+		if($(".movie-panel-ul").css("display")=='none'){
+			alert("请先去选择所在的行业,否则不能进行分析哦");
+			return false;
+		}
+		var fc_width = $(".sidebar").width();
+		var sc_width = $("#second-category").width();
+		var left_width = fc_width + sc_width + 4;
+        var thirdCategory = $(".third-category");
+		thirdCategory.css("left",left_width);
+		thirdCategory.toggle();
+	})
+	$(".colapsed-arrow").click(function(){
+		var thirdCategory = $(".third-category");
+		thirdCategory.toggle();
+		thirdCategory.css("left",0);
+	});
+	//选择行政区
+	$("[name = district]:checkbox").each(function () {
+	    $(this).bind("click",function(){
+			if ($(this).is(":checked")) {
+				$(this).prop("checked", true);
+				var districtName = "上海市"+$(this).val();
+			} else {
+				var districtName = "";
+				$(this).prop("checked", false);
+				$("[name = analysis-input]:checkbox").each(function () {
+					$(this).prop("checked", false);
+				});
+				$("input:radio[name='休闲娱乐']").each(function(){
+					$(this).prop("checked", false);
+				})
+			}
+			analysis.getBoundary(ChartMap.getMap(),districtName);
 
+	    })
+	});
+    //选择行业
+	$("input:radio[name='休闲娱乐']").change(function(){
+	    var selectVal = $(this).val();
+		$(".firm-name").text(selectVal);
+		//只有选择了电影院行业后，分析面板的同行业分析才会出现
+        $(".movie-panel-ul").show();
+	});
 
+	//选择分析项
+	$("[name = analysis-input]:checkbox").each(function () {
+		$(this).bind("click",function(){
+			var analyArr = [];
+			if(!$("input.hp").is(":checked")){
+				alert("请先去选择您所要查看的行政区");
+				return false;
+			}
+			if ($(this).is(":checked")) {
+				$(this).prop("checked", true);
+				var analysisName =$(this).val();
+				analyArr.push(analysisName);
+			} else {
+				$(this).prop("checked", false);
+				analyArr = "";
+			}
+			brand.toggleShow(pie,null,ChartMap.getMap(),analyArr);
+		})
+	});
 
 }

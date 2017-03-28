@@ -9,7 +9,8 @@ var brand = data.brand;
 var pub = data.pub;
 var company = data.company;
 var districtPoint = data.district;
-var allData = Object.assign(brand, pub, company);
+var movie = data.movie;
+var allData = Object.assign(brand, pub, company, movie);
 var collections = [];
 var marker = [];
 
@@ -120,7 +121,7 @@ function showCollection(map, arr) {
 		collections.push(pointCollection);
 	})
 }
-/*地图上map的legend*/
+
 function loadBrand(name, i = 0) {
 	var data = getDataByTypeName(name);
 	var points = getPoints(data.area);
