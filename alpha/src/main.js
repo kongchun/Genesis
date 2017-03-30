@@ -320,24 +320,17 @@ function initNav() {
 	var mapParent = $("#map").parent("div");
 	var contentCategory = $("#second-category");
 	var width = $(".sidebar").width();
-	var c_map = ChartMap.getMap();
 	//打开当前切换的tab页
 	function openCurrentTab() {
 		closeTab();
-		mapParent.removeClass("col-md-offset-1").removeClass("col-sm-offset-1");
-		mapParent.addClass("col-md-offset-3").addClass("col-sm-offset-3");
+		toggleMapSize(true);
 		contentCategory.css('left', width);
 		$("#second-category").show();
-		ChartMap.getMap().setViewport(ChartMap.getMap().getBounds());
-		var container = ChartMap.getMap().getContainer();
-		console.log(container);
-
 	}
 	//关闭打开的tab
 	function closeTab() {
 		if (mapParent.hasClass("col-md-offset-3")) {
-			mapParent.removeClass("col-md-offset-3").removeClass("col-sm-offset-3");
-			mapParent.addClass("col-md-offset-1").addClass("col-sm-offset-1");
+			toggleMapSize(false);
 			contentCategory.css('left', 0);
 			$(".third-category").hide();
 			$("#second-category").hide();
@@ -345,20 +338,32 @@ function initNav() {
 	}
 
 	function toggleTab() {
-		if (mapParent.hasClass("col-md-offset-3")) {
-			mapParent.removeClass("col-md-offset-3").removeClass("col-sm-offset-3");
-			mapParent.addClass("col-md-offset-1").addClass("col-sm-offset-1");
+		if (mapParent.hasClass("col-md-9")) {
+			toggleMapSize(false);
 			contentCategory.css('left', 0);
 			$(".third-category").hide();
 			$("#second-category").hide();
 		} else {
-			mapParent.removeClass("col-md-offset-1").removeClass("col-sm-offset-1");
-			mapParent.addClass("col-md-offset-3").addClass("col-sm-offset-3");
+			toggleMapSize(true);
 			contentCategory.css('left', width);
 			$("#second-category").show();
 		}
+		ChartMap.getMap().reset();
 	}
-	
+    //地图宽度是否变窄：true表示变窄,二级菜单出来
+	function toggleMapSize(zoomOrNot){
+		if(zoomOrNot){
+			mapParent.removeClass("col-md-offset-1").removeClass("col-sm-offset-1");
+			mapParent.removeClass("col-md-11").removeClass("col-sm-11");
+			mapParent.addClass("col-md-offset-3").addClass("col-sm-offset-3");
+			mapParent.addClass("col-md-9").removeClass("col-sm-9");
+		}else{
+			mapParent.removeClass("col-md-offset-3").removeClass("col-sm-offset-3");
+			mapParent.removeClass("col-md-9").removeClass("col-sm-9");
+			mapParent.addClass("col-md-offset-1").addClass("col-sm-offset-1");
+			mapParent.addClass("col-md-11").removeClass("col-sm-11");
+		}
+	}
 	$(".btn-next button").click(function(){
 		/*if($(".movie-panel-ul").css("display")=='none'){
 			alert("请先去选择所在的行业,否则不能进行分析哦");
@@ -422,8 +427,6 @@ function initNav() {
         $(".movie-panel-ul").show();
 	});
 
-
-
 	//选择分析项
 
 	var brandChk2 = $("[name = analysis-input]:checkbox");
@@ -440,16 +443,18 @@ function initNav() {
 		brand_sanlin.showCollection(ChartMap.getMap(), arr);
 	})
 
-
 	//人流
 
 
 	var lwChk2 = $(".analysis_trading input");
 	lwChk2.change(function() {
+		console.log("aaaaaaaaaaaaaaaaa");
+		console.log($(this)[0]);
 		if ($(this)[0].checked) {
+			console.log("if")
 			brand_sanlin.show(ChartMap.getMap(), $(this).val());
-
 		} else {
+			console.log("else");
 			brand_sanlin.hide(ChartMap.getMap(), $(this).val());
 		}
 	})
