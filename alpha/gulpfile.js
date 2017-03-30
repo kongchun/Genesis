@@ -101,7 +101,7 @@ gulp.task('bundle-js', ["app-js"], function() {
 
 
 gulp.task('css', function() {
-	return gulp.src(['src/css/style.css', 'src/css/register.css', 'src/css/list.css',"src/css/analysis.css"])
+	return gulp.src(['src/css/style.css', 'src/css/register.css', 'src/css/list.css', "src/css/analysis.css"])
 		.pipe(plumber())
 		.pipe(less())
 		.pipe(autoprefixer())
@@ -124,9 +124,9 @@ gulp.task('html', function() {
 });
 
 
-gulp.task('build-static', ['vendor-css', 'css', 'vendor-js', 'vendor-map-js', 'bundle-js','app-js', 'images', 'html']);
+gulp.task('build-static', ['vendor-css', 'css', 'vendor-js', 'vendor-map-js', 'bundle-js', 'app-js', 'images', 'html']);
 
-gulp.task("build", ["html", "css","app-js","bundle-js"])
+gulp.task("build", ["html", "css", "app-js", "bundle-js"])
 
 //-------------------------------------------------------------------------------------------------
 var server = require('gulp-express');
@@ -134,6 +134,7 @@ var server = require('gulp-express');
 gulp.task('watch', function() {
 	gulp.watch('src/app/*.js', ['build']);
 	gulp.watch('src/**/*.html', ['build']);
+	gulp.watch('src/**/*.js', ['build']);
 	gulp.watch('src/**/*.css', ['build']);
 	gulp.watch('src/main.js', ['build']);
 });

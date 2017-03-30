@@ -3,6 +3,7 @@ var people = require("./people.js");
 var line = require("./line.js");
 var trading = require("./trading.js");
 var brand = require("./brand.js");
+var brand_sanlin = require("./brand_sanlin.js");
 var house = require("./house.js");
 var shop = require("./shop.js");
 var pie = require("./pieDistrict.js");
@@ -16,6 +17,9 @@ $(function() {
 
 	people.init(map);
 	trading.init(map);
+
+	brand_sanlin.initTrading(map); //TODB delete
+
 	line.init(map);
 
 	pie.init(chart, map);
@@ -67,7 +71,8 @@ function initScrollBar() {
 		disableFadeOut: false
 	});
 }
-function initSecondCategory(currentContent){
+
+function initSecondCategory(currentContent) {
 	var contentBarHeight = $(window).height() - $('.navbar').height() + 1;
 	$(currentContent).slimScroll({
 		size: '7px',
@@ -260,9 +265,9 @@ function initEvent(chart, map) {
 			shop.hide(map);
 		}
 	})
-	$("#clearAll").click(function(){
-		$("input:checked").each(function(){
-			$(this).prop('checked',false);
+	$("#clearAll").click(function() {
+		$("input:checked").each(function() {
+			$(this).prop('checked', false);
 			$(this).change();
 		})
 	})
@@ -289,22 +294,22 @@ function initNav() {
 	var openTabIndex;
 	$("li.first-category").click(function(e) {
 		var index = $(this).index();
-		if(index == openTabIndex){
+		if (index == openTabIndex) {
 			toggleTab();
 			return false;
 		}
 		$("ul.nav-second").hide();
-		if(index==0){
+		if (index == 0) {
 			openTabIndex = 0
 			$("ul.district").show();
 			$(".select-analy-bg").text("选择所属行政区");
 			$(".btn-next").hide();
-		}else if(index==1){
+		} else if (index == 1) {
 			openTabIndex = 1;
 			$("ul.brand").show();
 			$(".select-analy-bg").text("选择所属的行业");
 			$(".btn-next").hide();
-		}else{
+		} else {
 			openTabIndex = 2;
 			$("ul.analysis").show();
 			$(".select-analy-bg").text("选择分析条件");
@@ -316,34 +321,35 @@ function initNav() {
 	var contentCategory = $("#second-category");
 	var width = $(".sidebar").width();
 	//打开当前切换的tab页
-	function openCurrentTab(){
+	function openCurrentTab() {
 		closeTab();
 		mapParent.removeClass("col-md-offset-1").removeClass("col-sm-offset-1");
 		mapParent.addClass("col-md-offset-3").addClass("col-sm-offset-3");
-		contentCategory.css('left',width);
+		contentCategory.css('left', width);
 		$("#second-category").show();
 	}
 	//关闭打开的tab
-	function closeTab(){
-		if(mapParent.hasClass("col-md-offset-3")){
+	function closeTab() {
+		if (mapParent.hasClass("col-md-offset-3")) {
 			mapParent.removeClass("col-md-offset-3").removeClass("col-sm-offset-3");
 			mapParent.addClass("col-md-offset-1").addClass("col-sm-offset-1");
-			contentCategory.css('left',0);
+			contentCategory.css('left', 0);
 			$(".third-category").hide();
 			$("#second-category").hide();
 		}
 	}
-	function toggleTab(){
-		if(mapParent.hasClass("col-md-offset-3")){
+
+	function toggleTab() {
+		if (mapParent.hasClass("col-md-offset-3")) {
 			mapParent.removeClass("col-md-offset-3").removeClass("col-sm-offset-3");
 			mapParent.addClass("col-md-offset-1").addClass("col-sm-offset-1");
-			contentCategory.css('left',0);
+			contentCategory.css('left', 0);
 			$(".third-category").hide();
 			$("#second-category").hide();
-		}else{
+		} else {
 			mapParent.removeClass("col-md-offset-1").removeClass("col-sm-offset-1");
 			mapParent.addClass("col-md-offset-3").addClass("col-sm-offset-3");
-			contentCategory.css('left',width);
+			contentCategory.css('left', width);
 			$("#second-category").show();
 		}
 	}
@@ -357,74 +363,85 @@ function initNav() {
 	   }
 		ChartMap.init();
 	}*/
-	$(".btn-next button").click(function(){
-		if($(".movie-panel-ul").css("display")=='none'){
+	$(".btn-next button").click(function() {
+		if ($(".movie-panel-ul").css("display") == 'none') {
 			alert("请先去选择所在的行业,否则不能进行分析哦");
 			return false;
 		}
 		var fc_width = $(".sidebar").width();
 		var sc_width = $("#second-category").width();
 		var left_width = fc_width + sc_width + 4;
-        var thirdCategory = $(".third-category");
-		thirdCategory.css("left",left_width);
+		var thirdCategory = $(".third-category");
+		thirdCategory.css("left", left_width);
 		thirdCategory.toggle();
 	})
-	$(".colapsed-arrow").click(function(){
+	$(".colapsed-arrow").click(function() {
 		var thirdCategory = $(".third-category");
 		thirdCategory.toggle();
-		thirdCategory.css("left",0);
+		thirdCategory.css("left", 0);
 	});
 	//选择行政区
-	$("[name = district]:checkbox").each(function () {
-	    $(this).bind("click",function(){
+	$("[name = district]:checkbox").each(function() {
+		$(this).bind("click", function() {
 			if ($(this).is(":checked")) {
 				$(this).prop("checked", true);
-				var districtName = "上海市"+$(this).val();
+				var districtName = "上海市" + $(this).val();
 			} else {
 				var districtName = "";
 				$(this).prop("checked", false);
-				$("[name = analysis-input]:checkbox").each(function () {
+				$("[name = analysis-input]:checkbox").each(function() {
 					$(this).prop("checked", false);
 				});
-				$("input:radio[name='休闲娱乐']").each(function(){
+				$("input:radio[name='休闲娱乐']").each(function() {
 					$(this).prop("checked", false);
 				})
 			}
 			/*analysis.getBoundary(ChartMap.getMap(),districtName);*/
 			var cPoint = {
-				lng:121.533546,
-				lat:31.210245
+				lng: 121.533546,
+				lat: 31.210245
 			};
-			analysis.drawCircle(ChartMap.getMap(),cPoint,3000,"三林商圈");
+			analysis.drawCircle(ChartMap.getMap(), cPoint, 3000, "三林商圈");
 
-	    })
-	});
-    //选择行业
-	$("input:radio[name='休闲娱乐']").change(function(){
-	    var selectVal = $(this).val();
-		$(".firm-name").text(selectVal);
-		//只有选择了电影院行业后，分析面板的同行业分析才会出现
-        $(".movie-panel-ul").show();
-	});
-
-	//选择分析项
-	$("[name = analysis-input]:checkbox").each(function () {
-		$(this).bind("click",function(){
-			var analyArr = [];
-			if(!$("input.hp").is(":checked")){
-				alert("请先去选择您所要查看的行政区");
-				return false;
-			}
-			if ($(this).is(":checked")) {
-				$(this).prop("checked", true);
-				var analysisName =$(this).val();
-				analyArr.push(analysisName);
-			} else {
-				$(this).prop("checked", false);
-				analyArr = "";
-			}
-			brand.toggleShow(pie,null,ChartMap.getMap(),analyArr);
 		})
 	});
+	//选择行业
+	$("input:radio[name='休闲娱乐']").change(function() {
+		var selectVal = $(this).val();
+		$(".firm-name").text(selectVal);
+		//只有选择了电影院行业后，分析面板的同行业分析才会出现
+		$(".movie-panel-ul").show();
+	});
 
+
+
+	//选择分析项
+
+	var brandChk2 = $("[name = analysis-input]:checkbox");
+	brandChk2.change(function() {
+		if ($("input:checked").length > 10) {
+			message.alert("最多勾选10条");
+			this.checked = false;
+			return false;
+		}
+		var arr = [];
+		$("[name = analysis-input]:checked").each(function() {
+			arr.push(this.value);
+		})
+		brand_sanlin.showCollection(ChartMap.getMap(), arr);
+	})
+
+
+	//人流
+
+
+	var lwChk2 = $(".analysis_trading input");
+	lwChk2.change(function() {
+		if ($(this)[0].checked) {
+			brand_sanlin.show(ChartMap.getMap(), $(this).val());
+
+		} else {
+			brand_sanlin.hide(ChartMap.getMap(), $(this).val());
+		}
+	})
 }
