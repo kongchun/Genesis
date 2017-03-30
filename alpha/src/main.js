@@ -284,43 +284,79 @@ function initNav() {
 			$(".nav-children", dom).show();
 		}
 		initScrollBar();
-	})
+	});
+	//记录当前打开的是第几个标签页
+	var openTabIndex;
 	$("li.first-category").click(function(e) {
 		var index = $(this).index();
+		if(index == openTabIndex){
+			toggleTab();
+			return false;
+		}
+		$("ul.nav-second").hide();
 		if(index==0){
+			openTabIndex = 0
 			$("ul.district").show();
 			$(".select-analy-bg").text("选择所属行政区");
 			$(".btn-next").hide();
 		}else if(index==1){
+			openTabIndex = 1;
 			$("ul.brand").show();
 			$(".select-analy-bg").text("选择所属的行业");
 			$(".btn-next").hide();
 		}else{
+			openTabIndex = 2;
 			$("ul.analysis").show();
 			$(".select-analy-bg").text("选择分析条件");
 			$(".btn-next").show();
 		}
-		var mapParent = $("#map").parent("div");
-		var contentCategory = $("#second-category");
-        /*var contentsDiv = contentCategory.find("div.second-category");*/
-		var width = $(".sidebar").width();
-		if(mapParent.hasClass("col-md-offset-1")){
-			mapParent.removeClass("col-md-offset-1").removeClass("col-sm-offset-1");
-			mapParent.addClass("col-md-offset-3").addClass("col-sm-offset-3");
-			contentCategory.css('left',width);
-			$("#second-category").show();
-		}else{
+		openCurrentTab();
+	})
+	var mapParent = $("#map").parent("div");
+	var contentCategory = $("#second-category");
+	var width = $(".sidebar").width();
+	//打开当前切换的tab页
+	function openCurrentTab(){
+		closeTab();
+		mapParent.removeClass("col-md-offset-1").removeClass("col-sm-offset-1");
+		mapParent.addClass("col-md-offset-3").addClass("col-sm-offset-3");
+		contentCategory.css('left',width);
+		$("#second-category").show();
+	}
+	//关闭打开的tab
+	function closeTab(){
+		if(mapParent.hasClass("col-md-offset-3")){
 			mapParent.removeClass("col-md-offset-3").removeClass("col-sm-offset-3");
 			mapParent.addClass("col-md-offset-1").addClass("col-sm-offset-1");
 			contentCategory.css('left',0);
 			$(".third-category").hide();
 			$("#second-category").hide();
-			$("ul.district").hide();
-			$("ul.brand").hide();
-			$("ul.analysis").hide();
 		}
-		/*initSecondCategory($(contentsDiv).find("ul"));*/
-	})
+	}
+	function toggleTab(){
+		if(mapParent.hasClass("col-md-offset-3")){
+			mapParent.removeClass("col-md-offset-3").removeClass("col-sm-offset-3");
+			mapParent.addClass("col-md-offset-1").addClass("col-sm-offset-1");
+			contentCategory.css('left',0);
+			$(".third-category").hide();
+			$("#second-category").hide();
+		}else{
+			mapParent.removeClass("col-md-offset-1").removeClass("col-sm-offset-1");
+			mapParent.addClass("col-md-offset-3").addClass("col-sm-offset-3");
+			contentCategory.css('left',width);
+			$("#second-category").show();
+		}
+	}
+	/*function toggleMap(){
+       if($(mapParent).hasClass("col-sm-11")){
+		   $(mapParent).removeClass("col-sm-11").removeClass("col-md-11");
+		   $(mapParent).addClass("col-sm-9").addClass("col-md-9");
+	   }else{
+		   $(mapParent).removeClass("col-sm-9").removeClass("col-md-9");
+		   $(mapParent).addClass("col-sm-11").addClass("col-md-11");
+	   }
+		ChartMap.init();
+	}*/
 	$(".btn-next button").click(function(){
 		if($(".movie-panel-ul").css("display")=='none'){
 			alert("请先去选择所在的行业,否则不能进行分析哦");
@@ -354,7 +390,12 @@ function initNav() {
 					$(this).prop("checked", false);
 				})
 			}
-			analysis.getBoundary(ChartMap.getMap(),districtName);
+			/*analysis.getBoundary(ChartMap.getMap(),districtName);*/
+			var cPoint = {
+				lng:121.533546,
+				lat:31.210245
+			};
+			analysis.drawCircle(ChartMap.getMap(),cPoint,3000,"三林商圈");
 
 	    })
 	});
