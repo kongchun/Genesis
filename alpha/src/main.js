@@ -306,7 +306,7 @@ function initNav() {
 			$(".btn-next").hide();
 		} else if (index == 1) {
 			openTabIndex = 1;
-			$("ul.brand").show();
+			$("ul.brand-analy").show();
 			$(".select-analy-bg").text("选择所属的行业");
 			$(".btn-next").hide();
 		} else {
@@ -320,6 +320,7 @@ function initNav() {
 	var mapParent = $("#map").parent("div");
 	var contentCategory = $("#second-category");
 	var width = $(".sidebar").width();
+	var c_map = ChartMap.getMap();
 	//打开当前切换的tab页
 	function openCurrentTab() {
 		closeTab();
@@ -327,6 +328,10 @@ function initNav() {
 		mapParent.addClass("col-md-offset-3").addClass("col-sm-offset-3");
 		contentCategory.css('left', width);
 		$("#second-category").show();
+		ChartMap.getMap().setViewport(ChartMap.getMap().getBounds());
+		var container = ChartMap.getMap().getContainer();
+		console.log(container);
+
 	}
 	//关闭打开的tab
 	function closeTab() {
@@ -353,21 +358,12 @@ function initNav() {
 			$("#second-category").show();
 		}
 	}
-	/*function toggleMap(){
-       if($(mapParent).hasClass("col-sm-11")){
-		   $(mapParent).removeClass("col-sm-11").removeClass("col-md-11");
-		   $(mapParent).addClass("col-sm-9").addClass("col-md-9");
-	   }else{
-		   $(mapParent).removeClass("col-sm-9").removeClass("col-md-9");
-		   $(mapParent).addClass("col-sm-11").addClass("col-md-11");
-	   }
-		ChartMap.init();
-	}*/
-	$(".btn-next button").click(function() {
-		if ($(".movie-panel-ul").css("display") == 'none') {
+	
+	$(".btn-next button").click(function(){
+		/*if($(".movie-panel-ul").css("display")=='none'){
 			alert("请先去选择所在的行业,否则不能进行分析哦");
 			return false;
-		}
+		}*/
 		var fc_width = $(".sidebar").width();
 		var sc_width = $("#second-category").width();
 		var left_width = fc_width + sc_width + 4;
@@ -381,36 +377,49 @@ function initNav() {
 		thirdCategory.css("left", 0);
 	});
 	//选择行政区
-	$("[name = district]:checkbox").each(function() {
-		$(this).bind("click", function() {
+	var districtChk = $("[name = district]:checkbox");
+	districtChk.each(function () {
+	    $(this).bind("click",function(){
 			if ($(this).is(":checked")) {
 				$(this).prop("checked", true);
-				var districtName = "上海市" + $(this).val();
 			} else {
-				var districtName = "";
 				$(this).prop("checked", false);
-				$("[name = analysis-input]:checkbox").each(function() {
+				//取消选中行政区后，行业和分析面板选项清空
+				brandChk2.each(function () {
 					$(this).prop("checked", false);
 				});
-				$("input:radio[name='休闲娱乐']").each(function() {
+				bisNatureRadio.each(function(){
 					$(this).prop("checked", false);
 				})
-			}
-			/*analysis.getBoundary(ChartMap.getMap(),districtName);*/
-			var cPoint = {
-				lng: 121.533546,
-				lat: 31.210245
-			};
-			analysis.drawCircle(ChartMap.getMap(), cPoint, 3000, "三林商圈");
+				businessRadio.each(function(){
+					$(this).prop("checked",false).change();
+				})
 
-		})
+			}
+			$(this).parents(".district-item").children(".business-area").toggle("slow");
+	    })
 	});
-	//选择行业
-	$("input:radio[name='休闲娱乐']").change(function() {
-		var selectVal = $(this).val();
+	//选择商圈
+	var businessRadio = $("input:radio[name='business-area']");
+	businessRadio.change(function(){
+		var businessName = $(this).val();
+		if(businessName=='三林商圈'){
+			var cPoint = {
+				lng:121.533546,
+				lat:31.210245
+			};
+			analysis.drawCircle(ChartMap.getMap(),cPoint,3000);
+		}else{
+			analysis.clearMapOverlays(ChartMap.getMap());
+		}
+	})
+    //选择行业
+	var bisNatureRadio = $("input:radio[name='餐饮']");
+	bisNatureRadio.change(function(){
+	    var selectVal = $(this).val();
 		$(".firm-name").text(selectVal);
-		//只有选择了电影院行业后，分析面板的同行业分析才会出现
-		$(".movie-panel-ul").show();
+		//只有选择了餐饮行业后，分析面板的同行业分析才会出现
+        $(".movie-panel-ul").show();
 	});
 
 

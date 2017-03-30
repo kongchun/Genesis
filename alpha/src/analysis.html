@@ -57,11 +57,19 @@
 
                             <li class="district-item">
                                 <a>
-                                    <input type="checkbox" class="hp" name="district" value="黄浦区"><span class="text"> 黄浦区</span></a>
+                                    <input type="checkbox" class="pd" name="district" value="浦东新区"><span class="text"> 浦东新区</span>
+                                </a>
+                                <div class="business-area" style="display: none">
+                                    <ul>
+                                        <li><input type="radio" class="sl" name="business-area" value="三林商圈"/>三林商圈</li>
+                                        <li><input type="radio" class="sl" name="business-area" value="陆家嘴"/>陆家嘴</li>
+                                        <li><input type="radio" class="sl" name="business-area" value="世纪公园"/>世纪公园</li>
+                                    </ul>
+                                </div>
                             </li>
                             <li class="color-gray">
                                 <a>
-                                    <input type="checkbox" class="pd" name="district" value="浦东区" disabled><span class="text color-gray"> 浦东区</span></a>
+                                    <input type="checkbox" class="hp" name="district" value="黄浦区" disabled><span class="text color-gray"> 黄浦区</span></a>
                             </li>
                             <li class="color-gray">
                                 <a>
@@ -73,33 +81,34 @@
                             </li>
 
                         </ul>
-                    <ul class="nav nav-second">
+                    <ul class="nav nav-second brand-analy">
                           <li class="firm-item">
                               <span>当前行业：</span><span class="firm-name">未选择</span>
                           </li>
-                          <li class="brand-item">
-                              <div class="item-header"><strong>休闲娱乐</strong></div>
-                              <div class="item-body">
-                                  <ul>
-                                      <li> <input type="radio" name="休闲娱乐" value="电影院"/>电影院</li>
-                                      <li class="color-gray"> <input type="radio" name="休闲娱乐" value="酒吧" disabled/>酒吧</li>
-                                      <li class="color-gray"> <input type="radio" name="休闲娱乐" value="KTV" disabled/>KTV</li>
-                                      <li class="color-gray"> <input type="radio" name="休闲娱乐" value="中医养生" disabled/>中医养生</li>
-                                      <li class="color-gray"> <input type="radio" name="休闲娱乐" value="足疗按摩" disabled/>足疗按摩</li>
-                                  </ul>
-                              </div>
-                          </li>
+
                           <li class="brand-item">
                               <div class="item-header"><strong>餐饮</strong></div>
                               <div class="item-body">
                                   <ul>
-                                      <li class="color-gray"> <input type="radio" name="餐饮" value="西餐" disabled/>西餐</li>
+                                      <li> <input type="radio" name="餐饮" value="快餐"/>快餐</li>
                                       <li class="color-gray"> <input type="radio" name="餐饮" value="广东菜" disabled/>广东菜</li>
                                       <li class="color-gray"> <input type="radio" name="餐饮" value="川菜" disabled/>川菜</li>
                                       <li class="color-gray"> <input type="radio" name="餐饮" value="日本菜" disabled/>日本菜</li>
                                       <li class="color-gray"> <input type="radio" name="餐饮" value="韩国料理" disabled/>韩国料理</li>
                                   </ul>
                               </div>
+                          </li>
+						  <li class="brand-item">
+                            <div class="item-header"><strong>休闲娱乐</strong></div>
+                            <div class="item-body">
+                                <ul>
+                                    <li class="color-gray"> <input type="radio" name="休闲娱乐" value="电影院" disabled/>电影院</li>
+                                    <li class="color-gray"> <input type="radio" name="休闲娱乐" value="酒吧" disabled/>酒吧</li>
+                                    <li class="color-gray"> <input type="radio" name="休闲娱乐" value="KTV" disabled/>KTV</li>
+                                    <li class="color-gray"> <input type="radio" name="休闲娱乐" value="中医养生" disabled/>中医养生</li>
+                                    <li class="color-gray"> <input type="radio" name="休闲娱乐" value="足疗按摩" disabled/>足疗按摩</li>
+                                </ul>
+                            </div>
                           </li>
                       </ul>
                     <ul class="nav nav-second analysis">
