@@ -25,6 +25,7 @@ $(function() {
 	pie.init(chart, map);
 	initEvent(chart, map);
 	initPageEvent();
+	initTabNav();
 })
 
 function initPageEvent() {
@@ -72,13 +73,12 @@ function initScrollBar() {
 	});
 }
 
-function initSecondCategory(currentContent) {
-	var contentBarHeight = $(window).height() - $('.navbar').height() + 1;
+function initCategoryScrollBar(currentContent) {
 	$(currentContent).slimScroll({
 		size: '7px',
 		color: '#a1b2bd',
 		opacity: .3,
-		height: contentBarHeight,
+		height: '100%',
 		allowPageScroll: true,
 		disableFadeOut: false
 	})
@@ -182,6 +182,7 @@ var ChartMap = {
 		myChart.setOption(option);
 		this.chart = myChart;
 	},
+
 	getChart: function() {
 		return this.chart;
 	},
@@ -274,7 +275,9 @@ function initEvent(chart, map) {
 }
 
 
-
+function initTabNav(){
+	$(".business-tab").click();
+}
 function initNav() {
 
 	$("#map").height($(window).height() - 50);
@@ -371,17 +374,20 @@ function initNav() {
 		}*/
 		var fc_width = $(".sidebar").width();
 		var sc_width = $("#second-category").width();
-		var left_width = fc_width + sc_width + 4;
+		var left_width = fc_width + sc_width+2;
 		var thirdCategory = $(".third-category");
 		thirdCategory.css("left", left_width);
 		thirdCategory.toggle();
+		initCategoryScrollBar("#echart-content");
+		initAnalyChart();
+		initAnalyLine();
 	})
 	$(".colapsed-arrow").click(function() {
 		var thirdCategory = $(".third-category");
 		thirdCategory.toggle();
 		thirdCategory.css("left", 0);
 	});
-	//选择行政区
+	//选择商圈
 	var districtChk = $("[name = district]:checkbox");
 	districtChk.each(function () {
 	    $(this).bind("click",function(){
@@ -445,17 +451,126 @@ function initNav() {
 
 	//人流
 
-
 	var lwChk2 = $(".analysis_trading input");
 	lwChk2.change(function() {
-		console.log("aaaaaaaaaaaaaaaaa");
-		console.log($(this)[0]);
 		if ($(this)[0].checked) {
-			console.log("if")
 			brand_sanlin.show(ChartMap.getMap(), $(this).val());
 		} else {
-			console.log("else");
 			brand_sanlin.hide(ChartMap.getMap(), $(this).val());
 		}
 	})
+
+	function initAnalyChart(){
+		var mChart = echarts.init(document.getElementById("pie-content"));
+		var option = {
+		 title : {
+			 text: '各行业占比统计',
+			 subtext: '',
+			 x:'center'
+		 },
+		 tooltip : {
+		 trigger: 'item',
+		   formatter: "{a} <br/>{b} : {c} ({d}%)"
+		 },
+		 legend: {
+		 orient: 'vertical',
+		 left: 'left',
+		   data: ['肯德基','麦当劳','必胜客','太平洋咖啡']
+		 },
+		 series : [
+		 {
+			 type: 'pie',
+			 radius : '50%',
+			 center: ['50%', '60%'],
+			 data:[
+				 {value:335, name:'肯德基'},
+				 {value:310, name:'麦当劳'},
+				 {value:234, name:'必胜客'},
+				 {value:135, name:'太平洋咖啡'}
+			 ],
+			 itemStyle: {
+				 emphasis: {
+					 shadowBlur: 10,
+					 shadowOffsetX: 0,
+					 shadowColor: 'rgba(0, 0, 0, 0.5)'
+				 }
+			 }
+		 }]};
+		mChart.setOption(option);
+	}
+    function initAnalyLine(){
+		var mChart = echarts.init(document.getElementById("line-content"));
+		var option = {
+			title: {
+				text: '过去7个月各行业消费指数',
+				x:"center"
+			},
+			tooltip : {
+				trigger: 'axis'
+			},
+			legend: {
+				data:['餐饮类','购物类','旅游类','车房类','教育类'],
+				top:'bottom'
+			},
+			grid: {
+
+			},
+			xAxis : [
+				{
+					type : 'category',
+					boundaryGap : false,
+					data : ['20161001','20161101','20161201','20170101','20170201','20170301','20170401']
+				}
+			],
+			yAxis : [
+				{
+					type : 'value'
+				}
+			],
+			series : [
+				{
+					name:'餐饮类',
+					type:'line',
+					stack: '总量',
+					areaStyle: {normal: {}},
+					data:[1740, 1170, 1279, 1228, 1544, 1582, 1176]
+				},
+				{
+					name:'购物类',
+					type:'line',
+					stack: '总量',
+					areaStyle: {normal: {}},
+					data:[9177, 6586, 7088, 6897, 8548, 8306, 6284]
+				},
+				{
+					name:'旅游类',
+					type:'line',
+					stack: '总量',
+					areaStyle: {normal: {}},
+					data:[1900, 1530, 1390, 1300, 2040, 2020, 1260]
+				},
+				{
+					name:'车房类',
+					type:'line',
+					stack: '总量',
+					areaStyle: {normal: {}},
+					data:[2119, 1482, 1654, 1618, 1986, 1951, 1477]
+				},
+				{
+					name:'教育类',
+					type:'line',
+					stack: '总量',
+					label: {
+						normal: {
+							show: true,
+							position: 'top'
+						}
+					},
+					areaStyle: {normal: {}},
+					data:[7345, 5587, 6457, 5745, 7852, 7241, 5217]
+				}
+			]
+		};
+        mChart.setOption(option);
+	}
 }

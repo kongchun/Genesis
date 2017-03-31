@@ -27,14 +27,23 @@
     position: absolute;
     left: 335px;
     top: 50px;
-    width: 300px;
-    height: 400px;
+    width: 400px;
+    height: 93%;
     background: #ffffff;
     z-index: 9999;
     display: none;
     border: 1px solid #e7e7e7;
     text-align: center;
-    padding: 100px;
+}
+#echart-content{
+    width: 800px;
+    height: 100%;
+}
+#pie-content{
+    height: 400px;
+}
+#line-content{
+    height: 300px;
 }
 .btn-next{
     padding:10px;

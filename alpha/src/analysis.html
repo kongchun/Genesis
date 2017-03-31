@@ -38,7 +38,7 @@
             <div class="col-sm-1 col-md-1 sidebar">
                 <div class="sidebar-menu">
                     <ul class="nav nav-sidebar">
-                    <li class="first-category"><a href="#">商圈</a></li>
+                    <li class="first-category business-tab"><a href="#">商圈</a></li>
                     <li class="first-category"><a href="#">行业</a></li>
                     <li class="first-category"><a href="#">分析</a></li>
                 </ul>
@@ -147,9 +147,9 @@
                                 <ul>
                                     <li> <input type="checkbox" name="analysis-input" value="加油站" /> 加油站</li>
                                     <li> <input type="checkbox" name="analysis-input" value="ATM" /> ATM机</li>
-                                    <li class="color-gray"> <input type="checkbox"  value="公共卫生间" disabled/> 公共卫生间</li>
+                                    <!--<li class="color-gray"> <input type="checkbox"  value="公共卫生间" disabled/> 公共卫生间</li>
                                     <li class="color-gray"> <input type="checkbox"  value="便利店" disabled /> 便利店</li>
-                                    <li class="color-gray"> <input type="checkbox"  value="便民服务店" disabled/> 便民服务店</li>
+                                    <li class="color-gray"> <input type="checkbox"  value="便民服务店" disabled/> 便民服务店</li>-->
                                 </ul>
                             </div>
                         </li>
@@ -157,14 +157,17 @@
                     <div>
                       <div class="btn-next">
                           <button href="#" class="btn btn-default">图形分析</button>
-                          <button href="#" class="btn btn-default">地图分析</button>
                       </div>
                   </div>
                   </div>
             </div>
             <div class="third-category">
-                <span>这是第三层</span>
-                <div class="colapsed-arrow"><button class="btn btn-primary">收起</button></div>
+                  <div id="echart-content">
+                      <div id="pie-content"></div>
+                      <div id="line-content"></div>
+                  </div>
+
+                <!--<div class="colapsed-arrow"><button class="btn btn-primary">收起</button></div>-->
             </div>
             <div class="col-sm-11 col-sm-offset-1 col-md-11 col-md-offset-1 main">
                 <div id="map"></div>
