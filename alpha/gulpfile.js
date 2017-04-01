@@ -126,7 +126,7 @@ gulp.task('html', function() {
 
 gulp.task('build-static', ['vendor-css', 'css', 'vendor-js', 'vendor-map-js', 'bundle-js', 'app-js', 'images', 'html']);
 
-gulp.task("build", ["html", "css", "app-js", "bundle-js"])
+gulp.task("build", ["html", "css", "app-js"])
 
 //-------------------------------------------------------------------------------------------------
 var server = require('gulp-express');

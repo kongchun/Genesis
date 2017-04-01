@@ -275,9 +275,10 @@ function initEvent(chart, map) {
 }
 
 
-function initTabNav(){
+function initTabNav() {
 	$(".business-tab").click();
 }
+
 function initNav() {
 
 	$("#map").height($(window).height() - 50);
@@ -305,7 +306,7 @@ function initNav() {
 		if (index == 0) {
 			openTabIndex = 0
 			$("ul.district").show();
-			$(".select-analy-bg").text("选择所属行政区");
+			$(".select-analy-bg").text("选择所属商圈");
 			$(".btn-next").hide();
 		} else if (index == 1) {
 			openTabIndex = 1;
@@ -328,6 +329,8 @@ function initNav() {
 		closeTab();
 		toggleMapSize(true);
 		contentCategory.css('left', width);
+		//contentCategory.height($(window).height() - 55);
+
 		$("#second-category").show();
 	}
 	//关闭打开的tab
@@ -353,30 +356,31 @@ function initNav() {
 		}
 		ChartMap.getMap().reset();
 	}
-    //地图宽度是否变窄：true表示变窄,二级菜单出来
-	function toggleMapSize(zoomOrNot){
-		if(zoomOrNot){
+	//地图宽度是否变窄：true表示变窄,二级菜单出来
+	function toggleMapSize(zoomOrNot) {
+		if (zoomOrNot) {
 			mapParent.removeClass("col-md-offset-1").removeClass("col-sm-offset-1");
 			mapParent.removeClass("col-md-11").removeClass("col-sm-11");
 			mapParent.addClass("col-md-offset-3").addClass("col-sm-offset-3");
 			mapParent.addClass("col-md-9").removeClass("col-sm-9");
-		}else{
+		} else {
 			mapParent.removeClass("col-md-offset-3").removeClass("col-sm-offset-3");
 			mapParent.removeClass("col-md-9").removeClass("col-sm-9");
 			mapParent.addClass("col-md-offset-1").addClass("col-sm-offset-1");
 			mapParent.addClass("col-md-11").removeClass("col-sm-11");
 		}
 	}
-	$(".btn-next button").click(function(){
+	$(".btn-next button").click(function() {
 		/*if($(".movie-panel-ul").css("display")=='none'){
 			alert("请先去选择所在的行业,否则不能进行分析哦");
 			return false;
 		}*/
 		var fc_width = $(".sidebar").width();
 		var sc_width = $("#second-category").width();
-		var left_width = fc_width + sc_width+2;
+		var left_width = fc_width + sc_width;
 		var thirdCategory = $(".third-category");
 		thirdCategory.css("left", left_width);
+		//thirdCategory.height($(window).height() - 55);
 		thirdCategory.toggle();
 		initCategoryScrollBar("#echart-content");
 		initAnalyChart();
@@ -389,48 +393,48 @@ function initNav() {
 	});
 	//选择商圈
 	var districtChk = $("[name = district]:checkbox");
-	districtChk.each(function () {
-	    $(this).bind("click",function(){
+	districtChk.each(function() {
+		$(this).bind("click", function() {
 			if ($(this).is(":checked")) {
 				$(this).prop("checked", true);
 			} else {
 				$(this).prop("checked", false);
 				//取消选中行政区后，行业和分析面板选项清空
-				brandChk2.each(function () {
+				brandChk2.each(function() {
 					$(this).prop("checked", false);
 				});
-				bisNatureRadio.each(function(){
+				bisNatureRadio.each(function() {
 					$(this).prop("checked", false);
 				})
-				businessRadio.each(function(){
-					$(this).prop("checked",false).change();
+				businessRadio.each(function() {
+					$(this).prop("checked", false).change();
 				})
 
 			}
 			$(this).parents(".district-item").children(".business-area").toggle("slow");
-	    })
+		})
 	});
 	//选择商圈
 	var businessRadio = $("input:radio[name='business-area']");
-	businessRadio.change(function(){
-		var businessName = $(this).val();
-		if(businessName=='三林商圈'){
-			var cPoint = {
-				lng:121.533546,
-				lat:31.210245
-			};
-			analysis.drawCircle(ChartMap.getMap(),cPoint,3000);
-		}else{
-			analysis.clearMapOverlays(ChartMap.getMap());
-		}
-	})
-    //选择行业
+	businessRadio.change(function() {
+			var businessName = $(this).val();
+			if (businessName == '三林商圈') {
+				var cPoint = {
+					lng: 121.533546,
+					lat: 31.210245
+				};
+				analysis.drawCircle(ChartMap.getMap(), cPoint, 3000);
+			} else {
+				analysis.clearMapOverlays(ChartMap.getMap());
+			}
+		})
+		//选择行业
 	var bisNatureRadio = $("input:radio[name='餐饮']");
-	bisNatureRadio.change(function(){
-	    var selectVal = $(this).val();
+	bisNatureRadio.change(function() {
+		var selectVal = $(this).val();
 		$(".firm-name").text(selectVal);
 		//只有选择了餐饮行业后，分析面板的同行业分析才会出现
-        $(".movie-panel-ul").show();
+		$(".movie-panel-ul").show();
 	});
 
 	//选择分析项
@@ -460,117 +464,125 @@ function initNav() {
 		}
 	})
 
-	function initAnalyChart(){
+	function initAnalyChart() {
 		var mChart = echarts.init(document.getElementById("pie-content"));
 		var option = {
-		 title : {
-			 text: '各行业占比统计',
-			 subtext: '',
-			 x:'center'
-		 },
-		 tooltip : {
-		 trigger: 'item',
-		   formatter: "{a} <br/>{b} : {c} ({d}%)"
-		 },
-		 legend: {
-		 orient: 'vertical',
-		 left: 'left',
-		   data: ['肯德基','麦当劳','必胜客','太平洋咖啡']
-		 },
-		 series : [
-		 {
-			 type: 'pie',
-			 radius : '50%',
-			 center: ['50%', '60%'],
-			 data:[
-				 {value:335, name:'肯德基'},
-				 {value:310, name:'麦当劳'},
-				 {value:234, name:'必胜客'},
-				 {value:135, name:'太平洋咖啡'}
-			 ],
-			 itemStyle: {
-				 emphasis: {
-					 shadowBlur: 10,
-					 shadowOffsetX: 0,
-					 shadowColor: 'rgba(0, 0, 0, 0.5)'
-				 }
-			 }
-		 }]};
+			title: {
+				text: '各行业占比统计',
+				subtext: '',
+				x: 'center'
+			},
+			tooltip: {
+				trigger: 'item',
+				formatter: "{a} <br/>{b} : {c} ({d}%)"
+			},
+			legend: {
+				orient: 'vertical',
+				left: 'left',
+				data: ['肯德基', '麦当劳', '必胜客', '太平洋咖啡']
+			},
+			series: [{
+				type: 'pie',
+				radius: '50%',
+				center: ['50%', '60%'],
+				data: [{
+					value: 335,
+					name: '肯德基'
+				}, {
+					value: 310,
+					name: '麦当劳'
+				}, {
+					value: 234,
+					name: '必胜客'
+				}, {
+					value: 135,
+					name: '太平洋咖啡'
+				}],
+				itemStyle: {
+					emphasis: {
+						shadowBlur: 10,
+						shadowOffsetX: 0,
+						shadowColor: 'rgba(0, 0, 0, 0.5)'
+					}
+				}
+			}]
+		};
 		mChart.setOption(option);
 	}
-    function initAnalyLine(){
+
+	function initAnalyLine() {
 		var mChart = echarts.init(document.getElementById("line-content"));
 		var option = {
 			title: {
 				text: '过去7个月各行业消费指数',
-				x:"center"
+				x: "center"
 			},
-			tooltip : {
+			tooltip: {
 				trigger: 'axis'
 			},
 			legend: {
-				data:['餐饮类','购物类','旅游类','车房类','教育类'],
-				top:'bottom'
+				data: ['餐饮类', '购物类', '旅游类', '车房类', '教育类'],
+				top: 'bottom'
 			},
 			grid: {
 
 			},
-			xAxis : [
-				{
-					type : 'category',
-					boundaryGap : false,
-					data : ['20161001','20161101','20161201','20170101','20170201','20170301','20170401']
-				}
-			],
-			yAxis : [
-				{
-					type : 'value'
-				}
-			],
-			series : [
-				{
-					name:'餐饮类',
-					type:'line',
-					stack: '总量',
-					areaStyle: {normal: {}},
-					data:[1740, 1170, 1279, 1228, 1544, 1582, 1176]
+			xAxis: [{
+				type: 'category',
+				boundaryGap: false,
+				data: ['20161001', '20161101', '20161201', '20170101', '20170201', '20170301', '20170401']
+			}],
+			yAxis: [{
+				type: 'value'
+			}],
+			series: [{
+				name: '餐饮类',
+				type: 'line',
+				stack: '总量',
+				areaStyle: {
+					normal: {}
 				},
-				{
-					name:'购物类',
-					type:'line',
-					stack: '总量',
-					areaStyle: {normal: {}},
-					data:[9177, 6586, 7088, 6897, 8548, 8306, 6284]
+				data: [1740, 1170, 1279, 1228, 1544, 1582, 1176]
+			}, {
+				name: '购物类',
+				type: 'line',
+				stack: '总量',
+				areaStyle: {
+					normal: {}
 				},
-				{
-					name:'旅游类',
-					type:'line',
-					stack: '总量',
-					areaStyle: {normal: {}},
-					data:[1900, 1530, 1390, 1300, 2040, 2020, 1260]
+				data: [9177, 6586, 7088, 6897, 8548, 8306, 6284]
+			}, {
+				name: '旅游类',
+				type: 'line',
+				stack: '总量',
+				areaStyle: {
+					normal: {}
 				},
-				{
-					name:'车房类',
-					type:'line',
-					stack: '总量',
-					areaStyle: {normal: {}},
-					data:[2119, 1482, 1654, 1618, 1986, 1951, 1477]
+				data: [1900, 1530, 1390, 1300, 2040, 2020, 1260]
+			}, {
+				name: '车房类',
+				type: 'line',
+				stack: '总量',
+				areaStyle: {
+					normal: {}
 				},
-				{
-					name:'教育类',
-					type:'line',
-					stack: '总量',
-					label: {
-						normal: {
-							show: true,
-							position: 'top'
-						}
-					},
-					areaStyle: {normal: {}},
-					data:[7345, 5587, 6457, 5745, 7852, 7241, 5217]
-				}
-			]
+				data: [2119, 1482, 1654, 1618, 1986, 1951, 1477]
+			}, {
+				name: '教育类',
+				type: 'line',
+				stack: '总量',
+				label: {
+					normal: {
+						show: true,
+						position: 'top'
+					}
+				},
+				areaStyle: {
+					normal: {}
+				},
+				data: [7345, 5587, 6457, 5745, 7852, 7241, 5217]
+			}]
 		};
-        mChart.setOption(option);
+		mChart.setOption(option);
 	}
 }

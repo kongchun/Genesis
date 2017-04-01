@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -26,10 +26,42 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a href="map?id=58c62a32b6c6ad17005ae011" class="no-hover"><span class="name">云数据</span></a>
+                <li>
+                    <a href="map?id=<%=id%>">
+                        <span class="name">云数据</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="no-hover">
+                        <span class="name">商业分析</span>
+                    </a>
+                </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                     <li>
+                    <a class="no-hover">
+                        <span class="name"><%=map.mapName%></span>
+                    </a>
+                    </li>
+                   <li>
+                <a href="#" id="analysis_save" data-id="<%=map._id%>">
+                    <i class="fa fa-save"></i>
+                    <span class="name">保存</span>
+                </a>
+                </li>
+                    <li class="dropdown user" id="header-user">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                           <i class="fa fa-user"></i>
+                            <span class="username"> <%= user.account %></span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="logout"><i class="fa fa-power-off"></i> 退出</a></li>
+                        </ul>
                     </li>
                 </ul>
+               
             </div>
         </div>
     </nav>
@@ -49,7 +81,7 @@
                     <div class="select-analy">
                         <div class="select-analy-bg">选择分析条件</div>
                     </div>
-                    <ul class="nav nav-second district">
+                    <ul class="nav nav-second district nav-children">
 
                             <li class="district-item">
                                 <a>
@@ -83,70 +115,73 @@
                           </li>
 
                           <li class="brand-item">
-                              <div class="item-header"><strong>餐饮</strong></div>
                               <div class="item-body">
-                                  <ul>
-                                      <li> <input type="radio" name="餐饮" value="快餐"/>快餐</li>
-                                      <li class="color-gray"> <input type="radio" name="餐饮" value="广东菜" disabled/>广东菜</li>
-                                      <li class="color-gray"> <input type="radio" name="餐饮" value="川菜" disabled/>川菜</li>
-                                      <li class="color-gray"> <input type="radio" name="餐饮" value="日本菜" disabled/>日本菜</li>
-                                      <li class="color-gray"> <input type="radio" name="餐饮" value="韩国料理" disabled/>韩国料理</li>
+                                  <ul class="nav-children" style="display:block">
+                                      <li class="line"><h4>餐饮</h4></li>
+                                      <li><a><input type="radio" name="餐饮" value="快餐"/> 快餐</a></li>
+                                      <li class="color-gray"> <a><input type="radio" name="餐饮" value="广东菜" disabled/> 广东菜</a></li>
+                                      <li class="color-gray"> <a><input type="radio" name="餐饮" value="川菜" disabled/> 川菜</a></li>
+                                      <li class="color-gray"> <a><input type="radio" name="餐饮" value="日本菜" disabled/> 日本菜</a></li>
+                                      <li class="color-gray"> <a><input type="radio" name="餐饮" value="韩国料理" disabled/> 韩国料理</a></li>
                                   </ul>
                               </div>
                           </li>
 						  <li class="brand-item">
-                            <div class="item-header"><strong>休闲娱乐</strong></div>
                             <div class="item-body">
-                                <ul>
-                                    <li class="color-gray"> <input type="radio" name="休闲娱乐" value="电影院" disabled/>电影院</li>
-                                    <li class="color-gray"> <input type="radio" name="休闲娱乐" value="酒吧" disabled/>酒吧</li>
-                                    <li class="color-gray"> <input type="radio" name="休闲娱乐" value="KTV" disabled/>KTV</li>
-                                    <li class="color-gray"> <input type="radio" name="休闲娱乐" value="中医养生" disabled/>中医养生</li>
-                                    <li class="color-gray"> <input type="radio" name="休闲娱乐" value="足疗按摩" disabled/>足疗按摩</li>
+                                <ul class="nav-children" style="display:block">
+                                    <li class="line"><h4>休闲娱乐</h4></li>
+                                    <li class="color-gray"><a><input type="radio" name="休闲娱乐" value="电影院" disabled/> 电影院</a></li>
+                                    <li class="color-gray"><a><input type="radio" name="休闲娱乐" value="酒吧" disabled/> 酒吧</a></li>
+                                    <li class="color-gray"><a><input type="radio" name="休闲娱乐" value="KTV" disabled/> KTV</a></li>
+                                    <li class="color-gray"><a><input type="radio" name="休闲娱乐" value="中医养生" disabled/> 中医养生</a></li>
+                                    <li class="color-gray"><a><input type="radio" name="休闲娱乐" value="足疗按摩" disabled/> 足疗按摩</a></li>
                                 </ul>
                             </div>
                           </li>
                       </ul>
                     <ul class="nav nav-second analysis">
                         <li class="analysis-item analysis_trading">
-                            <div class="item-header"><strong>商圈热度</strong></div>
+                 
                             <div class="item-body movie-panel-ul">
-                                <ul>
-                                    <li> <input type="checkbox" value="餐饮类"/> 餐饮类</li>
-                                    <li> <input type="checkbox"  value="购物类" /> 购物类</li>
-                                    <li> <input type="checkbox"  value="旅游类" /> 旅游类</li>
-                                    <li> <input type="checkbox"   value="金融类" /> 金融类</li>
-                                     <li> <input type="checkbox"   value="车房类" /> 车房类</li>
-                                     <li> <input type="checkbox"    value="教育类" /> 教育类</li>
+                                <ul class="nav-children" style="display:block">
+                                    <li class="line"><h4>商圈热度</h4></li>
+                                    <li><a><input type="checkbox"  value="购物类" /> 购物类</a></li>
+                                    <li><a><input type="checkbox"  value="旅游类" /> 旅游类</a></li>
+                                    <li><a><input type="checkbox"   value="金融类" /> 金融类</a></li>
+                                     <li><a><input type="checkbox"   value="车房类" /> 车房类</a></li>
+                                     <li><a><input type="checkbox"    value="教育类" /> 教育类</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="analysis-item">
-                            <div class="item-header"><strong>同行业分析</strong></div>
+                 
                             <div class="item-body movie-panel-ul">
-                                <ul>
-                                    <li> <input type="checkbox"  name="analysis-input" value="肯德基"/> 肯德基</li>
-                                    <li> <input type="checkbox"  name="analysis-input" value="麦当劳" /> 麦当劳</li>
-                                    <li> <input type="checkbox"  name="analysis-input" value="必胜客" /> 必胜客</li>
-                                    <li> <input type="checkbox"  name="analysis-input" value="太平洋咖啡" /> 太平洋咖啡</li>
+                                <ul class="nav-children" style="display:block">
+                                    <li class="line"><h4>同行业分析</h4></li>
+                                    <li><a><input type="checkbox"  name="analysis-input" value="肯德基"/> 肯德基</a></li>
+                                    <li><a><input type="checkbox"  name="analysis-input" value="麦当劳" /> 麦当劳</a></li>
+                                    <li><a><input type="checkbox"  name="analysis-input" value="必胜客" /> 必胜客</a></li>
+                                    <li><a><input type="checkbox"  name="analysis-input" value="太平洋咖啡" /> 太平洋咖啡</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="analysis-item">
-                            <div class="item-header"><strong>房价</strong></div>
+
                             <div class="item-body">
-                                <ul>
-                                    <li class="color-gray"> <input type="checkbox"  value="住宅价格" disabled/> 住宅价格</li>
-                                    <li class="color-gray"> <input type="checkbox"  value="商铺租金" disabled/> 商铺租金</li>
+                                <ul class="nav-children" style="display:block">
+                                    <li class="line"><h4>房价</h4></li>
+                                    <li class="color-gray"> <a><input type="checkbox"  value="住宅价格" disabled/> 住宅价格</a></li>
+                                    <li class="color-gray"> <a><input type="checkbox"  value="商铺租金" disabled/> 商铺租金</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="analysis-item">
-                            <div class="item-header"><strong>公共设施</strong></div>
+                           
                             <div class="item-body">
-                                <ul>
-                                    <li> <input type="checkbox" name="analysis-input" value="加油站" /> 加油站</li>
-                                    <li> <input type="checkbox" name="analysis-input" value="ATM" /> ATM机</li>
+                                <ul class="nav-children" style="display:block">
+                                    <li class="line"><h4>公共设施</h4></li>
+                                    <li> <a><input type="checkbox" name="analysis-input" value="加油站" /> 加油站</a></li>
+                                    <li> <a><input type="checkbox" name="analysis-input" value="ATM" /> ATM机</a></li>
                                     <!--<li class="color-gray"> <input type="checkbox"  value="公共卫生间" disabled/> 公共卫生间</li>
                                     <li class="color-gray"> <input type="checkbox"  value="便利店" disabled /> 便利店</li>
                                     <li class="color-gray"> <input type="checkbox"  value="便民服务店" disabled/> 便民服务店</li>-->

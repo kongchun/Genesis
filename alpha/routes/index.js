@@ -57,6 +57,7 @@ router.get('/map', function(req, res, next) {
 		console.log(data)
 		if (data) {
 			res.render('choose', {
+				id: id,
 				user: req.session.user,
 				map: data
 			});
@@ -66,6 +67,28 @@ router.get('/map', function(req, res, next) {
 
 	})
 
+
+});
+
+
+router.get('/analysis', function(req, res, next) {
+	if (!req.session.user) {
+		res.redirect('login.html');
+	}
+	var id = req.param("id");
+	//console.log(id, "id")
+	read.getMapById(id).then(function(data) {
+		//console.log(data)
+		if (data) {
+			res.render('analysis', {
+				id: id,
+				user: req.session.user,
+				map: data
+			});
+		} else {
+			res.redirect("list");
+		}
+	})
 
 });
 

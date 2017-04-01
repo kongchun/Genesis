@@ -3,19 +3,21 @@
 }
 #second-category{
     position: absolute;
-    border:1px solid #e7e7e7;
     padding: 0px;
-    height: 80%;
+    top: 0px;
+    padding-top:50px;
+    height:100%;
     border-bottom: none;
+    overflow:auto;
 }
 .select-analy{
     border-bottom: 1px solid #e7e7e7;
 }
 .second-category{
-    height: 100%;
+
 }
 .second-category>ul{
-    height:100%;
+   
 }
 .select-analy-bg{
     height: 42px;
@@ -26,11 +28,12 @@
 .third-category{
     position: absolute;
     left: 335px;
-    top: 50px;
-    width: 400px;
-    height: 93%;
+    top: 0px;
+    padding-top:50px;
+    width: 500px;
+    height: 100%;
     background: #ffffff;
-    z-index: 9999;
+    z-index: 1;
     display: none;
     border: 1px solid #e7e7e7;
     text-align: center;
@@ -38,12 +41,17 @@
 #echart-content{
     width: 800px;
     height: 100%;
+    padding:30px;
 }
 #pie-content{
     height: 400px;
 }
 #line-content{
     height: 300px;
+}
+ ul{
+    margin: 0px;
+    padding:0px;
 }
 .btn-next{
     padding:10px;
@@ -63,8 +71,12 @@ ul.district,ul.brand,ul.analysis{
 }
 .item-body li,.business-area li{
     list-style: none;
-    margin: 0 10px 8px 0;
+     margin: 0 10px 8px 0px;
 }
+.business-area li{
+    margin: 0 10px 8px 50px;
+}
+
 .business-area li input{
     margin-right: 4px;   
 }
@@ -75,4 +87,16 @@ ul.district,ul.brand,ul.analysis{
     margin-top: 10px;
     color: #999;
     margin-left: 3px;
+}
+
+.brand-item,.analysis-item{
+    padding:0px 8px;
+}
+
+.brand-item a,.analysis-item a{
+    text-decoration: none;
+}
+
+.line:first-child{
+    border:none;
 }
