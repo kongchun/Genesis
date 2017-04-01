@@ -18,7 +18,7 @@ $(function() {
 	people.init(map);
 	trading.init(map);
 
-	brand_sanlin.initTrading(map); //TODB delete
+
 
 	line.init(map);
 
@@ -306,17 +306,17 @@ function initNav() {
 		if (index == 0) {
 			openTabIndex = 0
 			$("ul.district").show();
-			$(".select-analy-bg").text("选择所属商圈");
+			$(".select-analy-bg").text("选择商圈");
 			$(".btn-next").hide();
 		} else if (index == 1) {
 			openTabIndex = 1;
 			$("ul.brand-analy").show();
-			$(".select-analy-bg").text("选择所属的行业");
+			$(".select-analy-bg").text("选择行业");
 			$(".btn-next").hide();
 		} else {
 			openTabIndex = 2;
 			$("ul.analysis").show();
-			$(".select-analy-bg").text("选择分析条件");
+			$(".select-analy-bg").text("商业分析");
 			$(".btn-next").show();
 		}
 		openCurrentTab();
@@ -330,7 +330,7 @@ function initNav() {
 		toggleMapSize(true);
 		contentCategory.css('left', width);
 		//contentCategory.height($(window).height() - 55);
-
+		initCategoryScrollBar(".second-category");
 		$("#second-category").show();
 	}
 	//关闭打开的tab
@@ -424,8 +424,13 @@ function initNav() {
 					lat: 31.210245
 				};
 				analysis.drawCircle(ChartMap.getMap(), cPoint, 3000);
+				brand_sanlin.initTrading(ChartMap.getMap()); //TODB delete
 			} else {
 				analysis.clearMapOverlays(ChartMap.getMap());
+
+				$(".analysis-item input").each(function() {
+					this.checked = false;
+				})
 			}
 		})
 		//选择行业
@@ -441,6 +446,19 @@ function initNav() {
 
 	var brandChk2 = $("[name = analysis-input]:checkbox");
 	brandChk2.change(function() {
+		var businessRadio = ($("input[name='business-area']:checked").length == 0);
+		if (businessRadio) {
+			this.checked = false;
+			message.alert("请选择商圈");
+			return false
+		}
+		var bisNatureRadio = ($("input[name='餐饮']:checked").length == 0);
+		if (bisNatureRadio) {
+			message.alert("请选择行业");
+			this.checked = false;
+			return false
+		}
+
 		if ($("input:checked").length > 10) {
 			message.alert("最多勾选10条");
 			this.checked = false;
@@ -457,6 +475,20 @@ function initNav() {
 
 	var lwChk2 = $(".analysis_trading input");
 	lwChk2.change(function() {
+
+		var businessRadio = ($("input[name='business-area']:checked").length == 0);
+		if (businessRadio) {
+			message.alert("请选择商圈");
+			this.checked = false;
+			return false;
+		}
+		var bisNatureRadio = ($("input[name='餐饮']:checked").length == 0);
+		if (bisNatureRadio) {
+			message.alert("请选择行业");
+			this.checked = false;
+			return false;
+		}
+
 		if ($(this)[0].checked) {
 			brand_sanlin.show(ChartMap.getMap(), $(this).val());
 		} else {
