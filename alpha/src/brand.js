@@ -16,6 +16,7 @@ var marker = [];
 
 //console.log(allData);
 
+
 export var toggleShow = function(pie, chart, map, arr) {
 	showCollection(map, arr);
 	showPie(pie, arr);
