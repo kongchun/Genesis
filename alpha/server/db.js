@@ -1,4 +1,5 @@
 var mongodb = require("mongodb");
+var helper = require("./helper.js");
 var MongoClient = mongodb.MongoClient;
 //var url = 'mongodb://127.0.0.1:27017/';
 class DB {
@@ -45,6 +46,19 @@ class DB {
 		})
 	}
 
+	updateById(id, row) {
+		return this.collection.update({
+			_id: this.ObjectId(id)
+		}, {
+			$set: row
+		})
+	}
+
+	findToArray(cond = {}, keys = {}) {
+		return this.collection.find(cond, keys).toArray();
+	}
+
+
 
 	insertUnique(rows, key) {
 
@@ -88,10 +102,103 @@ class DB {
 		})
 	}
 
-
+	updateIterator(fromCond = {}, keyCond = {}, func = function() {
+		return {}
+	}) {
+		return this.findToArray(fromCond, keyCond).then((arr) => {
+			return helper.iteratorArr(arr, (data) => {
+				return this.updateById(data._id, func(data))
+			}).then(function(data) {
+				return data;
+			})
+		}).catch(function(e) {
+			console.log(e)
+			return null;
+		})
+	}
 
 }
 
 module.exports = function(url, dbName) {
 	return new DB(url, dbName);
 }
+
+/*
+var rows = [{
+	url: "AAAB"
+}, {
+	url: "AAAC"
+}]
+
+var db = new DB;
+var o = {
+	w: 1
+};
+o.multi = true
+
+db.open("url").then(function() {
+	return db.insert(rows);
+}).then(function() {
+	db.close();
+}).catch(function(e) {
+	console.log(e);
+	db.close();
+})
+*/
+/*
+db.open("url").then(function(collection) {
+	collection.find({}).sort({
+		_id: 1
+	})
+
+})
+*/
+// var db = new DB;
+// db.open("articles").then(function(collection) {
+// 	return collection.findOne({})
+
+// }).then(function(json) {
+
+// 	console.log(json.createDate)
+// 	console.log(new Date(json.createDate).toLocaleString())
+// 	console.log(new Date().toLocaleString())
+// 	db.colse()
+// })
+
+/*
+.insert([{
+	url: "E"
+}, {
+	url: "D"
+}]).then(function(t) {
+	console.log(t)
+}).catch(function(e) {
+	console.log(e)
+})
+*/
+
+
+/*
+Page.writer(["A", "B"]).then(function() {
+	return Page.find()
+}).then(function(r) {
+	console.log(r);
+	return //Page.clear()
+}).then(function(r) {
+	return Page.find()
+}).then(function(r) {
+	console.log(r);
+}).catch(function(e) {
+
+	console.log(e);
+})
+*/
+
+
+// var db = new DB;
+// db.open("articles").then(function(collection) {
+// 	return collection.update()
+
+// }).then(function(data) {
+// 	console.log(data)
+// })

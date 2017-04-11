@@ -1,5 +1,6 @@
-var DB_URL = process.env.DB_URL || '127.0.0.1';
+var DB_URL = process.env.DB_URL || '10.82.0.1';
 var db = require('./db.js')(DB_URL, "alpha");
+var helper = require('./helper.js')
 
 exports.checkUser = function(user) {
 	return db.open("user").then(function() {
@@ -51,7 +52,6 @@ exports.getMapListById = function(id) {
 		return [];
 	})
 }
-
 
 exports.getMapById = function(id) {
 	return db.open("user_map").then(function() {
