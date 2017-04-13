@@ -2,168 +2,73 @@ var data = require("./data/house.js");
 var districtData = data.districtData;
 var areaData = data.areaData;
 
-var arrD = [];
-var arrA = [];
-var callback = function(map) {
-	var zoom = map.getZoom(map);
+//var points = data.points;
 
-	arrD.forEach((i) => {
-		map.removeOverlay(i)
-	})
-	arrA.forEach((i) => {
-		map.removeOverlay(i)
-	})
-	arrD = [];
-	arrA = [];
-	if (zoom < 14) {
-		loadDistrict(map);
-		//loadArea(map);
-	} else {
-		loadArea(map);
-	}
+
+var randomCount = areaData.length;
+
+var myData = []
+	//构造数据
+while (randomCount--) {
+	var cityCenter = areaData[randomCount];
+	myData.push({
+		geometry: {
+			type: 'Point',
+			coordinates: [cityCenter.point.lng, cityCenter.point.lat]
+		},
+		count: cityCenter.price
+	});
 }
+
+console.log(myData);
+
+
+var dataSet = new mapv.DataSet(myData);
+
+
+var options = {
+	fillStyle: '#99C1DB',
+	strokeStyle: 'white', // 描边颜色
+	lineWidth: 1,
+	//shadowColor: 'white',
+	//shadowBlur: 1,
+	size: 60,
+	globalAlpha: 0.8,
+	gradient: {
+		// 0.3: "#E7EDF3",
+		// 0.6: "#DBE5EF",
+		// 0.8: "#ADCFE3",
+		// 1.0: "#99C1DB"
+		//            
+		0.2: "rgba(64, 134, 181,0.25)",
+		0.5: "rgba(64, 134, 181,0.5)",
+		0.8: "rgba(64, 134, 181,0.75)",
+		1.0: "rgba(64, 134, 181,1)"
+	},
+	label: {
+		show: true,
+		fillStyle: 'white',
+		average: true
+			//shadowColor: 'black',
+			// font: '20px Arial',
+			//shadowBlur: 10,
+	},
+	max: 80000,
+
+	draw: 'grid'
+}
+
+
+var mapvLayer = null;
+
 export var show = function(map) {
-	price.show(map);
+	if (mapvLayer == null) {
+		mapvLayer = new mapv.baiduMapLayer(map, dataSet, options);
+	}
+	mapvLayer.show(map);
 };
 
-var price = {
-	show: function(map) {
-		callback(map);
-		this.evt = function() {
-			callback(map);
-		}
-		map.addEventListener("zoomend", this.evt);
-	},
-	hide: function(map) {
-		arrD.forEach((i) => {
-			map.removeOverlay(i)
-		})
-		arrA.forEach((i) => {
-			map.removeOverlay(i)
-		})
-		arrD = [];
-		arrA = [];
-
-		map.removeEventListener("zoomend", this.evt);
-	}
-}
 
 export var hide = function(map) {
-	price.hide(map);
-}
-
-function loadDistrict(map) {
-	districtData.forEach(function(i) {
-		polygon(map, i.boundary, getColorByPrice(i.price));
-		markerDistrict(map, i);
-	})
-}
-
-function loadArea(map) {
-	areaData.forEach(function(i) {
-		markerArea(map, i);
-	})
-}
-
-function markerArea(map, i) {
-	var opts = {
-		position: getPoint(i.point), // 指定文本标注所在的地理位置
-		offset: new BMap.Size(0, 0) //设置文本偏移量
-	}
-	var fillColor = color[1]
-	var compare = "";
-	if (i.upDown == "up") {
-		compare = i.compare + "% ↑"
-
-	} else {
-		compare = i.compare + "% ↓"
-		fillColor = color[3]
-	}
-	var text = `${i.area} ${i.price}元/m²<br/>浮动：${compare}`
-	var label = new BMap.Label(text, opts); // 创建文本标注对象
-	label.setStyle({
-		borderRadius: "10px",
-		backgroundColor: fillColor,
-		color: "white",
-		fontSize: "12px",
-		fontFamily: "微软雅黑",
-		padding: "8px",
-		border: 0
-	});
-	arrA.push(label)
-	map.addOverlay(label);
-}
-
-function markerDistrict(map, i) {
-	//var arr = boundary(i.boundary);
-	//console.log(map.getViewport(arr).center);
-	var opts = {
-		position: getPoint(i.point), // 指定文本标注所在的地理位置
-		offset: new BMap.Size(-30, -10) //设置文本偏移量
-	}
-	var compare = "";
-	if (i.upDown == "up") {
-		compare = i.compare + "% ↑"
-	} else {
-		compare = i.compare + "% ↓"
-	}
-	var text = `${i.district} ${i.price}元/m²;${compare}`
-	var label = new BMap.Label(text, opts); // 创建文本标注对象
-	label.setStyle({
-		backgroundColor: "#4D98DD",
-		color: "white",
-		fontSize: "12px",
-		fontFamily: "微软雅黑",
-		padding: "4px",
-		border: 0
-	});
-	arrD.push(label)
-	map.addOverlay(label);
-}
-
-function polygon(map, boundaryData, fillColor) {
-	var arr = boundary(boundaryData);
-	var polygon = new BMap.Polygon(arr, {
-		fillColor: fillColor,
-		fillOpacity: 0.8,
-		strokeColor: "black",
-		strokeWeight: 1,
-		strokeOpacity: 0.5
-	});
-	arrD.push(polygon)
-	map.addOverlay(polygon);
-}
-
-function boundary(boundaryData) {
-	return boundaryData.map(function(it) {
-		return getPoint(it);
-	})
-}
-
-var color = ["#FF6600", "#FF9933", "#FFCC33", "#99CC33", "#789E27"]
-
-function getColorByPrice(price) {
-	if (price > 80000) {
-		return color[0]
-	} else if (price > 60000) {
-		return color[1]
-	} else if (price > 40000) {
-		return color[2]
-	} else if (price > 20000) {
-		return color[3]
-	} else {
-		return color[4]
-	}
-}
-
-function getPoint(it) {
-	return new BMap.Point(it.lng, it.lat);
-}
-
-function getUp(x) {
-	if (x.indexOf("-") > -1) {
-
-		return false;
-	}
-	return true;
+	mapvLayer.hide(map);
 }

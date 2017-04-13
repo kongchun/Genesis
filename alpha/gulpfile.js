@@ -49,7 +49,8 @@ gulp.task('vendor-js', function() {
 gulp.task('vendor-map-js', function() {
 	return gulp.src([
 			'src/echarts.min.js', "src/macarons.js", "src/bmap.min.js", //echart
-			'src/RichMarker.js', 'src/GeoUtils.js', "src/heatmap.js", "src/gps.js"
+			'src/RichMarker.js', 'src/GeoUtils.js', "src/heatmap.js", "src/gps.js",
+			"src/mapv.js"
 		]).pipe(concat('map.js'))
 		.pipe(uglify())
 		//.pipe(gulpif(production, uglify({mangle: false})))
