@@ -1,6 +1,7 @@
 var express = require('express');
 var read = require('../server/read.js');
 var write = require('../server/write.js');
+var brand = require("../server/brand.js");
 var router = express.Router();
 var md5 = require("blueimp-md5");
 
@@ -78,4 +79,12 @@ router.post('/checkUserName', function(req, res, next) {
 	})
 });
 
+router.get('/getBrandAllDataByName', function(req, res, next) {
+	var name = req.query.name;
+	brand.getBrandAllDataByName(name).then(function(data){
+		res.send({
+			data:data
+		})
+	})
+});
 module.exports = router;

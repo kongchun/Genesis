@@ -1,22 +1,17 @@
-var data = require("./data/brand.js");
 var color = [
 	'#2ec7c9', '#b6a2de', '#5ab1ef', '#ffb980', '#d87a80',
 	'#8d98b3', '#e5cf0d', '#97b552', '#95706d', '#dc69aa',
 	'#07a2a4', '#9a7fd1', '#588dd5', '#f5994e', '#c05050',
 	'#59678c', '#c9ab00', '#7eb00a', '#6f5553', '#c14089'
 ];
-var brand = data.brand;
-var pub = data.pub;
-var company = data.company;
-var districtPoint = data.district;
-var movie = data.movie;
-var allData = Object.assign(brand, pub, company, movie);
 var collections = [];
 var marker = [];
 
 //console.log(allData);
 
-
+$.ajaxSetup({
+	async : false
+});
 export var toggleShow = function(pie, chart, map, arr) {
 	showCollection(map, arr);
 	showPie(pie, arr);
@@ -35,7 +30,8 @@ function showPie(pie, arr) {
 
 	//数据降维
 	arr.forEach((prop) => {
-		allData[prop].district_count.forEach((i) => {
+		var tempData = getDataByTypeName(prop);
+		tempData.district_count.forEach((i) => {
 			//console.log(prop)
 			//console.log(i);
 			if (obj[i.district][prop] === 0) {
@@ -55,7 +51,8 @@ function showLabel(map, arr) {
 
 	let obj = {};
 	arr.forEach((it, i) => {
-		allData[it].district_count.forEach((j) => {
+		var tempData = getDataByTypeName(prop);
+		tempData.district_count.forEach((j) => {
 			var district = j.district;
 
 			if (i == 0) {
@@ -136,7 +133,12 @@ function loadBrand(name, i = 0) {
 }
 
 function getDataByTypeName(name) {
-	return (allData[name])
+	var result = null;
+	$.get("api/getBrandAllDataByName",{name:name},function(data){
+		result = data.data;
+	},"json")
+	return result;
+	//return (allData[name])
 }
 
 
