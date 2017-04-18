@@ -80,10 +80,17 @@ router.get('/analysis', function(req, res, next) {
 	read.getMapById(id).then(function(data) {
 		//console.log(data)
 		if (data) {
-			res.render('analysis', {
-				id: id,
-				user: req.session.user,
-				map: data
+			    read.getAllDistrictWithBusniss("上海市").then(function(district){
+					read.getAllIndustryWithBussiness().then(function(industry){
+						res.render('analysis', {
+							id: id,
+							user: req.session.user,
+							map: data,
+							districts:district,
+							industry:industry
+						})
+					})
+
 			});
 		} else {
 			res.redirect("list");

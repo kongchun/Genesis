@@ -66,3 +66,29 @@ exports.getMapById = function(id) {
 		return null;
 	})
 }
+
+exports.getAllDistrictWithBusniss = function(city) {
+	return db.open("district_bussiness").then(function() {
+		return db.collection.find({
+			city:city
+		}).toArray()
+	}).then(function(data) {
+		db.close();
+		return data;
+	}).catch(function(e) {
+		db.close();
+		return null;
+	})
+}
+
+exports.getAllIndustryWithBussiness = function(){
+	return db.open("industry_bussiness").then(function() {
+		return db.collection.find().toArray()
+	}).then(function(data) {
+		db.close();
+		return data;
+	}).catch(function(e) {
+		db.close();
+		return null;
+	})
+}

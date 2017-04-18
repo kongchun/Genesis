@@ -81,63 +81,40 @@
                     <div class="select-analy">
                         <div class="select-analy-bg">选择分析条件</div>
                     </div>
-                    <ul class="nav nav-second district nav-children">
-
-                            <li class="district-item">
-                                <a>
-                                    <input type="checkbox" class="pd" name="district" value="浦东新区"><span class="text"> 浦东新区</span>
-                                </a>
-                                <div class="business-area" style="display: none">
-                                    <ul>
-                                        <li><input type="radio" class="sl" name="business-area" value="三林商圈"/>三林商圈</li>
-                                        <li class=" color-gray"><input type="radio" class="sl" name="business-area" value="陆家嘴" disabled/>陆家嘴</li>
-                                        <li class=" color-gray"><input type="radio" class="sl" name="business-area" value="世纪公园" disabled/>世纪公园</li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="color-gray">
-                                <a>
-                                    <input type="checkbox" class="hp" name="district" value="黄浦区" disabled><span class="text color-gray"> 黄浦区</span></a>
-                            </li>
-                            <li class="color-gray">
-                                <a>
-                                    <input type="checkbox" class="xh" name="district" value="徐汇区" disabled><span class="text color-gray"> 徐汇区</span></a>
-                            </li>
-                            <li class="color-gray">
-                                <a>
-                                    <input type="checkbox" class="lw" name="district" value="卢湾区" disabled><span class="text color-gray"> 卢湾区</span></a>
-                            </li>
-
+                    <ul class="nav nav-second district nav-children" id="district">
+                          <%districts.forEach(function(item){%>
+                                <li class="district-item">
+                                    <a>
+                                        <input type="checkbox" name="district" value="<%= item.district%>"/><span class="text"><%=item.district%></span>
+                                    </a>
+                                    <div class="business-area">
+                                        <ul>
+                                           <%item.bussiness.forEach(function(bname){%>
+                                               <li><input type="radio" name="business-area" value="<%=bname.bussiness_name%>"/><%=bname.bussiness_name%></li>
+                                            <%})%>
+                                        </ul>
+                                    </div>
+                                </li>
+                         <%})%>
                         </ul>
                     <ul class="nav nav-second brand-analy">
                           <li class="firm-item">
                               <span>当前行业：</span><span class="firm-name">未选择</span>
                           </li>
-
-                          <li class="brand-item">
-                              <div class="item-body">
-                                  <ul class="nav-children" style="display:block">
-                                      <li class="line"><h4>餐饮</h4></li>
-                                      <li><a><input type="radio" name="餐饮" value="快餐"/> 快餐</a></li>
-                                      <li class="color-gray"> <a><input type="radio" name="餐饮" value="广东菜" disabled/> 广东菜</a></li>
-                                      <li class="color-gray"> <a><input type="radio" name="餐饮" value="川菜" disabled/> 川菜</a></li>
-                                      <li class="color-gray"> <a><input type="radio" name="餐饮" value="日本菜" disabled/> 日本菜</a></li>
-                                      <li class="color-gray"> <a><input type="radio" name="餐饮" value="韩国料理" disabled/> 韩国料理</a></li>
-                                  </ul>
-                              </div>
-                          </li>
-						  <li class="brand-item">
-                            <div class="item-body">
-                                <ul class="nav-children" style="display:block">
-                                    <li class="line"><h4>休闲娱乐</h4></li>
-                                    <li class="color-gray"><a><input type="radio" name="休闲娱乐" value="电影院" disabled/> 电影院</a></li>
-                                    <li class="color-gray"><a><input type="radio" name="休闲娱乐" value="酒吧" disabled/> 酒吧</a></li>
-                                    <li class="color-gray"><a><input type="radio" name="休闲娱乐" value="KTV" disabled/> KTV</a></li>
-                                    <li class="color-gray"><a><input type="radio" name="休闲娱乐" value="中医养生" disabled/> 中医养生</a></li>
-                                    <li class="color-gray"><a><input type="radio" name="休闲娱乐" value="足疗按摩" disabled/> 足疗按摩</a></li>
-                                </ul>
-                            </div>
-                          </li>
+                          <%industry.forEach(function(industry_item){%>
+                             <li class="brand-item">
+                                 <div class="item-body">
+                                     <ul class="nav-children" style="display:block">
+                                         <li class="line">
+                                             <h4><%=industry_item.industry_name%></h4>
+                                         </li>
+                                         <%industry_item.sub_industry.forEach(function(sub_industry_item){%>
+                                            <li><a><input type="radio" name="<%=industry_item.industry_name%>" value="<%=sub_industry_item.sub_industry_name%>"/><%=sub_industry_item.sub_industry_name%></a></li>
+                                         <%})%>
+                                     </ul>
+                                 </div>
+                             </li>
+                          <%})%>
                       </ul>
                     <ul class="nav nav-second analysis">
                         <li class="analysis-item analysis_trading">
@@ -285,6 +262,7 @@
     <script src="js/map.js"></script>
     <!--     <script src="js/vendor.bundle.js"></script> -->
     <script src="js/bundle.js"></script>
+    <script src="js/analy.js"></script>
 </body>
 
 </html>

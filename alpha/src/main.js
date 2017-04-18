@@ -9,6 +9,7 @@ var shop = require("./shop.js");
 var pie = require("./pieDistrict.js");
 var message = require("./message.js");
 var analysis = require("./analysis.js");
+var cur_city = "上海市";
 $(function() {
 	initNav();
 	ChartMap.init();
@@ -304,7 +305,7 @@ function initNav() {
 		}
 		$("ul.nav-second").hide();
 		if (index == 0) {
-			openTabIndex = 0
+			openTabIndex = 0;
 			$("ul.district").show();
 			$(".select-analy-bg").text("选择商圈");
 			$(".btn-next").hide();
@@ -495,7 +496,12 @@ function initNav() {
 			brand_sanlin.hide(ChartMap.getMap(), $(this).val());
 		}
 	})
+	function writeBussinessData(data){
+		console.log(data);
+		/*for(let i = 0;i < data.data.length;i++){
 
+		}*/
+	}
 	function initAnalyChart() {
 		var mChart = echarts.init(document.getElementById("pie-content"));
 		var option = {

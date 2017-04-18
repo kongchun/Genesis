@@ -19,6 +19,7 @@ var Helper = {
 		}
 		return list;
 	},
+
 	iteratorArr: function(arr, promiseCallback) {
 		var it = arr[Symbol.iterator]();
 		var list = [];
