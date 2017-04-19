@@ -435,11 +435,12 @@ function initNav() {
 			}
 		})
 		//选择行业
-	var bisNatureRadio = $("input:radio[name='餐饮']");
+	var bisNatureRadio = $("input:radio[name='industry']");
 	bisNatureRadio.change(function() {
 		var selectVal = $(this).val();
 		$(".firm-name").text(selectVal);
 		//只有选择了餐饮行业后，分析面板的同行业分析才会出现
+		//此处需要修改为动态获取同行业
 		$(".movie-panel-ul").show();
 	});
 
@@ -453,7 +454,7 @@ function initNav() {
 			message.alert("请选择商圈");
 			return false
 		}
-		var bisNatureRadio = ($("input[name='餐饮']:checked").length == 0);
+		var bisNatureRadio = ($("input[name='industry']:checked").length == 0);
 		if (bisNatureRadio) {
 			message.alert("请选择行业");
 			this.checked = false;
@@ -483,7 +484,7 @@ function initNav() {
 			this.checked = false;
 			return false;
 		}
-		var bisNatureRadio = ($("input[name='餐饮']:checked").length == 0);
+		var bisNatureRadio = ($("input[name='industry']:checked").length == 0);
 		if (bisNatureRadio) {
 			message.alert("请选择行业");
 			this.checked = false;

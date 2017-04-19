@@ -109,7 +109,7 @@
                                              <h4><%=industry_item.industry_name%></h4>
                                          </li>
                                          <%industry_item.sub_industry.forEach(function(sub_industry_item){%>
-                                            <li><a><input type="radio" name="<%=industry_item.industry_name%>" value="<%=sub_industry_item.sub_industry_name%>"/><%=sub_industry_item.sub_industry_name%></a></li>
+                                            <li><a><input type="radio" name="industry" value="<%=sub_industry_item.sub_industry_name%>"/><%=sub_industry_item.sub_industry_name%></a></li>
                                          <%})%>
                                      </ul>
                                  </div>
