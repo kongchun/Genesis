@@ -100,20 +100,6 @@ gulp.task('bundle-js', ["app-js"], function() {
 		.pipe(gulp.dest('public/js'));
 });
 
-gulp.task('analy-js', function() {
-
-	return browserify(['src/analy.js'])
-		//.external("public/data.js")
-		.transform(babelify, {
-			presets: ['es2015', 'react', 'stage-0']
-		})
-		//.require(data_src)
-		.bundle()
-		.pipe(source("analy.js"))
-		.pipe(streamify(uglify()))
-		.pipe(gulp.dest('public/js'));
-});
-
 gulp.task('css', function() {
 	return gulp.src(['src/css/style.css', 'src/css/register.css', 'src/css/list.css', "src/css/analysis.css"])
 		.pipe(plumber())
@@ -138,7 +124,7 @@ gulp.task('html', function() {
 });
 
 
-gulp.task('build-static', ['vendor-css', 'css', 'vendor-js', 'vendor-map-js', 'bundle-js', 'app-js', 'images', 'html','analy-js']);
+gulp.task('build-static', ['vendor-css', 'css', 'vendor-js', 'vendor-map-js', 'bundle-js', 'app-js', 'images', 'html']);
 
 gulp.task("build", ["html", "css", "app-js"])
 
