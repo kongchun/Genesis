@@ -78,16 +78,17 @@
             </div>
             <div id="second-category" class="col-md-2 col-sm-2" style="display: none;">
                   <div class="second-category">
+                      <div id="test"><button>获得循环里含有异步请求的返回值</button></div>
                     <div class="select-analy">
-                        <div class="select-analy-bg">选择分析条件</div>
+                        <div class="select-analy-bg"></div>
                     </div>
                     <ul class="nav nav-second district nav-children" id="district">
                           <%districts.forEach(function(item){%>
                                 <li class="district-item">
-                                    <a>
-                                        <input type="checkbox" name="district" value="<%= item.district%>"/><span class="text"><%=item.district%></span>
+                                    <a class="district-title" style="color:#555;background: #f5f5f5;">
+                                        <span class="text" style="letter-spacing:3px;font-weight: bold;font-size: 17px;"><%=item.district%></span>
                                     </a>
-                                    <div class="business-area">
+                                    <div class="business-area" style="display: block">
                                         <ul>
                                            <%item.bussiness.forEach(function(bname){%>
                                                <li><input type="radio" name="business-area" value="<%=bname.bussiness_name%>"/><%=bname.bussiness_name%></li>
@@ -105,9 +106,9 @@
                              <li class="brand-item">
                                  <div class="item-body">
                                      <ul class="nav-children" style="display:block">
-                                         <li class="line">
-                                             <h4><%=industry_item.industry_name%></h4>
-                                         </li>
+                                         <div class="line">
+                                             <h4 style="letter-spacing: 3px"><%=industry_item.industry_name%></h4>
+                                         </div>
                                          <%industry_item.sub_industry.forEach(function(sub_industry_item){%>
                                             <li><a><input type="radio" name="industry" value="<%=sub_industry_item.sub_industry_name%>"/><%=sub_industry_item.sub_industry_name%></a></li>
                                          <%})%>
@@ -121,7 +122,7 @@
                  
                             <div class="item-body movie-panel-ul">
                                 <ul class="nav-children" style="display:block">
-                                    <li class="line"><h4>商圈热度</h4></li>
+                                    <div class="line"><h4>商圈热度</h4></div>
                                     <li><a><input type="checkbox"  value="购物类" /> 购物类</a></li>
                                     <li><a><input type="checkbox"  value="旅游类" /> 旅游类</a></li>
                                     <li><a><input type="checkbox"   value="金融类" /> 金融类</a></li>
@@ -134,7 +135,7 @@
                  
                             <div class="item-body movie-panel-ul">
                                 <ul class="nav-children" style="display:block">
-                                    <li class="line"><h4>同行业分析</h4></li>
+                                    <div class="line"><h4>同行业分析</h4></div>
                                     <li><a><input type="checkbox"  name="analysis-input" value="肯德基"/> 肯德基</a></li>
                                     <li><a><input type="checkbox"  name="analysis-input" value="麦当劳" /> 麦当劳</a></li>
                                     <li><a><input type="checkbox"  name="analysis-input" value="必胜客" /> 必胜客</a></li>
@@ -146,7 +147,7 @@
 
                             <div class="item-body">
                                 <ul class="nav-children" style="display:block">
-                                    <li class="line"><h4>房产指数</h4></li>
+                                    <div class="line"><h4>房产指数</h4></div>
                                     <li class="color-gray"> <a><input type="checkbox"  value="住宅价格" disabled/> 住宅价格</a></li>
                                     <li class="color-gray"> <a><input type="checkbox"  value="商铺租金" disabled/> 商铺租金</a></li>
                                 </ul>
@@ -156,12 +157,9 @@
                            
                             <div class="item-body">
                                 <ul class="nav-children" style="display:block">
-                                    <li class="line"><h4>公共设施</h4></li>
+                                    <div class="line"><h4>公共设施</h4></div>
                                     <li> <a><input type="checkbox" name="analysis-input" value="加油站" /> 加油站</a></li>
                                     <li> <a><input type="checkbox" name="analysis-input" value="ATM" /> ATM机</a></li>
-                                    <!--<li class="color-gray"> <input type="checkbox"  value="公共卫生间" disabled/> 公共卫生间</li>
-                                    <li class="color-gray"> <input type="checkbox"  value="便利店" disabled /> 便利店</li>
-                                    <li class="color-gray"> <input type="checkbox"  value="便民服务店" disabled/> 便民服务店</li>-->
                                 </ul>
                             </div>
                         </li>

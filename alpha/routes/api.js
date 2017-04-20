@@ -87,4 +87,13 @@ router.get('/getBrandAllDataByName', function(req, res, next) {
 		})
 	})
 });
+
+router.get("/getBussinessPoint",function(req,res,next){
+	var d_name = req.query.d_name;
+    read.getBussinessPoint(d_name).then(function(data){
+		res.send({
+			data:data
+		})
+	})
+})
 module.exports = router;

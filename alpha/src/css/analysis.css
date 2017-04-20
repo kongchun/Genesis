@@ -65,20 +65,28 @@ ul.district,ul.brand,ul.analysis{
     display: none;
 }
 .item-header{
-    margin: 10px 0 5px 5px;
+    margin: 10px 0px 5px 5px;
     font-size: 16px;
     height: 23px;
 }
 .item-body li,.business-area li{
-    list-style: none;
-     margin: 0 10px 8px 0px;
+     list-style: none;
+     margin: 8px 10px 8px 50px;
+     letter-spacing: 3px;
 }
-.business-area li{
-    margin: 0 10px 8px 50px;
+.item-body li a{
+    color:#555;
 }
+.item-body li a input{
+    margin-right: 6px;
+}
+/*.business-area li{
+    margin: 8px 10px 8px 50px;
+    letter-spacing: 3px;
+}*/
 
 .business-area li input{
-    margin-right: 4px;   
+    margin-right: 6px;
 }
 .color-gray{
     color:#e7e7e7;

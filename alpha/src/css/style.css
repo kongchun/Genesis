@@ -451,25 +451,25 @@ a {
     box-shadow: none;
     background: white;
     display: none;
-    padding: 10px 0;
-}
-.nav-children li a {
-    padding: 5px 15px 5px 30px;
+    padding-bottom: 10px;
 }
 
 .nav-children li a .unavailable {
     color: #d1d1d1;
 }
 
+.district-item{
+    border-bottom: 1px solid #e7e7e7;
+}
 
 .line{
   border-top:1px solid #eee;
-  margin:0 15px;
+  /*margin:0 15px;*/
 }
 
 .line h4{
  color:#666;
- font-size:14px;
+ font-size:17px;
  font-weight: bold;
 }
 

@@ -92,3 +92,17 @@ exports.getAllIndustryWithBussiness = function(){
 		return null;
 	})
 }
+
+exports.getBussinessPoint = function(d_name){
+	return db.open("district_bussiness").then(function(){
+		return db.collection.find({
+			"district":d_name
+		}).toArray()
+	}).then(function(data){
+		db.close();
+		return data;
+	}).catch(function(e){
+		db.close();
+		return null;
+	})
+}

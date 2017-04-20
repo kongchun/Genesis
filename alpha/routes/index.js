@@ -80,7 +80,7 @@ router.get('/analysis', function(req, res, next) {
 	read.getMapById(id).then(function(data) {
 		//console.log(data)
 		if (data) {
-			    read.getAllDistrictWithBusniss("上海市").then(function(district){
+			    read.getAllDistrictWithBusniss("上海").then(function(district){
 					read.getAllIndustryWithBussiness().then(function(industry){
 						res.render('analysis', {
 							id: id,

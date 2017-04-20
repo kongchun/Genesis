@@ -9,6 +9,7 @@ var shop = require("./shop.js");
 var pie = require("./pieDistrict.js");
 var message = require("./message.js");
 var analysis = require("./analysis.js");
+var helper = require("./helper.js");
 var cur_city = "上海市";
 $(function() {
 	initNav();
@@ -18,9 +19,6 @@ $(function() {
 
 	people.init(map);
 	trading.init(map);
-
-
-
 	line.init(map);
 
 	pie.init(chart, map);
@@ -393,47 +391,44 @@ function initNav() {
 		thirdCategory.css("left", 0);
 	});
 	//选择商圈
-	var districtChk = $("[name = district]:checkbox");
-	districtChk.each(function() {
-		$(this).bind("click", function() {
-			if ($(this).is(":checked")) {
-				$(this).prop("checked", true);
-			} else {
-				$(this).prop("checked", false);
-				//取消选中行政区后，行业和分析面板选项清空
-				brandChk2.each(function() {
-					$(this).prop("checked", false);
-				});
-				bisNatureRadio.each(function() {
-					$(this).prop("checked", false);
-				})
-				businessRadio.each(function() {
-					$(this).prop("checked", false).change();
-				})
-
-			}
+	var district_titles = $(".district-title");
+	district_titles.each(function(){
+		$(this).bind("click",function(){
 			$(this).parents(".district-item").children(".business-area").toggle("slow");
 		})
-	});
+	})
 	//选择商圈
 	var businessRadio = $("input:radio[name='business-area']");
 	businessRadio.change(function() {
-			var businessName = $(this).val();
-			if (businessName == '三林商圈') {
-				var cPoint = {
-					lng: 121.533546,
-					lat: 31.210245
-				};
-				analysis.drawCircle(ChartMap.getMap(), cPoint, 3000);
-				brand_sanlin.initTrading(ChartMap.getMap()); //TODB delete
-			} else {
-				analysis.clearMapOverlays(ChartMap.getMap());
-
-				$(".analysis-item input").each(function() {
-					this.checked = false;
-				})
-			}
+			var dName = $(this).closest("li.district-item").find("a>span.text").text();
+		    var bName = $(this).val();
+			 if(dName){
+				 $.get("api/getBussinessPoint",{d_name:dName},function(data){
+					 drawBussinessCircle(data,bName);
+				 },"json")
+			 }
 		})
+	function drawBussinessCircle(data,bName){
+		var cur_bponit = [];
+		var iterator_arr = data.data[0].bussiness;
+		for(let i = 0;i < iterator_arr.length;i++){
+			if(iterator_arr[i].bussiness_name==bName){
+				cur_bponit = iterator_arr[i];
+				break;
+			}
+		}
+		if (cur_bponit) {
+			analysis.clearMapOverlays(ChartMap.getMap());
+			var cPoint = cur_bponit.center_point;
+			analysis.drawCircle(ChartMap.getMap(), cPoint, 3000);
+			brand_sanlin.initTrading(ChartMap.getMap()); //TODB delete
+		} else {
+			analysis.clearMapOverlays(ChartMap.getMap());
+			$(".analysis-item input").each(function() {
+				this.checked = false;
+			})
+		}
+	}
 		//选择行业
 	var bisNatureRadio = $("input:radio[name='industry']");
 	bisNatureRadio.change(function() {
@@ -548,7 +543,18 @@ function initNav() {
 		};
 		mChart.setOption(option);
 	}
-
+    $("#test").click(function(){
+		var arr = [1,2,3,4,5];
+		helper.iteratorArr(arr,promiseCallBack).then(function(list){
+			console.log("_----------------------------------0");
+			console.log(list);
+		});
+	})
+	function promiseCallBack(){
+        return new Promise((resolve,reject)=>{
+			setTimeout(resolve,2000,'done');
+		})
+	}
 	function initAnalyLine() {
 		var mChart = echarts.init(document.getElementById("line-content"));
 		var option = {
