@@ -9,7 +9,6 @@ var shop = require("./shop.js");
 var pie = require("./pieDistrict.js");
 var message = require("./message.js");
 var analysis = require("./analysis.js");
-var helper = require("./helper.js");
 var cur_city = "上海市";
 $(function() {
 	initNav();
@@ -542,18 +541,6 @@ function initNav() {
 			}]
 		};
 		mChart.setOption(option);
-	}
-    $("#test").click(function(){
-		var arr = [1,2,3,4,5];
-		helper.iteratorArr(arr,promiseCallBack).then(function(list){
-			console.log("_----------------------------------0");
-			console.log(list);
-		});
-	})
-	function promiseCallBack(){
-        return new Promise((resolve,reject)=>{
-			setTimeout(resolve,2000,'done');
-		})
 	}
 	function initAnalyLine() {
 		var mChart = echarts.init(document.getElementById("line-content"));
