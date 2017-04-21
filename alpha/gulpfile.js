@@ -57,11 +57,14 @@ gulp.task('vendor-map-js', function() {
 		.pipe(gulp.dest('public/js'));
 });
 
-var data_src = ["src/data/brand", "src/data/district",
+// var data_src = ["src/data/brand", "src/data/district",
+// 	"src/data/district_data", "src/data/house", "src/data/line", "src/data/shop",
+// 	"src/data/trading"
+// ];
+var data_src = ["src/data/district",
 	"src/data/district_data", "src/data/house", "src/data/line", "src/data/shop",
 	"src/data/trading"
 ];
-
 
 
 // gulp.task('data-js', function() {
@@ -77,7 +80,7 @@ var data_src = ["src/data/brand", "src/data/district",
 // });
 
 gulp.task("app-js", function() {
-	//return gulp.src('src/app/*.js').pipe(uglify()).pipe(gulp.dest('public/js'));
+	gulp.src(['src/app/*.js', '!src/app/login.js']).pipe(uglify()).pipe(gulp.dest('public/js'));
 	return browserify('src/app/login.js').transform(babelify, {
 			presets: ['es2015', 'react', 'stage-0']
 		}).bundle()
@@ -101,7 +104,7 @@ gulp.task('bundle-js', ["app-js"], function() {
 });
 
 gulp.task('css', function() {
-	return gulp.src(['src/css/style.css', 'src/css/register.css', 'src/css/list.css', "src/css/analysis.css"])
+	return gulp.src(['src/css/**.css'])
 		.pipe(plumber())
 		.pipe(less())
 		.pipe(autoprefixer())
@@ -125,7 +128,6 @@ gulp.task('html', function() {
 
 
 gulp.task('build-static', ['vendor-css', 'css', 'vendor-js', 'vendor-map-js', 'bundle-js', 'app-js', 'images', 'html']);
-
 gulp.task("build", ["html", "css", "app-js"])
 
 //-------------------------------------------------------------------------------------------------
@@ -136,7 +138,7 @@ gulp.task('watch', function() {
 	gulp.watch('src/**/*.html', ['build']);
 	gulp.watch('src/**/*.js', ['build']);
 	gulp.watch('src/**/*.css', ['build']);
-	gulp.watch('src/main.js', ['build']);
+	//gulp.watch('src/main.js', ['build']);
 });
 
 gulp.task('server', ["build", "watch"], function() {

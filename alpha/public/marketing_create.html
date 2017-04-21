@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Genesis 商业地理 | 智慧商圈，精准营销，智能选址</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/vendor.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/marketing.css" />
+</head>
+
+<body class="main-container marketing">
+    <div id="main">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"> <img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="images/logo.png"></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="header-user" class="dropdown user">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
+                                <span class="username">荒野猎人</span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:alert('模拟退出')"><i class="fa fa-power-off"></i> 退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <form class="navbar-form navbar-right">
+                        <a class="btn btn-default" href="marketing" role="button">返回</a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="wizForm" class="form-horizontal" action="#" novalidate="novalidate">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">标题<span class="required">*</span></label>
+                            <div class="col-md-4">
+                                <input type="text" placeholder="" name="title" class="form-control">
+                                <span class="error-span"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">类别<span class="required">*</span></label>
+                            <div class="col-md-4">
+                                <input type="text" placeholder="" name="title" class="form-control">
+                                <span class="error-span"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">地址<span class="required">*</span></label>
+                            <div class="col-md-4">
+                                <input type="text" placeholder="" name="title" class="form-control">
+                                <span class="error-span"></span>
+                            </div>
+                        </div>
+
+                        <!--                         <div class="form-group">
+                            <label class="control-label col-md-3">图片上传<span class="required"></span></label>
+                            <div class="col-md-4">
+                                <img src="images/test1.jpg" style="margin:10px 0;width:100px">
+                                <div>
+                                    <span class="btn btn-success fileinput-button">
+                                    <i class="fa fa-plus"></i>
+                                    <span>上传图片</span>
+                                    <input type="file" multiple="" name="files[]">
+                                    </span>
+                                </div>
+                            </div>
+                        </div> -->
+                       <!--  <div class="form-group">
+                            <label class="control-label col-md-3">折扣<span class="required">*</span></label>
+                            <div class="col-xs-2">
+                                <div class="input-group">
+                                    <input type="text" placeholder="" name="title" class="form-control">
+                                    <span class="input-group-btn">
+                                     
+                                    <button type="submit" class="btn btn-light-grey">
+                                                <i>%</i>
+
+                                            </button>
+                                </span>
+                                </div>
+                                <span class="error-span"></span>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <label class="control-label col-md-3">日期<span class="required">*</span></label>
+                            <div class="col-xs-2">
+                                <div class="input-group">
+                                    <input type="text" placeholder="开始时间" name="title" class="form-control">
+                                    <span class="input-group-btn">
+                                     
+                                    <button type="submit" class="btn btn-light-grey">
+                                                <i class="fa fa-calendar"></i>
+
+                                            </button>
+                                </span>
+                                </div>
+                                <span class="error-span"></span>
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="input-group">
+                                    <input type="text" placeholder="结束时间" name="title" class="form-control">
+                                    <span class="input-group-btn">
+                                     
+                                    <button type="submit" class="btn btn-light-grey">
+                                                <i class="fa fa-calendar"></i>
+
+                                            </button>
+                                </span>
+                                </div>
+                                <span class="error-span"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">时段<span class="required">*</span></label>
+                            <div class="col-xs-2">
+                                <div class="input-group">
+                                    <input type="text" placeholder="开始" name="title" class="form-control">
+                                    <span class="input-group-btn">
+                                     
+                                    <button type="submit" class="btn btn-light-grey">
+                                                <i class="fa fa-calendar"></i>
+
+                                            </button>
+                                </span>
+                                </div>
+                                <span class="error-span"></span>
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="input-group">
+                                    <input type="text" placeholder="结束" name="title" class="form-control">
+                                    <span class="input-group-btn">
+                                     
+                                    <button type="submit" class="btn btn-light-grey">
+                                                <i class="fa fa-calendar"></i>
+
+                                            </button>
+                                </span>
+                                </div>
+                                <span class="error-span"></span>
+                            </div>
+                        </div>
+                        <!--  <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-2">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="option1" id="inlineCheckbox1"> 重复周期
+                                </label>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control">
+                                    <div class="input-group-btn">
+                                        <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">年 <span class="caret"></span></button>
+                                        <ul class="dropdown-menu pull-right context">
+                                            <li><a href="#">年</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">描述</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control" name="textarea" cols="3" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">用户筛选</label>
+                            <div class="col-md-4">
+                               <div><input type="checkbox" />男 <input type="checkbox" />女 </div>
+                               <div>
+                               <input type="checkbox" />15以下 
+                               <input type="checkbox" />16-25
+                               <input type="checkbox" />26-35 
+                               
+                               </div>
+                               <div><input type="checkbox" />36-45 
+                                <input type="checkbox" />46-55 
+                                <input type="checkbox" />55以上</div>
+                               <div></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"> </label>
+                            <div class="col-md-4">
+                                <a class="btn btn-default" href="marketing" role="button">保存</a>
+                            </div>
+                        </div>
+                     <!--    <div class="form-group">
+                            <label class="control-label col-md-3">优惠码<span class="required">*</span></label>
+                            <div class="col-md-4">
+                                <input type="text" placeholder="" name="title" class="form-control">
+                                <span class="error-span"></span>
+                            </div>
+                        </div> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--    <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12"><span>Copyright © <a href="#">荒野猎人团队</a></span>
+                        <span><a href="http://www.miibeian.gov.cn/" target="_blank">苏ICP备14030752号</a></span></div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</body>
+
+</html>
+
