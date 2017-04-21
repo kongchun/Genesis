@@ -6,7 +6,8 @@
         "watch": true,
         "env": {
             "NODE_ENV": "development",
-            "PORT": 81
+            "PORT": 81,
+            "DB_URL": "127.0.0.1"
         },
         "error_file": "./logs/app-err.log", //错误输出日志
         "out_file": "./logs/app-out.log", //日志
