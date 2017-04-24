@@ -114,7 +114,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('images', function() {
-	return gulp.src(['src/images/*.*'])
+	return gulp.src(['src/images/**/*.*'])
 		//.pipe(revCollector())
 		.pipe(gulp.dest("public/images"));
 });
@@ -128,7 +128,7 @@ gulp.task('html', function() {
 
 
 gulp.task('build-static', ['vendor-css', 'css', 'vendor-js', 'vendor-map-js', 'bundle-js', 'app-js', 'images', 'html']);
-gulp.task("build", ["html", "css", "app-js"])
+gulp.task("build", ["html", "images", "css", "app-js"])
 
 //-------------------------------------------------------------------------------------------------
 var server = require('gulp-express');

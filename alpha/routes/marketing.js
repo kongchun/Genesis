@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/create', function(req, res, next) {
-	res.redirect('/marketing_create.html');
+	res.redirect('../marketing_create.html');
 });
 
 module.exports = router;

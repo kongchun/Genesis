@@ -11,6 +11,14 @@ router.get('/', function(req, res, next) {
 });
 
 
+router.get('/home', function(req, res, next) {
+	if (!req.session.user) {
+		res.redirect('login.html');
+	}
+	res.render('home');
+});
+
+
 router.get('/list', function(req, res, next) {
 	if (!req.session.user) {
 		res.redirect('login.html');
@@ -80,16 +88,16 @@ router.get('/analysis', function(req, res, next) {
 	read.getMapById(id).then(function(data) {
 		//console.log(data)
 		if (data) {
-			    read.getAllDistrictWithBusniss("上海").then(function(district){
-					read.getAllIndustryWithBussiness().then(function(industry){
-						res.render('analysis', {
-							id: id,
-							user: req.session.user,
-							map: data,
-							districts:district,
-							industry:industry
-						})
+			read.getAllDistrictWithBusniss("上海").then(function(district) {
+				read.getAllIndustryWithBussiness().then(function(industry) {
+					res.render('analysis', {
+						id: id,
+						user: req.session.user,
+						map: data,
+						districts: district,
+						industry: industry
 					})
+				})
 
 			});
 		} else {
