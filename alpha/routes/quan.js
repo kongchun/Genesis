@@ -7,7 +7,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/list', function(req, res, next) {
-	res.redirect('quan_list.html');
+	res.redirect('../quan_list.html');
+});
+
+router.get('/manager', function(req, res, next) {
+	res.redirect('../quan_manager.html');
 });
 
 module.exports = router;
