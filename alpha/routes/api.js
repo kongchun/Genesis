@@ -106,4 +106,14 @@ router.get("/getBrandPointsByName",function(req,res,next){
 		})
 	})
 })
+
+router.get("/getAreaData",function(req,res,next){
+	var districtName = req.query.districtName;
+	read.getAreaData(districtName).then(function(data){
+		res.send({
+			data:data
+		})
+	})
+})
+
 module.exports = router;

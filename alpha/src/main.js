@@ -12,6 +12,7 @@ var analysis = require("./analysis.js");
 /*var gps = require("./gps.js");*/
 var cur_city = "上海市";
 var cur_bponit;
+var cur_district_name = null;
 $(function() {
 	initNav();
 	ChartMap.init();
@@ -251,9 +252,9 @@ function initEvent(chart, map) {
 	var housePrice = $(".house .housePrice");
 	housePrice.change(function() {
 		if ($(this)[0].checked) {
-			house.show(map);
+			house.show(ChartMap.getMap(),cur_district_name);
 		} else {
-			house.hide(map);
+			house.hide(ChartMap.getMap());
 		}
 	})
 
@@ -401,6 +402,8 @@ function initNav() {
 	var businessRadio = $("input:radio[name='business-area']");
 	businessRadio.change(function() {
 			var dName = $(this).closest("li.district-item").find("a>span.text").text();
+		    //当前所在区
+		     cur_district_name = dName;
 		    var bName = $(this).val();
 			 if(dName){
 				 $.get("api/getBussinessPoint",{d_name:dName},function(data){

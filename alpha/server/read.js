@@ -106,3 +106,22 @@ exports.getBussinessPoint = function(d_name){
 		return null;
 	})
 }
+exports.getAreaData = function(d_name){
+	return db.open("shanghai_anjuke_area").then(function(){
+		if(d_name=="all"){
+			return db.collection.find({}).toArray()
+		}else{
+			return db.collection.find({
+				"district":d_name
+			}).toArray()
+		}
+	}).then(function(data){
+		console.log("apiJS");
+		console.log(data);
+		db.close();
+		return data;
+	}).catch(function(e){
+		db.close();
+		return null;
+	})
+}
