@@ -116,8 +116,6 @@ exports.getAreaData = function(d_name){
 			}).toArray()
 		}
 	}).then(function(data){
-		console.log("apiJS");
-		console.log(data);
 		db.close();
 		return data;
 	}).catch(function(e){
