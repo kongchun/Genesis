@@ -96,4 +96,14 @@ router.get("/getBussinessPoint",function(req,res,next){
 		})
 	})
 })
+
+router.get("/getBrandPointsByName",function(req,res,next){
+	var name = req.query.name;
+	var options = req.query.options;
+	brand.getBrandPointsByName(name,options).then(function(data){
+		res.send({
+			data:data
+		})
+	})
+})
 module.exports = router;

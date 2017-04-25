@@ -145,5 +145,66 @@ var GPS = {
 	        ret += (20.0 * Math.sin(x * this.PI) + 40.0 * Math.sin(x / 3.0 * this.PI)) * 2.0 / 3.0;
 	        ret += (150.0 * Math.sin(x / 12.0 * this.PI) + 300.0 * Math.sin(x / 30.0 * this.PI)) * 2.0 / 3.0;
 	        return ret;
-	    }
+	    },
+	   distanceToDirectionPoint: function(latA, lngA, distance) {
+			var earthR = 6371000.;
+			var alpha = distance / earthR;
+			var s = Math.cos(alpha);
+			var x = s - Math.sin(latA * this.PI / 180.) * Math.sin(latA * this.PI / 180.);
+			var y = Math.cos(latA * this.PI / 180.) * Math.cos(latA * this.PI / 180.);
+			var z = (Math.acos(x / y)) * 180 / this.PI;
+			var y1;
+			var y2;
+			if (lngA + z > lngA) {
+				y1 = lngA + z;
+				y2 = lngA - z;
+			} else {
+				y1 = lngA - z;
+				y2 = lngA + z;
+			}
+
+			//Y方向
+			var s1 = Math.sin(latA * this.PI / 180.) * Math.sin(latA * this.PI / 180.);
+			var s2 = Math.cos(latA * this.PI / 180.) * Math.cos(latA * this.PI / 180.);
+			var s4 = s * s * s1 + s2 - s * s;
+			var s5 = s * Math.sin(latA * this.PI / 180.);
+			var s6 = Math.sqrt(s4);
+			var v5 = s5 + s6;
+			var v6 = s5 - s6;
+			var x1 = Math.asin(v5) * 180 / this.PI;
+			var x2 = Math.asin(v6) * 180 / this.PI;
+			if (x1 < latA) {
+				var x3 = x2;
+				x2 = x1;
+				x1 = x3;
+			}
+			return {
+				"east": {
+					'lat': latA,
+					'lng': y1
+				},
+				"south": {
+					'lat': x2,
+					'lng': lngA
+				},
+				"west": {
+					'lat': latA,
+					'lng': y2
+				},
+				"north": {
+					'lat': x1,
+					'lng': lngA
+				}
+		};
+
+	},
+	distanceToBoundaryMaxMin: function(latA, lngA, distance) {
+		var op = this.distanceToDirectionPoint(latA, lngA, distance);
+		return {
+			latMin: op.south.lat,
+			latMax: op.north.lat,
+			lngMin: op.west.lng,
+			lngMax: op.east.lng
+		}
+	}
 	};

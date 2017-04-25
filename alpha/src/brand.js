@@ -106,8 +106,6 @@ function markerDistrict(map, district, point, text) {
 	}
 }
 
-
-
 function showCollection(map, arr) {
 	collections.forEach((i) => {
 		map.removeOverlay(i)
@@ -138,14 +136,42 @@ function getDataByTypeName(name) {
 		result = data.data;
 	},"json")
 	return result;
-	//return (allData[name])
 }
 
+export var loadDatas = function(map,arr,options){
+	collections.forEach((i) => {
+		map.removeOverlay(i);
+	})
+	collections = [];
+	arr.forEach((it,i)=>{
+		var pointCollection = writeCollection(it,options,i);
+		map.addOverlay(pointCollection);
+		collections.push(pointCollection);
+	})
+}
+function writeCollection(name,options,i=0){
+	var data = getBrandPointsByName(name,options);
+	var points = getPoints(data);
+	var options = {
+		size: BMAP_POINT_SIZE_SMALL,
+		shape: BMAP_POINT_SHAPE_SQUARE,
+		color: color[i]
+	}
+	var pointCollection = new BMap.PointCollection(points, options);
+	return pointCollection;
+}
+function getBrandPointsByName(name,options){
+	var pointsColect = null;
+	$.get("api/getBrandPointsByName",{name:name,options:options},function(data){
+		pointsColect = data.data;
+	},"json")
+	return pointsColect;
 
+}
 function getPoints(data) {
 	var points = data.map((i) => {
 		//console.log(i.location.lng, i.location.lat)
 		return new BMap.Point(i.location.lng, i.location.lat)
 	})
-	return points
+	return points;
 }

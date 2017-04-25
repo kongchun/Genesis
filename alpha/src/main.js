@@ -9,7 +9,9 @@ var shop = require("./shop.js");
 var pie = require("./pieDistrict.js");
 var message = require("./message.js");
 var analysis = require("./analysis.js");
+/*var gps = require("./gps.js");*/
 var cur_city = "上海市";
+var cur_bponit;
 $(function() {
 	initNav();
 	ChartMap.init();
@@ -248,7 +250,6 @@ function initEvent(chart, map) {
 
 	var housePrice = $(".house .housePrice");
 	housePrice.change(function() {
-		console.log(this.checked)
 		if ($(this)[0].checked) {
 			house.show(map);
 		} else {
@@ -389,7 +390,7 @@ function initNav() {
 		thirdCategory.toggle();
 		thirdCategory.css("left", 0);
 	});
-	//选择商圈
+
 	var district_titles = $(".district-title");
 	district_titles.each(function(){
 		$(this).bind("click",function(){
@@ -408,7 +409,6 @@ function initNav() {
 			 }
 		})
 	function drawBussinessCircle(data,bName){
-		var cur_bponit = [];
 		var iterator_arr = data.data[0].bussiness;
 		for(let i = 0;i < iterator_arr.length;i++){
 			if(iterator_arr[i].bussiness_name==bName){
@@ -428,47 +428,58 @@ function initNav() {
 			})
 		}
 	}
-		//选择行业
+	//选择行业
 	var bisNatureRadio = $("input:radio[name='industry']");
 	bisNatureRadio.change(function() {
 		var selectVal = $(this).val();
 		$(".firm-name").text(selectVal);
-		//只有选择了餐饮行业后，分析面板的同行业分析才会出现
-		//此处需要修改为动态获取同行业
+		//选择行业后，分析面板的行业分析出现
+        var childrens = $(this).parents("ul.nav-children").find("li>a");
+		for(let i = 0;i < childrens.length ; i++){
+			var val = childrens[i].text;
+			if(val == selectVal){
+				continue;
+			}
+			var li = "<li><a><input type='checkbox'  name='analysis-input' value='"+val+"'/>"+val+"</a></li>";
+			$(".industry-common").append(li);
+		}
 		$(".movie-panel-ul").show();
 	});
 
 	//选择分析项
 
-	var brandChk2 = $("[name = analysis-input]:checkbox");
-	brandChk2.change(function() {
-		var businessRadio = ($("input[name='business-area']:checked").length == 0);
-		if (businessRadio) {
-			this.checked = false;
-			message.alert("请选择商圈");
-			return false
-		}
-		var bisNatureRadio = ($("input[name='industry']:checked").length == 0);
-		if (bisNatureRadio) {
-			message.alert("请选择行业");
-			this.checked = false;
-			return false
-		}
+	//var brandChk2 = $("[name = analysis-input]:checkbox");
+	$(".industry-common").on("change","li input[name='analysis-input']",function(){
+			var arr = [];
+			//选择
+			var businessRadio = ($("input[name='business-area']:checked").length == 0);
+			if (businessRadio) {
+				this.checked = false;
+				message.alert("请选择商圈");
+				return false;
+			}
+			var bisNatureRadio = ($("input[name='industry']:checked").length == 0);
+			if (bisNatureRadio) {
+				message.alert("请选择行业");
+				this.checked = false;
+				return false;
+			}
 
-		if ($("input:checked").length > 10) {
-			message.alert("最多勾选10条");
-			this.checked = false;
-			return false;
-		}
-		var arr = [];
-		$("[name = analysis-input]:checked").each(function() {
-			arr.push(this.value);
-		})
-		brand_sanlin.showCollection(ChartMap.getMap(), arr);
+			if ($("input:checked").length > 10) {
+				message.alert("最多勾选10条");
+				this.checked = false;
+				return false;
+			}
+			$(".industry-common input:checked").each(function() {
+				arr.push(this.value);
+			})
+		   var options;
+		   if(cur_bponit) {
+			   options = GPS.distanceToBoundaryMaxMin(cur_bponit.center_point.lat, cur_bponit.center_point.lng, 3000);
+			   brand.loadDatas(ChartMap.getMap(),arr,options)
+		   }
 	})
-
-	//人流
-
+	/*//热度
 	var lwChk2 = $(".analysis_trading input");
 	lwChk2.change(function() {
 
@@ -490,13 +501,7 @@ function initNav() {
 		} else {
 			brand_sanlin.hide(ChartMap.getMap(), $(this).val());
 		}
-	})
-	function writeBussinessData(data){
-		console.log(data);
-		/*for(let i = 0;i < data.data.length;i++){
-
-		}*/
-	}
+	})*/
 	function initAnalyChart() {
 		var mChart = echarts.init(document.getElementById("pie-content"));
 		var option = {

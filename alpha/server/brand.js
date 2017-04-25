@@ -10,16 +10,16 @@ var getBrandPointsByName = function(name, options = {}) {
 			lngMax = 180
 	} = options;
 	//console.log([latMin, latMax, lngMin, lngMax])
-	return db.open("brand").then(function() {
+	return db.open("industry_brand").then(function() {
 		return db.findToArray({
-			"name": name,
+			"category": name,
 			"location.lat": {
-				"$gte": latMin,
-				"$lte": latMax
+				"$gte": parseFloat(latMin),
+				"$lte": parseFloat(latMax)
 			},
 			"location.lng": {
-				"$gte": lngMin,
-				"$lte": lngMax
+				"$gte": parseFloat(lngMin),
+				"$lte": parseFloat(lngMax)
 			}
 		}, {
 			_id: 0,
