@@ -30,6 +30,7 @@
     "moment": "^2.17.1",
     "mongodb": "^2.2.24",
     "morgan": "^1.7.0",
+    "qrcode": "^0.8.1",
     "serve-favicon": "^2.3.2",
     "vinyl-source-stream": "^1.1.0"
   },

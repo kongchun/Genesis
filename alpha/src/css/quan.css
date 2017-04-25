@@ -432,4 +432,21 @@ img {
 .n-link img {
     width: 100%;
 }
+.m-title,.m-qrcode{
+    width:100%;
+    color:white;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align:center;
+    width: 100%;
+}
 
+.m-code{
+    padding:20px;
+}
+
+#canvas-qrcode{
+    width:300px;
+    height:300px;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Genesis 商业地理 | 智慧商圈，精准营销，智能选址</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/vendor.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/quan.css" />
+
+</head>
+
+<body>
+    <div class="g-bd">
+
+        <section class="m-introduce" id="j-introduce">
+            <img  class="pwdBackImg" src="images/quan/2x.jpg">
+             <div class="m-title">
+               <h1>大洋百货优惠券</h1>
+               <h4>满100减30</h4>
+                <div class="m-code">优惠码:192833</div>
+             </div>
+        </section>
+        <section class="m-pwd">
+            <img class="pwdBackImg" src="images/quan/3x.jpg">
+            <div class="m-qrcode">
+               <canvas id="canvas-qrcode"></canvas>
+            </div>
+        </section>
+        
+    </div>
+</body>
+  <script src="/js/vendor.js"></script>
+<script src="/js/qrcode.min.js"></script>
+<script>
+$(function(){
+      qrcodelib.toCanvas(document.getElementById('canvas-qrcode'), '192833',{ errorCorrectionLevel: 'H'}, function (error) {
+    if (error) console.error(error)
+    console.log('success!');
+
+    $('#canvas-qrcode').css({"width":"250","height":"250"})
+  })
+})
+</script>
+</html>
+

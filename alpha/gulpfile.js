@@ -48,7 +48,7 @@ gulp.task('vendor-js', function() {
 
 gulp.task('vendor-map-js', function() {
 	return gulp.src([
-			'src/echarts.min.js', "src/macarons.js", "src/bmap.min.js","src/gps.js", //echart
+			'src/echarts.min.js', "src/macarons.js", "src/bmap.min.js", "src/gps.js", //echart
 			'src/RichMarker.js', 'src/GeoUtils.js', "src/heatmap.js",
 			"src/mapv.js"
 		]).pipe(concat('map.js'))
@@ -80,7 +80,10 @@ var data_src = ["src/data/district",
 // });
 
 gulp.task("app-js", function() {
-	gulp.src(['src/app/*.js', '!src/app/login.js']).pipe(uglify()).pipe(gulp.dest('public/js'));
+	//gulp.src(['node_modules/build/qrcode.min.js']).pipe(uglify()).pipe(gulp.dest('public/js'));
+	gulp.src(['node_modules/qrcode/build/qrcode.min.js', 'src/app/*.js', '!src/app/login.js']).pipe(uglify()).pipe(gulp.dest('public/js'));
+
+
 	return browserify('src/app/login.js').transform(babelify, {
 			presets: ['es2015', 'react', 'stage-0']
 		}).bundle()
