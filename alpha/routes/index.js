@@ -5,9 +5,13 @@ var write = require('../server/write.js');
 var moment = require('moment');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('index', {
-		title: 'Express'
-	});
+	// res.render('index', {
+	// 	title: 'Express'
+	// });
+	res.redirect('home');
+});
+router.get('/index', function(req, res, next) {
+	res.redirect('home');
 });
 
 
@@ -15,7 +19,9 @@ router.get('/home', function(req, res, next) {
 	if (!req.session.user) {
 		res.redirect('login.html');
 	}
-	res.render('home');
+	res.render('home',{
+		user: req.session.user
+	});		
 });
 
 

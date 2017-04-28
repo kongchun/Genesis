@@ -7,17 +7,9 @@
     <title>Genesis 商业地理 | 智慧商圈，精准营销，智能选址</title>
     <link rel="stylesheet" href="css/vendor.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/home.css" />
 </head>
-<style>
-.container-home{
-    min-height:640px;
-    padding-top:50px;
-}
-.container-home a{
-    background: #222;
-    text-decoration: none;
-}
-</style>
+
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
@@ -28,55 +20,97 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"> <img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="images/logo.png"></a>
+                <a class="navbar-brand" href="index"> <img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="images/logo.png"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
+                  <li class="dropdown user" id="header-user">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                           <i class="fa fa-user"></i>
+                            <span class="username"> <%= user.account %></span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="logout"><i class="fa fa-power-off"></i> 退出</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-  
-    
-    <div class="container container-home">
+    <div class="container-fluid container-home">
         <div class="row">
-            <div class="col-md-4">
-                <a href="list">
-                <div class="thumnail-value text-center box-shadow equa-height ">
-                    <div class="box-img text-center">
-                        <img src="images/1.png" alt="商业地图">
+            <div class="col-md-3 navL">
+                <div id="navL">
+                    <div class="navTop clearfix">
+                        <div class="perImg"><img src="images/avatar.jpg" alt="" onclick="window.location = '/member/center/account.jhtml'"></div>
+                        <div class="perMesg">
+                            <p>用户名：</p>
+                            <div class="perName"><span title="<%=user.account%>"><%=user.account%></span><i onclick="window.location = '/#'">已认证</i></div>
+                            <p class="safety">帐号安全度：<span>高</span></p>
+                            <div class="safetyName">
+                                <span class="apcol3"></span>
+                            </div>
+                        </div>
                     </div>
-                    <h2 class="text-center">智能选址</h2>
-                    <p>90%的商户第一年即面临倒闭的威胁，导致原因即选址问题。我们采用大数据和人工智能的方式帮助你结合自身特色，全面了解细分市场和用户特性、行业环境、竞争对手等因素，陪你一起迈出商业发展第一步</p>
+                    <ul class="msgLink clearfix">
+                        <li><a href="#">帐号信息<span class="mesNum"></span></a></li>
+                        <li><a href="#">我的订单</a></li>
+                        <li><a href="#">消息中心</a></li>
+                    </ul>
                 </div>
-                </a>
             </div>
-            <div class="col-md-4">
-                <a href="marketing">
-                <div class="thumnail-value text-center box-shadow equa-height ">
-                    <div class="box-img text-center">
-                        <img src="images/2.png" alt="商业地图">
-                    </div>
-                    <h2 class="text-center">精准营销</h2>
-                    <p>新零售，新起点，创新的会员精细化管理体系和一对一销售预测，采用线上线下结合，机器学习算法帮助你提升销售额，引入新的潜在会员，同时发现新的商业线索和机会。 </p>
+            <div class="col-md-9 main">
+                <div class="col-md-3">
+                    <a href="/map?id=58c62a32b6c6ad17005ae011">
+                        <div class="thumnail-value text-center box-shadow equa-height ">
+                            <div class="box-img text-center">
+                                <img src="images/3.png" alt="商业地图">
+                            </div>
+                            <h2 class="text-center">商业地图</h2>
+                            <p> </p>
+                        </div>
+                    </a>
                 </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-             <a href="list">
-                <div class="thumnail-value text-center box-shadow equa-height ">
-                    <div class="box-img text-center">
-                        <img src="images/3.png" alt="商业地图">
-                    </div>
-                    <h2 class="text-center">商业地图</h2>
-                    <p>完善的商业地理位置和相关商业信息，通过大数据和智能算法，帮助传统企业转型和发现人工智能时代新机遇。</p>
+
+                <div class="col-md-3">
+                    <a href="list">
+                        <div class="thumnail-value text-center box-shadow equa-height ">
+                            <div class="box-img text-center">
+                                <img src="images/1.png" alt="商业地图">
+                            </div>
+                            <h2 class="text-center">智能选址</h2>
+                            <p> </p>
+                        </div>
+                    </a>
                 </div>
-                </a>
+                <div class="col-md-3">
+                    <a href="marketing">
+                        <div class="thumnail-value text-center box-shadow equa-height ">
+                            <div class="box-img text-center">
+                                <img src="images/2.png" alt="商业地图">
+                            </div>
+                            <h2 class="text-center">精准营销</h2>
+                            <p> </p>
+                        </div>
+                    </a>
+                </div>
+
+                 <div class="col-md-3">
+                    <a href="monitor.html">
+                        <div class="thumnail-value text-center box-shadow equa-height ">
+                            <div class="box-img text-center">
+                                <img src="images/4.png" alt="人流监控">
+                            </div>
+                            <h2 class="text-center">人流监控</h2>
+                            <p> </p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-
-<!-- <div class="modal fade" tabindex="-1" role="dialog">
+    <!-- <div class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
     <div class="alert alert-block alert-warning fade in">
         <a class="close" data-dismiss="modal" aria-label="Close" href="#" aria-hidden="true">×</a>
@@ -89,8 +123,6 @@
     </div>
 </div>
  -->
-
-
     <div class="copyright">
         <div class="container">
             <div class="row">
@@ -105,4 +137,3 @@
 </body>
 
 </html>
-
