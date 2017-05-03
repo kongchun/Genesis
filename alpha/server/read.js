@@ -123,3 +123,17 @@ exports.getAreaData = function(d_name){
 		return null;
 	})
 }
+
+exports.getShopListById =function(id){
+	return db.open("shop").then(function() {
+		return db.collection.find({
+			userId: id
+		}).toArray()
+	}).then(function(data) {
+		db.close()
+		return data;
+	}).catch(function(e) {
+		db.close();
+		return [];
+	})
+}

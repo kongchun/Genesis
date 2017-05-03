@@ -1,0 +1,1 @@
+$(function(){$(".shop-choose-btn").click(function(){$("#shop_choose").modal("show")}),$("#shop_choose .list-group-item").click(function(){var o=$(this).data("data");$("#shop_choose").modal("hide"),console.log(o),$("#shopName").val(o.name),$("#shopAddr").text(o.address),$("#shopCategory").text(o.category)})});

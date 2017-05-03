@@ -33,3 +33,19 @@
     color: #70afc4;
     font-size: 14px;
 }
+
+.progress.progress-sm {
+    height: 9px!important;
+}
+
+
+#shop_choose .row{
+   padding:10px;
+}
+#shop_choose a{
+    color:#222;
+}
+
+#shop_choose a:hover{
+    color:#222;
+}
