@@ -10,6 +10,7 @@
     "babelify": "^7.3.0",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
+    "bootstrap-datetime-picker": "^2.4.4",
     "browserify": "^14.1.0",
     "cookie-parser": "^1.4.3",
     "debug": "^2.2.0",

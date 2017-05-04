@@ -23,17 +23,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index"> <img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="/images/logo.png"></a>
+                    <a class="navbar-brand" href="/index"> <img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="/images/logo.png"></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li id="header-user" class="dropdown user">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">
-                                <span class="username">荒野猎人</span>
+                        <li class="dropdown user" id="header-user">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-user"></i>
+                                <span class="username"> <%= user.account %></span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="javascript:alert('模拟退出')"><i class="fa fa-power-off"></i> 退出</a></li>
+                                <li><a href="/logout"><i class="fa fa-power-off"></i> 退出</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -53,12 +54,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <form id="wizForm" class="form-horizontal" action="#" novalidate="novalidate">
-
                         <div class="form-group">
                             <label class="control-label col-md-3">商店<span class="required">*</span></label>
                             <div class="col-md-4">
                                 <div class="input-group">
-                                    <input type="text" placeholder="" name="shopName" id="shopName" class="form-control" >
+                                    <input type="text" placeholder="" name="shopName" id="shopName" class="form-control">
                                     <div class="input-group-addon shop-choose-btn">
                                         <i class="fa fa-shopping-bag"></i>
                                     </div>
@@ -66,129 +66,161 @@
                                 <span class="error-span"></span>
                             </div>
                         </div>
-
-                        <div class="form-group">
+                        <div class="form-group" id="item_addr" style="display: none">
                             <label class="control-label col-md-3">地址<span class="required"></span></label>
                             <div class="col-md-4">
                                 <p class="form-control-static" id="shopAddr">-</p>
                                 <span class="error-span"></span>
                             </div>
                         </div>
-
-                        <div class="form-group">
+                        <div class="form-group" id="item_category" style="display: none">
                             <label class="control-label col-md-3">类别<span class="required"></span></label>
                             <div class="col-md-4">
-                              <p class="form-control-static" id="shopCategory">-</p>
+                                <p class="form-control-static" id="shopCategory">-</p>
                                 <span class="error-span"></span>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="control-label col-md-3">标题<span class="required">*</span></label>
                             <div class="col-md-4">
-                                <input type="text" placeholder="" name="title" class="form-control">
+                                <input type="text" placeholder="" name="title" id="title" class="form-control">
                                 <span class="error-span"></span>
                             </div>
                         </div>
- 
                         <div class="form-group">
                             <label class="control-label col-md-3">优惠类型<span class="required">*</span></label>
                             <div class="col-md-4">
                                 <div class="btn-group" data-toggle="buttons">
-                                  <label class="btn btn-warning">
-                                    <input type="radio" name="options" id="option2" autocomplete="off"> 优惠券
-                                  </label>
-                                  <label class="btn btn-warning">
-                                    <input type="radio" name="options" id="option3" autocomplete="off"> 试用券
-                                  </label>
+                                    <label class="btn btn-quan">
+                                        <input type="radio" name="type" value="1" autocomplete="off"> 优惠券
+                                    </label>
+                                    <label class="btn btn-quan">
+                                        <input type="radio" name="type" value="2" autocomplete="off"> 试用券
+                                    </label>
                                 </div>
                             </div>
                         </div>
- 
-
-                        <!--                         <div class="form-group">
-                            <label class="control-label col-md-3">图片上传<span class="required"></span></label>
-                            <div class="col-md-4">
-                                <img src="images/test1.jpg" style="margin:10px 0;width:100px">
-                                <div>
-                                    <span class="btn btn-success fileinput-button">
-                                    <i class="fa fa-plus"></i>
-                                    <span>上传图片</span>
-                                    <input type="file" multiple="" name="files[]">
-                                    </span>
-                                </div>
-                            </div>
-                        </div> -->
-                       <!--  <div class="form-group">
-                            <label class="control-label col-md-3">折扣<span class="required">*</span></label>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">折扣率<span class="required">*</span></label>
                             <div class="col-xs-2">
                                 <div class="input-group">
-                                    <input type="text" placeholder="" name="title" class="form-control">
-                                    <span class="input-group-btn">
-                                     
-                                    <button type="submit" class="btn btn-light-grey">
-                                                <i>%</i>
-
-                                            </button>
-                                </span>
+                                    <input type="text" placeholder="折扣率" name="percent"  id="percent" class="form-control">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-percent"></i>
+                                    </div>
                                 </div>
                                 <span class="error-span"></span>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-md-3">日期<span class="required">*</span></label>
                             <div class="col-xs-2">
-                                <div class="input-group">
-                                    <input type="text" placeholder="开始时间" name="title" class="form-control">
-                                    <span class="input-group-btn">
-                                     
-                                    <button type="submit" class="btn btn-light-grey">
-                                                <i class="fa fa-calendar"></i>
-
-                                            </button>
-                                </span>
+                                <div class="input-group input-append date" id="startDate_group" data-date-format="yyyy-mm-dd">
+                                    <input type="text" placeholder="开始时间" name="startDate" id="startDate" class="form-control">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
                                 </div>
                                 <span class="error-span"></span>
                             </div>
                             <div class="col-xs-2">
-                                <div class="input-group">
-                                    <input type="text" placeholder="结束时间" name="title" class="form-control">
-                                    <span class="input-group-btn">
-                                     
-                                    <button type="submit" class="btn btn-light-grey">
-                                                <i class="fa fa-calendar"></i>
-
-                                            </button>
-                                </span>
+                                <div class="input-group input-append date" id="endDate_group" data-date-format="yyyy-mm-dd">
+                                    <input type="text" placeholder="结束时间" name="endDate" id="endDate" class="form-control">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
                                 </div>
                                 <span class="error-span"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3">时段<span class="required">*</span></label>
+                            <div class="col-md-4">
+                                <div>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="00:00-06:00"> 00:00-06:00
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="07:00-08:00"> 07:00-08:00
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="08:00-09:00"> 08:00-09:00
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="09:00-10:00"> 09:00-10:00
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="10:00-11:00"> 10:00-11:00
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="11:00-12:00"> 11:00-12:00
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="12:00-13:00"> 12:00-13:00
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="14:00-15:00"> 14:00-15:00
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="15:00-16:00"> 15:00-16:00
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="16:00-17:00"> 16:00-17:00
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="17:00-18:00"> 17:00-18:00
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="18:00-19:00"> 18:00-19:00
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="19:00-20:00"> 19:00-20:00
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="20:00-21:00"> 20:00-21:00
+                                    </label>
+                                    <label class="checkbox-inline"> 
+                                        <input type="checkbox" name="time" value="21:00-22:00"> 21:00-22:00
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="22:00-23:00"> 22:00-23:00
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="time" value="23:00-24:00"> 23:00-24:00
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">发送周期<span class="required">*</span></label>
                             <div class="col-xs-2">
                                 <div class="input-group">
-                                    <input type="text" placeholder="开始" name="title" class="form-control">
-                                    <span class="input-group-btn">
-                                     
-                                    <button type="submit" class="btn btn-light-grey">
-                                                <i class="fa fa-calendar"></i>
-
-                                            </button>
-                                </span>
+                                    <input type="text" placeholder="发送周期" name="interval" id="interval" class="form-control">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
                                 </div>
                                 <span class="error-span"></span>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">促销总数<span class="required">*</span></label>
                             <div class="col-xs-2">
                                 <div class="input-group">
-                                    <input type="text" placeholder="结束" name="title" class="form-control">
-                                    <span class="input-group-btn">
-                                     
-                                    <button type="submit" class="btn btn-light-grey">
-                                                <i class="fa fa-calendar"></i>
-
-                                            </button>
-                                </span>
+                                    <input type="text" placeholder="总数" name="total" id="total" class="form-control">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-star"></i>
+                                    </div>
                                 </div>
                                 <span class="error-span"></span>
                             </div>
@@ -215,33 +247,51 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">描述</label>
                             <div class="col-md-4">
-                                <textarea class="form-control" name="textarea" cols="3" rows="3"></textarea>
+                                <textarea class="form-control" name="textarea" id="description" cols="3" rows="3"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">用户筛选</label>
                             <div class="col-md-4">
-                               <div><input type="checkbox" />男 <input type="checkbox" />女 </div>
-                               <div>
-                               <input type="checkbox" />15以下 
-                               <input type="checkbox" />16-25
-                               <input type="checkbox" />26-35 
-                               
-                               </div>
-                               <div><input type="checkbox" />36-45 
-                                <input type="checkbox" />46-55 
-                                <input type="checkbox" />55以上</div>
-                               <div></div>
+                                <div>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="sex" value="男"> 男
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="sex" value="女"> 女
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="ageRange" value="0-15"> 15以下
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="ageRange" value="16-25"> 16-25
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="ageRange" value="26-35"> 26-35
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="ageRange" value="36-45"> 36-45
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="ageRange" value="46-55"> 46-55
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="ageRange" value="56-99"> 55以上
+                                    </label>
+                                </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="col-md-3 control-label"> </label>
                             <div class="col-md-4">
-                                <a class="btn btn-default" href="marketing" role="button">保存</a>
+                                <a class="btn btn-default btn-save" role="button">保存</a>
                             </div>
                         </div>
-                     <!--    <div class="form-group">
+                        <!--    <div class="form-group">
                             <label class="control-label col-md-3">优惠码<span class="required">*</span></label>
                             <div class="col-md-4">
                                 <input type="text" placeholder="" name="title" class="form-control">
@@ -261,49 +311,42 @@
             </div>
         </div> -->
     </div>
-
-
-<div id="shop_choose" class="modal fade" tabindex="-1" role="dialog">
-
-  <div class="modal-dialog " role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="gridSystemModalLabel">选择商店</h4>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-
-        <div class="col-md-12">
-        <div class="list-group">
-
-        <% if (shops.length) { %>
-         <% shops.forEach(function(shop){ %> 
-         <a href="#"  class="row list-group-item" data-data="<%=JSON.stringify(shop)%>">
-        
-          <div class="col-md-6">
-            <h3><%= shop.name%></h3>
-            <h6><%= shop.address%></h6>
-          </div>
-          <div class="col-md-6">
-            <img src="http://api.map.baidu.com/staticimage/v2?ak=8hr2ZB5zsFI6dcId9Uj6ORy2kuLIP8vA&width=200&height=120&center=<%= shop.location.lng%>,<%= shop.location.lat%>&markers=<%= shop.location.lng%>,<%= shop.location.lat%>&zoom=16&markerStyles=l,,0xff000">
-          </div>
-      
-          </a>
-           <% }) %>  
-         <% } %> 
-        
+    <div id="shop_choose" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">选择商店</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="list-group">
+                                <% if (shops.length) { %>
+                                    <% shops.forEach(function(shop){ %>
+                                        <a href="#" class="row list-group-item" data-data="<%=JSON.stringify(shop)%>">
+                                            <div class="col-md-6">
+                                                <h3><%= shop.name%></h3>
+                                                <h6><%= shop.address%></h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img src="http://api.map.baidu.com/staticimage/v2?ak=8hr2ZB5zsFI6dcId9Uj6ORy2kuLIP8vA&width=200&height=120&center=<%= shop.location.lng%>,<%= shop.location.lat%>&markers=<%= shop.location.lng%>,<%= shop.location.lat%>&zoom=16&markerStyles=l,,0xff000">
+                                            </div>
+                                        </a>
+                                        <% }) %>
+                                            <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
         </div>
-        </div>
-        </div>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
     <script src="/js/vendor.js"></script>
     <script src="/js/marketing_create.js"></script>
 </body>
 
 </html>
-

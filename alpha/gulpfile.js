@@ -24,7 +24,9 @@ gulp.task('vendor-css', function() {
 			'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
 			'node_modules/bootstrap/dist/css/bootstrap.min.css',
 			'node_modules/font-awesome/css/font-awesome.css',
-			'node_modules/animate.css/animate.css'
+			'node_modules/animate.css/animate.css',
+			'node_modules/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css'
+
 		])
 		.pipe(concat('vendor.css'))
 		.pipe(cssmin())
@@ -37,6 +39,8 @@ gulp.task('vendor-js', function() {
 	return gulp.src([
 			'node_modules/jquery/dist/jquery.js',
 			'node_modules/bootstrap/dist/js/bootstrap.js',
+			'node_modules/bootstrap-datetime-picker/js/bootstrap-datetimepicker.js',
+			'node_modules/bootstrap-datetime-picker/js/locales/bootstrap-datetimepicker.zh-CN.js',
 			'src/lib/*.js',
 			//'node_modules/headroom.js/dist/headroom.js',
 			//'node_modules/headroom.js/dist/jQuery.headroom.js'
@@ -81,13 +85,20 @@ var data_src = ["src/data/district",
 
 gulp.task("app-js", function() {
 	//gulp.src(['node_modules/build/qrcode.min.js']).pipe(uglify()).pipe(gulp.dest('public/js'));
-	gulp.src(['node_modules/qrcode/build/qrcode.min.js', 'src/app/*.js', '!src/app/login.js']).pipe(uglify()).pipe(gulp.dest('public/js'));
+	gulp.src(['node_modules/qrcode/build/qrcode.min.js', 'src/app/*.js', '!src/app/login.js',"!src/app/marketing_create.js"]).pipe(uglify()).pipe(gulp.dest('public/js'));
 
 
-	return browserify('src/app/login.js').transform(babelify, {
+	browserify('src/app/login.js').transform(babelify, {
 			presets: ['es2015', 'react', 'stage-0']
 		}).bundle()
 		.pipe(source('login.js'))
+		.pipe(streamify(uglify()))
+		.pipe(gulp.dest('public/js'));
+
+	return browserify('src/app/marketing_create.js').transform(babelify, {
+			presets: ['es2015', 'react', 'stage-0']
+		}).bundle()
+		.pipe(source('marketing_create.js'))
 		.pipe(streamify(uglify()))
 		.pipe(gulp.dest('public/js'));
 })

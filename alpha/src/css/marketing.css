@@ -49,3 +49,11 @@
 #shop_choose a:hover{
     color:#222;
 }
+.btn-quan{
+    border: 1px solid #ccc;
+}
+.btn-quan.active{
+    color: #fff;
+    background-color: #ec971f;
+    border-color: #d58512;
+}
