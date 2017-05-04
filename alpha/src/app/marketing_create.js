@@ -132,7 +132,15 @@ $(function() {
             description: $("#description").val()
         }
 
-        console.log(data);
+        var marketing = JSON.stringify(data);
+        var url = "/marketing/create";
+        $.post(url,{data:marketing},function(data){
+            if(data.result){
+                location.href = "/marketing";
+            }else{
+                message.alert("操作失败");
+            }
+        })
     })
 
 

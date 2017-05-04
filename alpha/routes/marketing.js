@@ -17,13 +17,34 @@ router.get('/create', function(req, res, next) {
 	var id = user._id;
 
 	read.getShopListById(id).then(function(shops){
-		console.log(shops)
+		//console.log(shops)
 		res.render('marketing/create', {
 			user: user,
 			shops: shops
 		});
 	})
 
+});
+
+router.post('/create', function(req, res, next) {
+	if (!req.session.user) {
+		res.send({
+			result: false
+		});
+	}
+	var user = req.session.user;
+	var id = user._id;
+
+	var marketing = JSON.parse(req.body.data);
+	write.createMarketing(id,marketing).then(function(data){
+		var result = false;
+		if (data) {
+			result = true;
+		}
+		res.send({
+			result: result
+		});
+	})
 });
 
 module.exports = router;
