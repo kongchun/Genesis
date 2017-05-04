@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Genesis 商业地理 | 智慧商圈，精准营销，智能选址</title>
+    <link rel="stylesheet" href="css/vendor.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/marketing.css" />
+</head>
+
+<body class="main-container marketing">
+    <div id="main">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index"> <img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="images/logo.png"></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown user" id="header-user">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-user"></i>
+                                <span class="username"> <%= user.account %></span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="logout"><i class="fa fa-power-off"></i> 退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <form class="navbar-form navbar-right">
+                        <a class="btn btn-default" href="marketing/create" role="button">创建营销</a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="nt-title">
+                        <div class="description">营销统计</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row nt-row ">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>访问概要</h4></div>
+                        <div class="panel-body">
+                            <div class="number">2034</div>
+                            <div class="sub-text">访问数</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>优惠券下载</h4></div>
+                        <div class="panel-body">
+                            <div class="number">36</div>
+                            <div class="sub-text">下载数</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>优惠转换率</h4></div>
+                        <div class="panel-body">
+                            <div class="number">2%</div>
+                            <div class="sub-text">转换率</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>促销列表</h4></div>
+                        <div class="panel-body">
+                            <ul class="nav nav-tabs" id="myTabs">
+                                <li role="presentation" class="active"><a href="#progress">进行中</a></li>
+                                <li role="presentation"><a href="#draft">计划中</a></li>
+                                <li role="presentation"><a href="#finish">已完成</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="progress">
+                                    <!-- <div class="col-xs-4 ">
+                                        <div class="input-group">
+                                            <input type="text" size="20" name="regular" class="form-control" placeholder="请输入查询条件">
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-light-grey" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="input-group">
+                                            <input type="text" size="10" name="regular" class="form-control datepicker hasDatepicker" placeholder="开始时间" id="dp1492683501642">
+                                            <span class="input-group-btn">
+                                             <button class="btn btn-light-grey" type="submit">
+                                                <i class="fa fa-calendar"></i>
+
+                                            </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="input-group">
+                                            <input type="text" size="10" name="regular" class="form-control datepicker hasDatepicker" placeholder="结束时间" id="dp1492683501643">
+                                            <span class="input-group-btn">
+                                             <button class="btn btn-light-grey" type="submit">
+                                                <i class="fa fa-calendar"></i>
+
+                                            </button>
+                                            </span>
+                                        </div>
+                                    </div> -->
+                                    <% if (progress.length==0) {%>
+                                            <div class="noMarketing">
+                                                <p>暂时没有进行中的营销活动!</p> 
+                                                <a class="btn btn-default" href="marketing/create" role="button">创建营销</a>
+                                            </div>
+                                         <% }else{%>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>日期</th>
+                                                <th>名称</th>
+                                                <th>状态</th>
+                                                <th>浏览数</th>
+                                                <th>下载数</th>
+                                                <th>转换率</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        
+
+                                       
+                                                <% process.forEach(function(i){ %>
+                                                    <tr>
+                                                        <td><%= i.startDate%>至
+                                                                <%= i.endDate%></td>
+                                                        <td> <%= i.title%></td>
+                                                        <td>进行中</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                    </tr>
+                                                    <% }) %>
+                                                        <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="draft">
+                                   <% if (draft.length==0) {%>
+                                            <div class="noMarketing">
+                                                <p>暂时没有进行中的营销活动!</p> 
+                                                <a class="btn btn-default" href="marketing/create" role="button">创建营销</a>
+                                            </div>
+                                         <% }else{%>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>日期</th>
+                                                <th>名称</th>
+                                                <th>优惠类型</th>
+                                                <th>折扣率</th>
+                                                <th>优惠数量</th>
+                                                <th>店铺</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           
+                                                <% draft.forEach(function(i){ %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= i.startDate%>至
+                                                                <%= i.endDate%>
+                                                        </td>
+                                                        <td>
+                                                            <%= i.title%>
+                                                        </td>
+                                                        <td>
+                                                            <%= (i.type==1)?"优惠券":"试用券"%>
+                                                        </td>
+                                                        <td>
+                                                            <%= i.percent%>
+                                                        </td>
+                                                        <td>
+                                                            <%= i.total%>
+                                                        </td>
+                                                        <td>
+                                                            <%= i.shop.name%>
+                                                        </td>
+                                                        <td>
+                                                            <a href="info.html">
+                                                                <button title="" class="btn btn-warning tip" data-original-title="Tooltip at top">编辑</button>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <% }) %>
+                                                        <% } %>
+                                    </table>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="finish">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>日期</th>
+                                                <th>名称</th>
+                                                <th>状态</th>
+                                                <th>浏览数</th>
+                                                <th>下载数</th>
+                                                <th>转换率</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>16/01/05-16/01/09</td>
+                                                <td>5周年促销</td>
+                                                <td>即将到期</td>
+                                                <td>1234</td>
+                                                <td>493</td>
+                                                <td>39%</td>
+                                                <!--                                                 <td class="width-10">
+                                                    <input type="checkbox">
+                                                </td> -->
+                                            </tr>
+                                            <!--  <tr style="height: 250px;">
+                                                <td colspan="7">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div id="chart1" style="height:250px"></div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div id="chart2" style="height:250px"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="pull-right" style="padding-right: 80px;">
+                                                            <a href="info.html">
+                                                                <button title="" class="btn btn-warning tip" data-original-title="Tooltip at top">活动详情</button>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr> -->
+                                            <tr>
+                                                <td>15/12/22-15/12/31</td>
+                                                <td>年终促销</td>
+                                                <td>进行中</td>
+                                                <td>4321</td>
+                                                <td>256</td>
+                                                <td>16%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>15/10/01-15/10/07</td>
+                                                <td>10月促销</td>
+                                                <td>进行中</td>
+                                                <td>451</td>
+                                                <td>341</td>
+                                                <td>75%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--    <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12"><span>Copyright © <a href="#">荒野猎人团队</a></span>
+                        <span><a href="http://www.miibeian.gov.cn/" target="_blank">苏ICP备14030752号</a></span></div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8hr2ZB5zsFI6dcId9Uj6ORy2kuLIP8vA"></script>
+    <script src="js/vendor.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/marketing.js"></script>
+</body>
+
+</html>

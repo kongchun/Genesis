@@ -137,3 +137,18 @@ exports.getShopListById =function(id){
 		return [];
 	})
 }
+
+
+exports.getMarketing =function(id){
+	return db.open("marketing").then(function() {
+		return db.collection.find({
+			userId: id
+		}).toArray()
+	}).then(function(data) {
+		db.close()
+		return data;
+	}).catch(function(e) {
+		db.close();
+		return [];
+	})
+}

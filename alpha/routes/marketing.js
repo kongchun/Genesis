@@ -6,7 +6,36 @@ var moment = require('moment');
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
-	res.redirect('marketing.html');
+	if (!req.session.user) {
+		res.redirect('/login.html');
+	}
+	var user = req.session.user;
+	var id = user._id;
+
+	//待重构
+	var progress = [];
+	var draft = [];
+	var finish = [];
+	read.getMarketing(id).then(function(data){
+		data.forEach(function(data){
+			if(data.status == 0){
+				draft.push(data);
+			}else if(data.status == 1){
+				progress.push(data);
+			}else{
+				finish.push(data);
+			}
+		})
+
+		res.render('marketing/list', {
+			user: user,
+			draft:draft,
+			progress:progress,
+			finish:finish
+		});
+	})
+
+
 });
 
 router.get('/create', function(req, res, next) {

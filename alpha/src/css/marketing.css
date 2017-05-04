@@ -57,3 +57,18 @@
     background-color: #ec971f;
     border-color: #d58512;
 }
+
+.tab-content{
+    margin-top: 20px;
+}
+
+.noMarketing{
+    min-height: 200px;
+    text-align: center;
+}
+
+.noMarketing p{
+   font-size:18px;
+   padding-top:60px;
+   padding-bottom:30px;
+}
