@@ -40,7 +40,56 @@ $(function() {
     $('#endDate_group').datetimepicker(dateOption);
 
 
+    var editDom = $("#marketing_container");
+    var id = editDom.data("id");
+    if(id!=""){
+        //编辑模式
+        $("#item_addr").show();
+        $("#item_category").show();
+
+        var type = editDom.data("type");
+        $("input[name='type']").each(function(i){
+            if(type == $(this).val()){
+                $(this).attr("checked","checked");
+                $(this).parent().addClass("active")
+            }
+        })
+
+        var time = editDom.data("time");
+        $("input[name='time']").each(function(i){
+            if(time.indexOf($(this).val())>-1){
+                $(this).attr("checked","checked")
+            }
+        })
+
+        var sex =  editDom.data("sex");
+        $("input[name='sex']").each(function(i){
+            if(sex.indexOf($(this).val())>-1){
+                $(this).attr("checked","checked")
+            }
+        })
+
+        var ageRange =  editDom.data("age");
+        $("input[name='ageRange']").each(function(i){
+            if(ageRange.indexOf($(this).val())>-1){
+                $(this).attr("checked","checked")
+            }
+        })
+
+        shop = edit_shop;
+    }
+
+
+
+
+
+
+
     $(".btn-save").click(function() {
+
+        var editDom = $("#marketing_container");
+        var _id = editDom.data("id");
+
         if (shop == null) {
             message.alert("请选择店铺");
             return
@@ -133,7 +182,7 @@ $(function() {
         }
 
         var marketing = JSON.stringify(data);
-        var url = "/marketing/create";
+        var url = "/marketing/save/"+_id;
         $.post(url,{data:marketing},function(data){
             if(data.result){
                 location.href = "/marketing";
