@@ -7,8 +7,8 @@ $('#myTabs a').click(function (e) {
 })
 
 
-	chart1();
-	chart2();
+	//chart1();
+	//chart2();
 })
 
 function chart1() {
