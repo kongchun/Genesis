@@ -383,8 +383,10 @@ function initNav() {
 		//thirdCategory.height($(window).height() - 55);
 		thirdCategory.toggle();
 		initCategoryScrollBar("#echart-content");
-		initAnalyChart();
-		initAnalyLine();
+		allData = [];
+		initHYAnalysis();
+		initHYAnalysisAll();
+		/*initAnalyLine();*/
 	})
 	$(".colapsed-arrow").click(function() {
 		var thirdCategory = $(".third-category");
@@ -422,8 +424,8 @@ function initNav() {
 		if (cur_bponit) {
 			analysis.clearMapOverlays(ChartMap.getMap());
 			var cPoint = cur_bponit.center_point;
-			analysis.drawCircle(ChartMap.getMap(), cPoint, 3000);
-			brand_sanlin.initTrading(ChartMap.getMap()); //TODB delete
+			analysis.drawCircle(ChartMap.getMap(), cPoint, 500,1000);
+			//brand_sanlin.initTrading(ChartMap.getMap()); //TODB delete
 		} else {
 			analysis.clearMapOverlays(ChartMap.getMap());
 			$(".analysis-item input").each(function() {
@@ -478,10 +480,78 @@ function initNav() {
 			})
 		   var options;
 		   if(cur_bponit) {
-			   options = GPS.distanceToBoundaryMaxMin(cur_bponit.center_point.lat, cur_bponit.center_point.lng, 3000);
+			   options = GPS.distanceToBoundaryMaxMin(cur_bponit.center_point.lat, cur_bponit.center_point.lng, 1000);
 			   brand.loadDatas(ChartMap.getMap(),arr,options)
 		   }
 	})
+	var analysis_tabs = $(".analysis-tab");
+	analysis_tabs.click(function(){
+		var index = $(this).index();
+		analysis_tabs.removeClass("box-shadow-tab");
+		if($(this).hasClass("analysis-tab-hy")){
+            //行业分析
+			$(this).addClass("box-shadow-tab");
+			initHYAnalysis();
+			initHYAnalysisAll();
+		}else if($(this).hasClass("analysis-tab-sp")){
+            //商铺分析
+		}else if($(this).hasClass("analysis-tab-zz")){
+           //住宅分析
+		}else{
+           //人群分析
+		}
+	})
+    function initHYAnalysis(){
+		var selectedVal = [];
+		$("input[name='analysis-input']:checked").each(function(i,item){
+			selectedVal.push($(item).val())
+		});
+        if(selectedVal && selectedVal.length > 0){
+			getIndustryValue(selectedVal);
+			initAnalyChart("pie-content",allData,cur_district_name+"已选各行业占比统计");
+		}
+	}
+	var allData = [];
+	function appendData(data){
+		allData.push(data);
+	}
+	/*function sortArr(data){
+		function sortKey(a,b){
+			return a.value - b.value;
+		}
+		var new_data = data.sort(sortKey);
+		return new_data;
+	}*/
+	function sortArr(property){
+		return function(a,b){
+			var value1 = a[property];
+			var value2 = b[property];
+			return value2 - value1;
+		}
+	}
+	function getIndustryValue(selectedVal){
+		for(var i = 0; i < selectedVal.length ;i++){
+			$.get("api/getIndustryValue",{disName:cur_district_name,selectName:selectedVal[i]},function(data){
+				var new_data = {
+					name:selectedVal[i],
+					value:data.data.length
+				}
+				appendData(new_data);
+			},"json")
+		}
+	}
+	function initHYAnalysisAll(){
+		allData = [];
+		var selectedVal = [];
+		$("input[name='analysis-input']").each(function(i,item){
+			selectedVal.push($(item).val())
+		});
+		if(selectedVal && selectedVal.length > 0){
+			getIndustryValue(selectedVal);
+			var all_data = allData.sort(sortArr("value")).slice(0,5);
+			initAnalyChart("pie-content-all",all_data,cur_district_name+"占比最大的行业");
+		}
+	}
 	/*//热度
 	var lwChk2 = $(".analysis_trading input");
 	lwChk2.change(function() {
@@ -505,11 +575,16 @@ function initNav() {
 			brand_sanlin.hide(ChartMap.getMap(), $(this).val());
 		}
 	})*/
-	function initAnalyChart() {
-		var mChart = echarts.init(document.getElementById("pie-content"));
+	function initAnalyChart(contentID,data,text) {
+		console.log(contentID);
+		var dataNames = [];
+		for(let i = 0;i < data.length;i++){
+			dataNames.push(data[i].name);
+		}
+		var mChart = echarts.init(document.getElementById(contentID));
 		var option = {
 			title: {
-				text: '各行业占比统计',
+				text: text,
 				subtext: '',
 				x: 'center'
 			},
@@ -520,25 +595,13 @@ function initNav() {
 			legend: {
 				orient: 'vertical',
 				left: 'left',
-				data: ['肯德基', '麦当劳', '必胜客', '太平洋咖啡']
+				data: dataNames
 			},
 			series: [{
 				type: 'pie',
 				radius: '50%',
 				center: ['50%', '60%'],
-				data: [{
-					value: 335,
-					name: '肯德基'
-				}, {
-					value: 310,
-					name: '麦当劳'
-				}, {
-					value: 234,
-					name: '必胜客'
-				}, {
-					value: 135,
-					name: '太平洋咖啡'
-				}],
+				data: data,
 				itemStyle: {
 					emphasis: {
 						shadowBlur: 10,

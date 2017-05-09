@@ -152,3 +152,18 @@ exports.getMarketing =function(id){
 		return [];
 	})
 }
+
+exports.getIndustryValue =function(selectName,dis_name){
+	return db.open("industry_brand").then(function() {
+			return db.collection.find({
+				district:dis_name,
+				category:selectName
+			}).toArray()
+	}).then(function(data) {
+		db.close();
+		return data;
+	}).catch(function(e) {
+		db.close();
+		return [];
+	})
+}
