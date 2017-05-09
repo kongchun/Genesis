@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var read = require('../server/read.js');
-var write = require('../server/write.js');
+var marketingService = require('../server/service/marketingService.js');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 	res.redirect('/quan/invite/590ac16bd4b6571d3848d3ba');
@@ -11,7 +10,7 @@ router.get('/invite/:id', function(req, res, next) {
 
 	var id = req.params.id;
 	
-	read.getMarketingById(id).then(function(marketing){
+	marketingService.getById(id).then(function(marketing){
 		if(marketing &&　marketing.status == 1){
 
 
