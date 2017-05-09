@@ -13,19 +13,19 @@
 </head>
 
 <body>
-   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index"> <img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="images/logo.png"></a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-left">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index"> <img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="images/logo.png"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
                 <li>
                     <a href="map?id=<%=id%>">
                         <span class="name">云数据</span>
@@ -36,224 +36,224 @@
                         <span class="name">商业分析</span>
                     </a>
                 </li>
-                </ul>
+            </ul>
 
-                <ul class="nav navbar-nav navbar-right">
-                     <li>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
                     <a class="no-hover">
                         <span class="name"><%=map.mapName%></span>
                     </a>
-                    </li>
-                   <li>
-                <a href="#" id="analysis_save" data-id="<%=map._id%>">
-                    <i class="fa fa-save"></i>
-                    <span class="name">保存</span>
-                </a>
                 </li>
-                    <li class="dropdown user" id="header-user">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                           <i class="fa fa-user"></i>
-                            <span class="username"> <%= user.account %></span>
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="logout"><i class="fa fa-power-off"></i> 退出</a></li>
-                        </ul>
-                    </li>
-                </ul>
-               
-            </div>
+                <li>
+                    <a href="#" id="analysis_save" data-id="<%=map._id%>">
+                        <i class="fa fa-save"></i>
+                        <span class="name">保存</span>
+                    </a>
+                </li>
+                <li class="dropdown user" id="header-user">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user"></i>
+                        <span class="username"> <%= user.account %></span>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="logout"><i class="fa fa-power-off"></i> 退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+
         </div>
-    </nav>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-1 col-md-1 sidebar">
-                <div class="sidebar-menu">
-                    <ul class="nav nav-sidebar">
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1 col-md-1 sidebar">
+            <div class="sidebar-menu">
+                <ul class="nav nav-sidebar">
                     <li class="first-category business-tab"><a href="#">商圈</a></li>
                     <li class="first-category"><a href="#">行业</a></li>
                     <li class="first-category"><a href="#">分析</a></li>
                 </ul>
-                </div>
-            </div>
-            <div id="second-category" class="col-md-2 col-sm-2" style="display: none;">
-                  <div class="second-category">
-                    <div class="select-analy">
-                        <div class="select-analy-bg"></div>
-                    </div>
-                    <ul class="nav nav-second district nav-children" id="district">
-                          <%districts.forEach(function(item){%>
-                                <li class="district-item">
-                                    <a class="district-title" style="color:#555;background: #f5f5f5;">
-                                        <span class="text" style="letter-spacing:3px;font-weight: bold;font-size: 17px;"><%=item.district%></span>
-                                    </a>
-                                    <div class="business-area" style="display: block">
-                                        <ul>
-                                           <%item.bussiness.forEach(function(bname){%>
-                                               <li><input type="radio" name="business-area" value="<%=bname.bussiness_name%>"/><%=bname.bussiness_name%></li>
-                                            <%})%>
-                                        </ul>
-                                    </div>
-                                </li>
-                         <%})%>
-                        </ul>
-                    <ul class="nav nav-second brand-analy">
-                          <li class="firm-item">
-                              <span>当前行业：</span><span class="firm-name">未选择</span>
-                          </li>
-                          <%industry.forEach(function(industry_item){%>
-                             <li class="brand-item">
-                                 <div class="item-body">
-                                     <ul class="nav-children" style="display:block">
-                                         <div class="line">
-                                             <h4 style="letter-spacing: 3px"><%=industry_item.industry_name%></h4>
-                                         </div>
-                                         <%industry_item.sub_industry.forEach(function(sub_industry_item){%>
-                                            <li><a><input type="radio" name="industry" value="<%=sub_industry_item.sub_industry_name%>"/><%=sub_industry_item.sub_industry_name%></a></li>
-                                         <%})%>
-                                     </ul>
-                                 </div>
-                             </li>
-                          <%})%>
-                      </ul>
-                    <ul class="nav nav-second analysis">
-                        <li class="analysis-item">
-                 
-                            <div class="item-body">
-                                <ul class="nav-children industry-common" style="display:block">
-                                    <div class="line"><h4>行业分析</h4></div>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="analysis-item">
-
-                            <div class="item-body">
-                                <ul class="nav-children house" style="display:block">
-                                    <div class="line"><h4>房产指数</h4></div>
-                                    <li> <a><input type="checkbox" class="housePrice" value="住宅价格"/> 住宅价格</a></li>
-                                    <li> <a><input type="checkbox" class="shopPrice" value="商铺租金"/> 商铺租金</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="analysis-item">
-                           
-                            <div class="item-body">
-                                <ul class="nav-children" style="display:block">
-                                    <div class="line"><h4>公共设施</h4></div>
-                                    <li> <a><input type="checkbox" name="analysis-input" value="加油站" /> 加油站</a></li>
-                                    <li> <a><input type="checkbox" name="analysis-input" value="ATM" /> ATM机</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                      </ul>
-                    <div>
-                      <div class="btn-next">
-                          <button href="#" class="btn btn-default">图形分析</button>
-                      </div>
-                  </div>
-                  </div>
-            </div>
-            <div class="third-category">
-                  <div id="echart-content">
-                      <ul>
-                          <li class="analysis-tab analysis-tab-hy"><span >行业占比</span></li>
-                          <li class="analysis-tab analysis-tab-xf"><span>消费指数</span></li>
-                          <li class="analysis-tab analysis-tab-sp"><span>商铺租金</span></li>
-                          <li class="analysis-tab analysis-tab-zz"><span>住宅价格</span></li>
-                          <li class="analysis-tab analysis-tab-rq"><span>人群分析</span></li>
-                      </ul>
-                      <div id="tab-form-content">
-                           <div id="pie-content"></div>
-                           <div id="pie-content-all"></div>
-                      </div>
-                     <!-- <div id="pie-content"></div>
-                      <div id="line-content"></div>-->
-                      <!--<div id="table-content">
-                          <table class="table table-bordered">
-                              <caption class="center table-title">三林商圈商铺租金指数</caption>
-                              <tr>
-                                  <th class="center">#</th>
-                                  <th class="center">地点</th>
-                                  <th class="center">面积/价格</th>
-                                  <th class="center">单位平米租金(㎡)</th>
-                              </tr>
-                              <tr>
-                                  <td>1</td>
-                                  <td>亿丰时代广场</td>
-                                  <td>280万/30㎡</td>
-                                  <td>93333元/㎡</td>
-                              </tr>
-                              <tr>
-                                  <td>2</td>
-                                  <td>上南路商铺</td>
-                                  <td>400万/30㎡</td>
-                                  <td>52632元/㎡</td>
-                              </tr>
-                              <tr>
-                                  <td>3</td>
-                                  <td>历城路,昌里路商铺</td>
-                                  <td>34万/17㎡</td>
-                                  <td>19529元/㎡</td>
-                              </tr>
-                              <tr>
-                                  <td>4</td>
-                                  <td>板泉路商铺</td>
-                                  <td>580万/133㎡</td>
-                                  <td>43609元/㎡</td>
-                              </tr>
-                              <tr>
-                                  <td>5</td>
-                                  <td>锦尊路商铺</td>
-                                  <td>300万/98㎡</td>
-                                  <td>30612元/㎡</td>
-                              </tr>
-                              <tr>
-                                  <td>6</td>
-                                  <td>尚博路商铺</td>
-                                  <td>280万/38㎡</td>
-                                  <td>73684元/㎡</td>
-                              </tr>
-                              <tr>
-                                  <td>7</td>
-                                  <td>昌里路美食街商铺</td>
-                                  <td>218万/66㎡</td>
-                                  <td>33030元/㎡</td>
-                              </tr>
-                              <tr>
-                                  <td>8</td>
-                                  <td>中房金谊广场</td>
-                                  <td>260万/63㎡</td>
-                                  <td>41139元/㎡</td>
-                              </tr>
-                              <tr>
-                                  <td>9</td>
-                                  <td>三钢里</td>
-                                  <td>40万/20㎡</td>
-                                  <td>19704元/㎡</td>
-                              </tr>
-                              <tr>
-                                  <td>10</td>
-                                  <td>上南路沿街餐饮商铺</td>
-                                  <td>320万/62㎡</td>
-                                  <td>51613元/㎡</td>
-                              </tr>
-                          </table>
-                      </div>-->
-                  </div>
-
-                <!--<div class="colapsed-arrow"><button class="btn btn-primary">收起</button></div>-->
-            </div>
-            <div class="col-sm-11 col-sm-offset-1 col-md-11 col-md-offset-1 main">
-                <div id="map"></div>
             </div>
         </div>
+        <div id="second-category" class="col-md-2 col-sm-2" style="display: none;">
+            <div class="second-category">
+                <div class="select-analy">
+                    <div class="select-analy-bg"></div>
+                </div>
+                <ul class="nav nav-second district nav-children" id="district">
+                    <%districts.forEach(function(item){%>
+                    <li class="district-item">
+                        <a class="district-title" style="color:#555;background: #f5f5f5;">
+                            <span class="text" style="letter-spacing:3px;font-weight: bold;font-size: 17px;"><%=item.district%></span>
+                        </a>
+                        <div class="business-area" style="display: block">
+                            <ul>
+                                <%item.bussiness.forEach(function(bname){%>
+                                <li><input type="radio" name="business-area" value="<%=bname.bussiness_name%>"/><%=bname.bussiness_name%></li>
+                                <%})%>
+                            </ul>
+                        </div>
+                    </li>
+                    <%})%>
+                </ul>
+                <ul class="nav nav-second brand-analy">
+                    <li class="firm-item">
+                        <span>当前行业：</span><span class="firm-name">未选择</span>
+                    </li>
+                    <%industry.forEach(function(industry_item){%>
+                    <li class="brand-item">
+                        <div class="item-body">
+                            <ul class="nav-children" style="display:block">
+                                <div class="line">
+                                    <h4 style="letter-spacing: 3px"><%=industry_item.industry_name%></h4>
+                                </div>
+                                <%industry_item.sub_industry.forEach(function(sub_industry_item){%>
+                                <li><a><input type="radio" name="industry" value="<%=sub_industry_item.sub_industry_name%>"/><%=sub_industry_item.sub_industry_name%></a></li>
+                                <%})%>
+                            </ul>
+                        </div>
+                    </li>
+                    <%})%>
+                </ul>
+                <ul class="nav nav-second analysis">
+                    <li class="analysis-item">
+
+                        <div class="item-body">
+                            <ul class="nav-children industry-common" style="display:block">
+                                <div class="line"><h4>行业分析</h4></div>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="analysis-item">
+
+                        <div class="item-body">
+                            <ul class="nav-children house" style="display:block">
+                                <div class="line"><h4>房产指数</h4></div>
+                                <li> <a><input type="checkbox" class="housePrice" value="住宅价格"/> 住宅价格</a></li>
+                                <li> <a><input type="checkbox" class="shopPrice" value="商铺租金"/> 商铺租金</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="analysis-item">
+
+                        <div class="item-body">
+                            <ul class="nav-children" style="display:block">
+                                <div class="line"><h4>公共设施</h4></div>
+                                <li> <a><input type="checkbox" name="analysis-input" value="加油站" /> 加油站</a></li>
+                                <li> <a><input type="checkbox" name="analysis-input" value="ATM" /> ATM机</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <div>
+                    <div class="btn-next">
+                        <button href="#" class="btn btn-default">图形分析</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="third-category">
+            <div id="echart-content">
+                <ul>
+                    <li class="analysis-tab analysis-tab-hy"><span >行业占比</span></li>
+                    <li class="analysis-tab analysis-tab-xf"><span>消费指数</span></li>
+                    <li class="analysis-tab analysis-tab-sp"><span>商铺租金</span></li>
+                    <li class="analysis-tab analysis-tab-zz"><span>住宅价格</span></li>
+                    <li class="analysis-tab analysis-tab-rq"><span>人群分析</span></li>
+                </ul>
+                <div id="tab-form-content">
+                    <div id="pie-content"></div>
+                    <div id="pie-content-all"></div>
+                </div>
+                <!-- <div id="pie-content"></div>
+                 <div id="line-content"></div>-->
+                <!--<div id="table-content">
+                    <table class="table table-bordered">
+                        <caption class="center table-title">三林商圈商铺租金指数</caption>
+                        <tr>
+                            <th class="center">#</th>
+                            <th class="center">地点</th>
+                            <th class="center">面积/价格</th>
+                            <th class="center">单位平米租金(㎡)</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>亿丰时代广场</td>
+                            <td>280万/30㎡</td>
+                            <td>93333元/㎡</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>上南路商铺</td>
+                            <td>400万/30㎡</td>
+                            <td>52632元/㎡</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>历城路,昌里路商铺</td>
+                            <td>34万/17㎡</td>
+                            <td>19529元/㎡</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>板泉路商铺</td>
+                            <td>580万/133㎡</td>
+                            <td>43609元/㎡</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>锦尊路商铺</td>
+                            <td>300万/98㎡</td>
+                            <td>30612元/㎡</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>尚博路商铺</td>
+                            <td>280万/38㎡</td>
+                            <td>73684元/㎡</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>昌里路美食街商铺</td>
+                            <td>218万/66㎡</td>
+                            <td>33030元/㎡</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>中房金谊广场</td>
+                            <td>260万/63㎡</td>
+                            <td>41139元/㎡</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>三钢里</td>
+                            <td>40万/20㎡</td>
+                            <td>19704元/㎡</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>上南路沿街餐饮商铺</td>
+                            <td>320万/62㎡</td>
+                            <td>51613元/㎡</td>
+                        </tr>
+                    </table>
+                </div>-->
+            </div>
+
+            <!--<div class="colapsed-arrow"><button class="btn btn-primary">收起</button></div>-->
+        </div>
+        <div class="col-sm-11 col-sm-offset-1 col-md-11 col-md-offset-1 main">
+            <div id="map"></div>
+        </div>
     </div>
-    <script src="js/data.js"></script>
-    <script src="js/vendor.js"></script>
-    <script src="js/map.js"></script>
-    <!--     <script src="js/vendor.bundle.js"></script> -->
-    <script src="js/bundle.js"></script>
-    <script src="js/analy.js"></script>
+</div>
+<script src="js/data.js"></script>
+<script src="js/vendor.js"></script>
+<script src="js/map.js"></script>
+<!--     <script src="js/vendor.bundle.js"></script> -->
+<script src="js/bundle.js"></script>
+<script src="js/analy.js"></script>
 </body>
 
 </html>

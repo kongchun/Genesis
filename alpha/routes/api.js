@@ -116,13 +116,4 @@ router.get("/getAreaData",function(req,res,next){
 	})
 })
 
-router.get("/getIndustryValue",function(req,res,next){
-	var selectName = req.query.selectName;
-	var disName = req.query.disName;
-	read.getIndustryValue(selectName,disName).then(function(data){
-		res.send({
-			data:data
-		})
-	})
-})
 module.exports = router;
