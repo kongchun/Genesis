@@ -13,10 +13,15 @@ router.get('/invite/:id', function(req, res, next) {
 	
 	read.getMarketingById(id).then(function(marketing){
 		if(marketing &&　marketing.status == 1){
+
+
+			//write.updateMarketingViewCountById(id);
+
 			//如果活动进行中 那就提供活动界面
 			res.render('quan/invite', {
 				marketing:marketing
 			});
+			
 		}else{
 			res.render('quan/finish', {
 				marketing:marketing

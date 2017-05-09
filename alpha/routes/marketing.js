@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var read = require('../server/read.js');
 var write = require('../server/write.js');
+var marketingService = require('../server/service/marketingService.js');
+var shopService = require('../server/service/shopService.js')
 var moment = require('moment');
 /* GET home page. */
 
@@ -16,7 +18,7 @@ router.get('/', function(req, res, next) {
 	var progress = [];
 	var draft = [];
 	var finish = [];
-	read.getMarketingListByUserId(id).then(function(data){
+	marketingService.getListByUserId(id).then(function(data){
 		data.forEach(function(data){
 			if(data.status == 0){
 				draft.push(data);
@@ -45,7 +47,7 @@ router.get('/create', function(req, res, next) {
 	var user = req.session.user;
 	var id = user._id;
 
-	read.getShopListByUserId(id).then(function(shops){
+	shopService.getListByUserId(id).then(function(shops){
 		//console.log(shops)
 		res.render('marketing/create', {
 			user: user,
@@ -67,7 +69,7 @@ router.get('/edit/:id', function(req, res, next) {
 
 	read.getShopListByUserId(userId).then(function(shops){
 		//console.log(shops)
-		read.getMarketingById(id).then(function(marketing){
+		marketingService.getById(id).then(function(marketing){
 			console.log(marketing)
 			res.render('marketing/create', {
 				user: user,
@@ -87,10 +89,10 @@ router.post('/save', function(req, res, next) {
 		});
 	}
 	var user = req.session.user;
-	var id = user._id;
+	var userId = user._id;
 
 	var marketing = JSON.parse(req.body.data);
-	write.createMarketing(id,marketing).then(function(data){
+	marketingService.save(null,userId,marketing).then(function(data){
 		var result = false;
 		if (data) {
 			result = true;
@@ -108,15 +110,12 @@ router.post('/save/:id', function(req, res, next) {
 		});
 	}
 
-
 	var user = req.session.user;
 	var userId = user._id;
 	var id = req.params.id;
 	var marketing = JSON.parse(req.body.data);
 
-
-
-	write.updateMarketing(id,userId,marketing).then(function(data){
+	marketingService.save(id,userId,marketing).then(function(data){
 		var result = false;
 		if (data) {
 			result = true;

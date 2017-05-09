@@ -124,45 +124,6 @@ exports.getAreaData = function(d_name){
 	})
 }
 
-exports.getShopListByUserId =function(id){
-	return db.open("shop").then(function() {
-		return db.collection.find({
-			userId: id
-		}).toArray()
-	}).then(function(data) {
-		db.close()
-		return data;
-	}).catch(function(e) {
-		db.close();
-		return [];
-	})
-}
 
 
-exports.getMarketingListByUserId =function(id){
-	return db.open("marketing").then(function() {
-		return db.collection.find({
-			userId: id
-		}).toArray()
-	}).then(function(data) {
-		db.close()
-		return data;
-	}).catch(function(e) {
-		db.close();
-		return [];
-	})
-}
 
-exports.getMarketingById =function(id){
-	return db.open("marketing").then(function() {
-		return db.collection.findOne({
-			_id: db.ObjectId(id)
-		})
-	}).then(function(data) {
-		db.close()
-		return data;
-	}).catch(function(e) {
-		db.close();
-		return null;
-	})
-}
