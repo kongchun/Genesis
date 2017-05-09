@@ -49,7 +49,7 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
+        <div class="container" data-id="<%=marketing&&marketing._id%>" data-type="<%=marketing&&marketing.type%>" data-time="<%=marketing&&marketing.time%>" data-sex="<%=marketing&&marketing.sex%>" data-age="<%=marketing&&marketing.ageRange%>" id="marketing_container">
             <div class="row">
                 <div class="col-md-12">
                     <form id="wizForm" class="form-horizontal" action="#" novalidate="novalidate">
@@ -57,7 +57,7 @@
                             <label class="control-label col-md-3">商店<span class="required">*</span></label>
                             <div class="col-md-4">
                                 <div class="input-group">
-                                    <input type="text" placeholder="" name="shopName" id="shopName" class="form-control">
+                                    <input type="text" placeholder="" name="shopName" id="shopName" class="form-control" value="<%=marketing&&marketing.shop.name%>">
                                     <div class="input-group-addon shop-choose-btn">
                                         <i class="fa fa-shopping-bag"></i>
                                     </div>
@@ -68,21 +68,21 @@
                         <div class="form-group" id="item_addr" style="display: none">
                             <label class="control-label col-md-3">地址<span class="required"></span></label>
                             <div class="col-md-4">
-                                <p class="form-control-static" id="shopAddr">-</p>
+                                <p class="form-control-static" id="shopAddr"><%=marketing&&marketing.shop.address%></p>
                                 <span class="error-span"></span>
                             </div>
                         </div>
                         <div class="form-group" id="item_category" style="display: none">
                             <label class="control-label col-md-3">类别<span class="required"></span></label>
                             <div class="col-md-4">
-                                <p class="form-control-static" id="shopCategory">-</p>
+                                <p class="form-control-static" id="shopCategory"><%=marketing&&marketing.shop.category%></p>
                                 <span class="error-span"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3">标题<span class="required">*</span></label>
                             <div class="col-md-4">
-                                <input type="text" placeholder="" name="title" id="title" class="form-control">
+                                <input type="text" placeholder="" name="title" id="title" class="form-control" value="<%=marketing&&marketing.title%>">
                                 <span class="error-span"></span>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                             <label class="control-label col-md-3">折扣率<span class="required">*</span></label>
                             <div class="col-xs-2">
                                 <div class="input-group">
-                                    <input type="text" placeholder="折扣率" name="percent"  id="percent" class="form-control">
+                                    <input type="text" placeholder="折扣率" name="percent"  id="percent" class="form-control" value="<%=marketing&&marketing.percent%>">
                                     <div class="input-group-addon">
                                         <i class="fa fa-percent"></i>
                                     </div>
@@ -115,7 +115,7 @@
                             <label class="control-label col-md-3">日期<span class="required">*</span></label>
                             <div class="col-xs-2">
                                 <div class="input-group input-append date" id="startDate_group" data-date-format="yyyy-mm-dd">
-                                    <input type="text" placeholder="开始时间" name="startDate" id="startDate" class="form-control">
+                                    <input type="text" placeholder="开始时间" name="startDate" id="startDate" class="form-control" value="<%=marketing&&marketing.startDate%>">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
@@ -124,7 +124,7 @@
                             </div>
                             <div class="col-xs-2">
                                 <div class="input-group input-append date" id="endDate_group" data-date-format="yyyy-mm-dd">
-                                    <input type="text" placeholder="结束时间" name="endDate" id="endDate" class="form-control">
+                                    <input type="text" placeholder="结束时间" name="endDate" id="endDate" class="form-control" value="<%=marketing&&marketing.endDate%>">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
@@ -204,7 +204,7 @@
                             <label class="control-label col-md-3">发送周期<span class="required">*</span></label>
                             <div class="col-xs-2">
                                 <div class="input-group">
-                                    <input type="text" placeholder="发送周期" name="interval" id="interval" class="form-control">
+                                    <input type="text" placeholder="发送周期" name="interval" id="interval" class="form-control" value="<%=marketing&&marketing.interval%>">
                                     <div class="input-group-addon">
                                         <i class="fa fa-clock-o"></i>
                                     </div>
@@ -216,7 +216,7 @@
                             <label class="control-label col-md-3">促销总数<span class="required">*</span></label>
                             <div class="col-xs-2">
                                 <div class="input-group">
-                                    <input type="text" placeholder="总数" name="total" id="total" class="form-control">
+                                    <input type="text" placeholder="总数" name="total" id="total" class="form-control" value="<%=marketing&&marketing.total%>">
                                     <div class="input-group-addon">
                                         <i class="fa fa-star"></i>
                                     </div>
@@ -246,7 +246,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">描述</label>
                             <div class="col-md-4">
-                                <textarea class="form-control" name="textarea" id="description" cols="3" rows="3"></textarea>
+                                <textarea class="form-control" name="textarea" id="description" cols="3" rows="3"><%=marketing&&marketing.description%></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -344,6 +344,10 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+    <script>
+    var edit_shop = JSON.parse('<%-marketing?JSON.stringify(marketing.shop):"null"%>')
+    console.log(edit_shop)
+    </script>
     <script src="/js/vendor.js"></script>
     <script src="/js/marketing_create.js"></script>
 </body>

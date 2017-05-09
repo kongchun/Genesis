@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>优惠券-七只狸猫</title>
+    <link rel="stylesheet" href="/css/vendor.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/quan.css" />
+</head>
+
+<body>
+    <div id="app">
+        <div id="main">
+            <div class="top-header">
+                <div style="padding: 30px 0;background:#E35D4C">
+                    <p><h1>恭喜您获得一张<%=(marketing.type==1)?"优惠券":"试用券"%></h1></p>
+                    <p><h2><%=(marketing.shop.name)%></h2></p>
+                    <p><h4><%=(marketing.shop.address)%></h4></p>
+                </div>
+            </div>
+            <div id="main-content">
+                <section id="main-logo"><img src="//static.udache.com/gulfstream/upload/2017/share_logo_url/201704/share_logo_url1492596518.25943664.jpg" id="main-logo-img"></section>
+                <p id="main-title">输入手机号码即可领取<%=(marketing.type==1)?"优惠券":"试用券"%></p>
+                <p id="main-sub">领取后到店直接使用</p>
+                <!---->
+                <section class="main-wrap">
+                    <input type="tel" id="main-phone" maxlength="11" placeholder="输入手机号，领取红包">
+                </section>
+                <section class="main-wrap"><span id="main-btn">点击领取优惠</span></section>
+                <section id="main-tips">
+                    <label>
+                        <input id="main-tips-checkbox" type="checkbox" checked="checked"> 我已阅读并同意七只狸猫的优惠规则
+                    </label>
+                </section>
+            </div>
+            <!---->
+        </div>
+        <!---->
+        <!---->
+        <footer id="footer">
+        </footer>
+    </div>
+</body>
+
+</html>

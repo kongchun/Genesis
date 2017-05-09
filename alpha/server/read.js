@@ -124,7 +124,7 @@ exports.getAreaData = function(d_name){
 	})
 }
 
-exports.getShopListById =function(id){
+exports.getShopListByUserId =function(id){
 	return db.open("shop").then(function() {
 		return db.collection.find({
 			userId: id
@@ -139,7 +139,7 @@ exports.getShopListById =function(id){
 }
 
 
-exports.getMarketing =function(id){
+exports.getMarketingListByUserId =function(id){
 	return db.open("marketing").then(function() {
 		return db.collection.find({
 			userId: id
@@ -152,6 +152,7 @@ exports.getMarketing =function(id){
 		return [];
 	})
 }
+
 
 exports.getIndustryValue =function(selectName,dis_name){
 	return db.open("industry_brand").then(function() {
@@ -167,3 +168,18 @@ exports.getIndustryValue =function(selectName,dis_name){
 		return [];
 	})
 }
+
+exports.getMarketingById =function(id){
+	return db.open("marketing").then(function() {
+		return db.collection.findOne({
+			_id: db.ObjectId(id)
+		})
+	}).then(function(data) {
+		db.close()
+		return data;
+	}).catch(function(e) {
+		db.close();
+		return null;
+	})
+}
+
