@@ -67,7 +67,7 @@ router.get('/edit/:id', function(req, res, next) {
 	var user = req.session.user;
 	var userId = user._id;
 
-	read.getShopListByUserId(userId).then(function(shops){
+	shopService.getListByUserId(userId).then(function(shops){
 		//console.log(shops)
 		marketingService.getById(id).then(function(marketing){
 			console.log(marketing)
