@@ -187,6 +187,221 @@ input,textarea {
 }
 
 
+
+
+
+#receive-header {
+    width: 100%
+}
+
+#reciver-header-bg {
+    display: block;
+    width: 100%
+}
+
+#receive-content {
+    width: 100%;
+    margin-top: -17.3333%
+}
+
+#receive-amount {
+    background: url(//static.udache.com/channel-gift/imgs/receive.9612d34d.png) 0 0 no-repeat;
+    background-size: 100% auto;
+    position: relative
+}
+
+#receive-amount,#receive-amount-wrap,#receive-amount img {
+    display: block;
+    width: 100%
+}
+
+#receive-amount-wrap {
+    padding-top: 7.2%;
+    position: absolute;
+    left: 0;
+    top: 0
+}
+
+#receive-amount-money {
+    margin-top: -2px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fa8910
+}
+
+#receive-amount-money:after {
+    content: "\5143";
+    font-size: 12px;
+    color: #fa8910
+}
+
+#receive-amount-text {
+    width: 100%;
+    font-size: 16px;
+    color: #fa8910
+}
+
+#receive-amount-tips {
+    width: 100%;
+    margin-top: -4px;
+    font-size: 14px;
+    color: #fa8910
+}
+
+#receive-already {
+    width: 100%;
+    margin-top: 7%;
+    font-size: 16px;
+    color: #fa8910
+}
+
+#receive-container {
+    width: 100%;
+    margin-top: -1px;
+    padding: 6.4% 0 5.3%;
+    background: #e35d4c
+}
+
+#receive-title {
+    font-size: 18px
+}
+
+#receive-desc,#receive-title {
+    width: 100%;
+    color: hsla(0,0%,100%,.7)
+}
+
+#receive-desc {
+    margin: 2% 0 5.8%;
+    font-size: 14px
+}
+
+.receive-wrap {
+    display: block;
+    width: 100%;
+    margin-bottom: 3.2%
+}
+
+#receive-btn-default,#receive-btn-partner {
+    display: inline-block;
+    width: 85%;
+    height: 40px;
+    border-radius: 25px;
+    font-size: 15px;
+    line-height: 40px;
+    color: #fff;
+    background: #fa8910
+}
+
+#receive-btn-default.active,#receive-btn-partner.active {
+    background: #ff7703
+}
+
+#receive-tip {
+    padding: 0 5.8667%;
+    font-size: 12px;
+    text-align: left;
+    color: hsla(0,0%,100%,.7)
+}
+
+#voucher-wrap {
+    width: 270px;
+    padding-top: 23px;
+    margin: 0 auto
+}
+
+.voucher-list {
+    width: 100%;
+    margin-bottom: 15px;
+    position: relative
+}
+
+.voucher-list-bg {
+    width: 100%
+}
+
+.voucher-list-wrap {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.voucher-list-daijia .voucher-list-amount,.voucher-list-daijia .vouhcer-list-info,.voucher-list-kuaiche .voucher-list-amount,.voucher-list-kuaiche .vouhcer-list-info,.voucher-list-piche .voucher-list-amount,.voucher-list-piche .vouhcer-list-info,.voucher-list-shangjia .voucher-list-amount,.voucher-list-shangjia .vouhcer-list-info,.voucher-list-shunfengche .voucher-list-amount,.voucher-list-shunfengche .vouhcer-list-info,.voucher-list-taxi .voucher-list-amount,.voucher-list-taxi .vouhcer-list-info,.voucher-list-tongyong .voucher-list-amount,.voucher-list-tongyong .vouhcer-list-info,.voucher-list-xiaoba .voucher-list-amount,.voucher-list-xiaoba .vouhcer-list-info,.voucher-list-zuche .voucher-list-amount,.voucher-list-zuche .vouhcer-list-info {
+    color: #fa8919
+}
+
+.voucher-list-zhuanche .voucher-list-amount,.voucher-list-zhuanche .vouhcer-list-info {
+    color: #484858
+}
+
+.vouhcer-list-info {
+    float: left;
+    margin: 14px 0 0 18px
+}
+
+.voucher-list-amount {
+    float: right;
+    margin: 15px 18px 0 0
+}
+
+.voucher-list-name {
+    max-width: 170px;
+    margin-bottom: 4px;
+    font-size: 18px;
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.voucher-list-time {
+    font-size: 11px;
+    text-align: left;
+    opacity: .8
+}
+
+.voucher-remark {
+    max-width: 250px;
+    font-size: 11px;
+    text-align: left;
+    color: #878787;
+    position: absolute;
+    padding: 0 18px;
+    bottom: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.voucher-list-yuan {
+    font-size: 18px;
+    opacity: .8
+}
+
+.voucher-list-int {
+    font-size: 41px
+}
+
+.voucher-list-float {
+    font-size: 20px
+}
+
+.voucher-list-zhe {
+    font-size: 16px;
+    opacity: .8
+}
+
+.voucher-list-logo {
+    display: block;
+    width: 44px;
+    position: absolute;
+    right: 18px;
+    bottom: 10px
+}
+
+
 .m-title,.m-qrcode{
     width:100%;
     color:white;
