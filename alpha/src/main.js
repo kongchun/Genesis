@@ -383,8 +383,8 @@ function initNav() {
 		//thirdCategory.height($(window).height() - 55);
 		thirdCategory.toggle();
 		initCategoryScrollBar("#echart-content");
-		initAnalyChart();
-		initAnalyLine();
+		allData = [];
+		$(".analysis-tab-hy").click();
 	})
 	$(".colapsed-arrow").click(function() {
 		var thirdCategory = $(".third-category");
@@ -422,8 +422,8 @@ function initNav() {
 		if (cur_bponit) {
 			analysis.clearMapOverlays(ChartMap.getMap());
 			var cPoint = cur_bponit.center_point;
-			analysis.drawCircle(ChartMap.getMap(), cPoint, 3000);
-			brand_sanlin.initTrading(ChartMap.getMap()); //TODB delete
+			analysis.drawCircle(ChartMap.getMap(), cPoint, 500,1000);
+			//brand_sanlin.initTrading(ChartMap.getMap()); //TODB delete
 		} else {
 			analysis.clearMapOverlays(ChartMap.getMap());
 			$(".analysis-item input").each(function() {
@@ -478,38 +478,133 @@ function initNav() {
 			})
 		   var options;
 		   if(cur_bponit) {
-			   options = GPS.distanceToBoundaryMaxMin(cur_bponit.center_point.lat, cur_bponit.center_point.lng, 3000);
+			   options = GPS.distanceToBoundaryMaxMin(cur_bponit.center_point.lat, cur_bponit.center_point.lng, 1000);
 			   brand.loadDatas(ChartMap.getMap(),arr,options)
 		   }
 	})
-	/*//热度
-	var lwChk2 = $(".analysis_trading input");
-	lwChk2.change(function() {
+	var analysis_tabs = $(".analysis-tab");
+	$(".analysis-tab-hy").click(function(){
+		$("#pie-content").html("");
+		$("#pie-content-all").html("");
+		analysis_tabs.removeClass("box-shadow-tab");
+		$(this).addClass("box-shadow-tab");
+		allData = [];
+		initHYAnalysis();
+		initHYAnalysisAll();
+	})
+	$("li.analysis-tab-xf").on("click",function(){
+		$("#pie-content").html("");
+		$("#pie-content-all").html("");
+		analysis_tabs.removeClass("box-shadow-tab");
+		$(this).addClass("box-shadow-tab");
+		allData = [];
+		initXFAnalysis();
+		initXFAnalysisAll();
+	})
+	$("li.analysis-tab-sp").on("click",function(){
+		console.log("click");
+	})
+    function initHYAnalysis(){
+		var selectedVal = [];
+		$("input[name='analysis-input']:checked").each(function(i,item){
+			selectedVal.push($(item).val())
+		});
+        if(selectedVal && selectedVal.length > 0){
+			getIndustryValue(selectedVal,appendDataCallback);
+			initAnalyChart("pie-content",allData,cur_district_name+"已选各行业占比统计");
+		}
+	}
+	function initHYAnalysisAll(){
+		allData = [];
+		var selectedVal = [];
+		$("input[name='analysis-input']").each(function(i,item){
+			selectedVal.push($(item).val())
+		});
+		if(selectedVal && selectedVal.length > 0){
+			getIndustryValue(selectedVal,appendDataCallback);
+			var all_data = allData.sort(sortArr("value")).slice(0,5);
+			initAnalyChart("pie-content-all",all_data,cur_district_name+"占比最大的行业");
+		}
+	}
+	function initXFAnalysis(){
+		var selectedVal = [];
+		$("input[name='analysis-input']:checked").each(function(i,item){
+			selectedVal.push($(item).val())
+		});
+		if(selectedVal && selectedVal.length > 0){
+			getXFIdustryPrice(selectedVal,appendDataCallback);
+			initAnalyLine("pie-content",allData,cur_district_name+"已选各行业消费指数");
+		}
+	}
+	function initXFAnalysisAll(){
+		var selectedVal = [];
+		$("input[name='analysis-input']").each(function(i,item){
+			selectedVal.push($(item).val())
+		});
+		if(selectedVal && selectedVal.length > 0){
+			getXFIdustryPrice(selectedVal,appendDataCallback);
+			var all_data = allData.sort(sortArr("value")).slice(0,5);
+			initAnalyLine("pie-content-all",all_data,cur_district_name+"消费指数最高的行业");
+		}
+	}
 
-		var businessRadio = ($("input[name='business-area']:checked").length == 0);
-		if (businessRadio) {
-			message.alert("请选择商圈");
-			this.checked = false;
-			return false;
-		}
-		var bisNatureRadio = ($("input[name='industry']:checked").length == 0);
-		if (bisNatureRadio) {
-			message.alert("请选择行业");
-			this.checked = false;
-			return false;
-		}
+	var allData = [];
+	function appendDataCallback(data){
+		allData.push(data);
+	}
 
-		if ($(this)[0].checked) {
-			brand_sanlin.show(ChartMap.getMap(), $(this).val());
-		} else {
-			brand_sanlin.hide(ChartMap.getMap(), $(this).val());
+	function sortArr(property){
+		return function(a,b){
+			var value1 = a[property];
+			var value2 = b[property];
+			return value2 - value1;
 		}
-	})*/
-	function initAnalyChart() {
-		var mChart = echarts.init(document.getElementById("pie-content"));
+	}
+	function getIndustryValue(selectedVal,callback){
+		for(var i = 0; i < selectedVal.length ;i++){
+			$.get("api/getIndustryValue",{disName:cur_district_name,selectName:selectedVal[i]},function(data){
+				var new_data = {
+					name:selectedVal[i],
+					value:data.data.length
+				}
+				callback(new_data);
+			},"json")
+		}
+	}
+	function getXFIdustryPrice(selectedVal,callback){
+		allData = [];
+		for(var i = 0; i < selectedVal.length ;i++){
+			$.get("api/getIndustryValue",{disName:cur_district_name,selectName:selectedVal[i]},function(data){
+				if(data && data.data.length > 0){
+					var new_data = {
+						name:selectedVal[i],
+						value:meanPrice(data.data)
+					}
+					function meanPrice(arr){
+						var sum = 0;
+						for(let i = 0;i < arr.length;i++){
+							if(arr[i].price==null || arr[i].price==''){
+								arr[i].price = 0;
+							}
+							sum += arr[i].price;
+						}
+						return sum/arr.length;
+					}
+					callback(new_data);
+				}
+			},"json")
+		}
+	}
+
+	function initAnalyChart(contentID,data,text) {
+		var dataNames = [];
+		for(let i = 0;i < data.length;i++){
+			dataNames.push(data[i].name);
+		}
+		var mChart = echarts.init(document.getElementById(contentID));
 		var option = {
 			title: {
-				text: '各行业占比统计',
+				text: text,
 				subtext: '',
 				x: 'center'
 			},
@@ -520,25 +615,13 @@ function initNav() {
 			legend: {
 				orient: 'vertical',
 				left: 'left',
-				data: ['肯德基', '麦当劳', '必胜客', '太平洋咖啡']
+				data: dataNames
 			},
 			series: [{
 				type: 'pie',
 				radius: '50%',
 				center: ['50%', '60%'],
-				data: [{
-					value: 335,
-					name: '肯德基'
-				}, {
-					value: 310,
-					name: '麦当劳'
-				}, {
-					value: 234,
-					name: '必胜客'
-				}, {
-					value: 135,
-					name: '太平洋咖啡'
-				}],
+				data: data,
 				itemStyle: {
 					emphasis: {
 						shadowBlur: 10,
@@ -550,78 +633,67 @@ function initNav() {
 		};
 		mChart.setOption(option);
 	}
-	function initAnalyLine() {
-		var mChart = echarts.init(document.getElementById("line-content"));
+	function initAnalyLine(contentID,data,text) {
+		var dataX = [];
+		var dataY = [];
+		for(let i = 0;i < data.length;i++){
+			dataX.push(data[i].name);
+			dataY.push(data[i].value);
+		}
+		var mChart = echarts.init(document.getElementById(contentID));
 		var option = {
-			title: {
-				text: '过去7个月各行业消费指数',
-				x: "center"
+			title : {
+				text: text,
+				subtext: '若图标上没有出现，则表示不存在该分类'
 			},
-			tooltip: {
+			tooltip : {
 				trigger: 'axis'
 			},
 			legend: {
-				data: ['餐饮类', '购物类', '旅游类', '车房类', '教育类'],
-				top: 'bottom'
+				data:[]
 			},
-			grid: {
-
+			toolbox: {
+				show : true,
+				feature : {
+					mark : {show: true},
+					dataView : {show: true, readOnly: false},
+					magicType : {show: true, type: ['line', 'bar']},
+					restore : {show: true},
+					saveAsImage : {show: true}
+				}
 			},
-			xAxis: [{
-				type: 'category',
-				boundaryGap: false,
-				data: ['20161001', '20161101', '20161201', '20170101', '20170201', '20170301', '20170401']
-			}],
-			yAxis: [{
-				type: 'value'
-			}],
-			series: [{
-				name: '餐饮类',
-				type: 'line',
-				stack: '总量',
-				areaStyle: {
-					normal: {}
-				},
-				data: [1740, 1170, 1279, 1228, 1544, 1582, 1176]
-			}, {
-				name: '购物类',
-				type: 'line',
-				stack: '总量',
-				areaStyle: {
-					normal: {}
-				},
-				data: [9177, 6586, 7088, 6897, 8548, 8306, 6284]
-			}, {
-				name: '旅游类',
-				type: 'line',
-				stack: '总量',
-				areaStyle: {
-					normal: {}
-				},
-				data: [1900, 1530, 1390, 1300, 2040, 2020, 1260]
-			}, {
-				name: '车房类',
-				type: 'line',
-				stack: '总量',
-				areaStyle: {
-					normal: {}
-				},
-				data: [2119, 1482, 1654, 1618, 1986, 1951, 1477]
-			}, {
-				name: '教育类',
-				type: 'line',
-				stack: '总量',
-				label: {
-					normal: {
-						show: true,
-						position: 'top'
+			calculable : true,
+			xAxis : [
+				{
+					type : 'category',
+					data : dataX
+				}
+			],
+			yAxis : [
+				{
+					type : 'value'
+				}
+			],
+			series : [
+				{
+					name:'人均消费指数',
+					type:'bar',
+					data:dataY,
+					itemStyle: {
+						normal: {
+							color: function(params) {
+								// build a color map as your need.
+								var colorList = [
+									'#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+									'#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+									'#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
+								];
+								return colorList[params.dataIndex]
+							}
+						}
 					}
-				},
-				areaStyle: {
-					normal: {}
-				},
-				data: [7345, 5587, 6457, 5745, 7852, 7241, 5217]
-			}]
+				}
+			]
 		};
 		mChart.setOption(option);
 	}
