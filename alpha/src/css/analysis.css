@@ -41,9 +41,9 @@
 #echart-content{
     width: 800px;
     height: 100%;
-    padding:30px;
 }
-#pie-content{
+
+#pie-content,#pie-content-all{
     height: 400px;
 }
 #line-content{
@@ -123,7 +123,6 @@ ul.district,ul.brand,ul.analysis{
     font-size:19px;
     font-weight: bold;
     color:#000000;
-
 }
 .analysis-tab{
     float:left;

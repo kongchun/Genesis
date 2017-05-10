@@ -372,9 +372,9 @@ function initNav() {
 	}
 	$(".btn-next button").click(function() {
 		/*if($(".movie-panel-ul").css("display")=='none'){
-		 alert("请先去选择所在的行业,否则不能进行分析哦");
-		 return false;
-		 }*/
+			alert("请先去选择所在的行业,否则不能进行分析哦");
+			return false;
+		}*/
 		var fc_width = $(".sidebar").width();
 		var sc_width = $("#second-category").width();
 		var left_width = fc_width + sc_width;
@@ -401,16 +401,16 @@ function initNav() {
 	//选择商圈
 	var businessRadio = $("input:radio[name='business-area']");
 	businessRadio.change(function() {
-		var dName = $(this).closest("li.district-item").find("a>span.text").text();
-		//当前所在区
-		cur_district_name = dName;
-		var bName = $(this).val();
-		if(dName){
-			$.get("api/getBussinessPoint",{d_name:dName},function(data){
-				drawBussinessCircle(data,bName);
-			},"json")
-		}
-	})
+			var dName = $(this).closest("li.district-item").find("a>span.text").text();
+		    //当前所在区
+		     cur_district_name = dName;
+		    var bName = $(this).val();
+			 if(dName){
+				 $.get("api/getBussinessPoint",{d_name:dName},function(data){
+					 drawBussinessCircle(data,bName);
+				 },"json")
+			 }
+		})
 	function drawBussinessCircle(data,bName){
 		var iterator_arr = data.data[0].bussiness;
 		for(let i = 0;i < iterator_arr.length;i++){
@@ -437,7 +437,7 @@ function initNav() {
 		var selectVal = $(this).val();
 		$(".firm-name").text(selectVal);
 		//选择行业后，分析面板的行业分析出现
-		var childrens = $(this).parents("ul.nav-children").find("li>a");
+        var childrens = $(this).parents("ul.nav-children").find("li>a");
 		for(let i = 0;i < childrens.length ; i++){
 			var val = childrens[i].text;
 			if(val == selectVal){
@@ -453,34 +453,34 @@ function initNav() {
 
 	//var brandChk2 = $("[name = analysis-input]:checkbox");
 	$(".industry-common").on("change","li input[name='analysis-input']",function(){
-		var arr = [];
-		//选择
-		var businessRadio = ($("input[name='business-area']:checked").length == 0);
-		if (businessRadio) {
-			this.checked = false;
-			message.alert("请选择商圈");
-			return false;
-		}
-		var bisNatureRadio = ($("input[name='industry']:checked").length == 0);
-		if (bisNatureRadio) {
-			message.alert("请选择行业");
-			this.checked = false;
-			return false;
-		}
+			var arr = [];
+			//选择
+			var businessRadio = ($("input[name='business-area']:checked").length == 0);
+			if (businessRadio) {
+				this.checked = false;
+				message.alert("请选择商圈");
+				return false;
+			}
+			var bisNatureRadio = ($("input[name='industry']:checked").length == 0);
+			if (bisNatureRadio) {
+				message.alert("请选择行业");
+				this.checked = false;
+				return false;
+			}
 
-		if ($("input:checked").length > 10) {
-			message.alert("最多勾选10条");
-			this.checked = false;
-			return false;
-		}
-		$(".industry-common input:checked").each(function() {
-			arr.push(this.value);
-		})
-		var options;
-		if(cur_bponit) {
-			options = GPS.distanceToBoundaryMaxMin(cur_bponit.center_point.lat, cur_bponit.center_point.lng, 1000);
-			brand.loadDatas(ChartMap.getMap(),arr,options)
-		}
+			if ($("input:checked").length > 10) {
+				message.alert("最多勾选10条");
+				this.checked = false;
+				return false;
+			}
+			$(".industry-common input:checked").each(function() {
+				arr.push(this.value);
+			})
+		   var options;
+		   if(cur_bponit) {
+			   options = GPS.distanceToBoundaryMaxMin(cur_bponit.center_point.lat, cur_bponit.center_point.lng, 1000);
+			   brand.loadDatas(ChartMap.getMap(),arr,options)
+		   }
 	})
 	var analysis_tabs = $(".analysis-tab");
 	$(".analysis-tab-hy").click(function(){
@@ -504,12 +504,12 @@ function initNav() {
 	$("li.analysis-tab-sp").on("click",function(){
 		console.log("click");
 	})
-	function initHYAnalysis(){
+    function initHYAnalysis(){
 		var selectedVal = [];
 		$("input[name='analysis-input']:checked").each(function(i,item){
 			selectedVal.push($(item).val())
 		});
-		if(selectedVal && selectedVal.length > 0){
+        if(selectedVal && selectedVal.length > 0){
 			getIndustryValue(selectedVal,appendDataCallback);
 			initAnalyChart("pie-content",allData,cur_district_name+"已选各行业占比统计");
 		}
