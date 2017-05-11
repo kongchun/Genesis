@@ -158,3 +158,12 @@ ul.district,ul.brand,ul.analysis{
 #tab-form-content{
     margin-top:50px;
 }
+
+.houseTable,.houseTableTr{
+    border-collapse: collapse;
+    border:1px solid #eee;
+}
+.houseTable td,.houseTable th{
+    width: 4%;
+    padding: 10px 0px;
+}

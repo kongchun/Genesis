@@ -13,4 +13,3 @@ export var drawCircle = function(map,centerPoint,radius,radiusOut){
 export var clearMapOverlays = function(map){
       map.clearOverlays();
 }
-

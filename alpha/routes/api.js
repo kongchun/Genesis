@@ -124,4 +124,24 @@ router.get("/getIndustryValue",function(req,res,next){
 		})
 	})
 })
+//根据行政区和商圈名称查找住宅信息
+router.get("/getAreabByDistrictAndName",function(req,res,next){
+	var districtName = req.query.districtName;
+	var bisName = req.query.bisName;
+	read.getAreabByDistrictAndName(districtName,bisName).then(function(data){
+		res.send({
+			data:data
+		})
+	})
+})
+//根据行政区和商圈名称查找商铺信息
+router.get("/getShopDataByDistrictAndName",function(req,res,next){
+	var districtName = req.query.districtName;
+	var bisName = req.query.bisName;
+	read.getShopDataByDistrictAndName(districtName,bisName).then(function(data){
+		res.send({
+			data:data
+		})
+	})
+})
 module.exports = router;

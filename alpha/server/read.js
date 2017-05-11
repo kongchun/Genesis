@@ -126,8 +126,8 @@ exports.getAreaData = function(d_name){
 exports.getIndustryValue =function(selectName,dis_name){
 	return db.open("industry_brand").then(function() {
 		return db.collection.find({
-			district:dis_name,
-			category:selectName
+			district:{$regex:dis_name,$options:'i'},
+			category:{$regex:selectName,$options:'i'}
 		}).toArray()
 	}).then(function(data) {
 		db.close();
@@ -137,6 +137,35 @@ exports.getIndustryValue =function(selectName,dis_name){
 		return [];
 	})
 }
+exports.getAreabByDistrictAndName = function(d_name,b_name){
+	return db.open("shanghai_anjuke_area").then(function(){
+			return db.collection.find({
+				"district":d_name,
+				"area":b_name
+			}).toArray()
+	}).then(function(data){
+		db.close();
+		return data;
+	}).catch(function(e){
+		db.close();
+		return null;
+	})
+}
+exports.getShopDataByDistrictAndName = function(d_name,b_name){
+	return db.open("anjuke_shanghai_shop").then(function(){
+		return db.collection.find({
+			"district":d_name,
+			"area":b_name
+		}).toArray()
+	}).then(function(data){
+		db.close();
+		return data;
+	}).catch(function(e){
+		db.close();
+		return null;
+	})
+}
+
 
 
 

@@ -12,6 +12,7 @@ var analysis = require("./analysis.js");
 /*var gps = require("./gps.js");*/
 var cur_city = "上海市";
 var cur_bponit;
+var cur_bis_name;
 var cur_district_name = null;
 $(function() {
 	initNav();
@@ -402,9 +403,10 @@ function initNav() {
 	var businessRadio = $("input:radio[name='business-area']");
 	businessRadio.change(function() {
 			var dName = $(this).closest("li.district-item").find("a>span.text").text();
-		    //当前所在区
-		     cur_district_name = dName;
 		    var bName = $(this).val();
+		    //当前所在区
+		    cur_district_name = dName;
+		    cur_bis_name = bName;
 			 if(dName){
 				 $.get("api/getBussinessPoint",{d_name:dName},function(data){
 					 drawBussinessCircle(data,bName);
@@ -481,29 +483,42 @@ function initNav() {
 			   options = GPS.distanceToBoundaryMaxMin(cur_bponit.center_point.lat, cur_bponit.center_point.lng, 1000);
 			   brand.loadDatas(ChartMap.getMap(),arr,options)
 		   }
-	})
+	});
 	var analysis_tabs = $(".analysis-tab");
 	$(".analysis-tab-hy").click(function(){
-		$("#pie-content").html("");
-		$("#pie-content-all").html("");
+		$("#pie-content").empty();
+		$("#pie-content-all").empty().height(400);
 		analysis_tabs.removeClass("box-shadow-tab");
 		$(this).addClass("box-shadow-tab");
 		allData = [];
 		initHYAnalysis();
 		initHYAnalysisAll();
-	})
+	});
 	$("li.analysis-tab-xf").on("click",function(){
-		$("#pie-content").html("");
-		$("#pie-content-all").html("");
+		$("#pie-content").empty();
+		$("#pie-content-all").empty().height(400);
 		analysis_tabs.removeClass("box-shadow-tab");
 		$(this).addClass("box-shadow-tab");
 		allData = [];
 		initXFAnalysis();
 		initXFAnalysisAll();
-	})
+	});
+	$("li.analysis-tab-zz").on("click",function(){
+		$("#pie-content").empty();
+		$("#pie-content-all").empty().height(0);
+		analysis_tabs.removeClass("box-shadow-tab");
+		$(this).addClass("box-shadow-tab");
+		allData = [];
+		house.getHousePrice(map,cur_district_name,cur_bis_name);
+	});
 	$("li.analysis-tab-sp").on("click",function(){
-		console.log("click");
-	})
+		$("#pie-content").empty();
+		$("#pie-content-all").empty().height(0);
+		analysis_tabs.removeClass("box-shadow-tab");
+		$(this).addClass("box-shadow-tab");
+		allData = [];
+		shop.getShopData(cur_district_name,cur_bis_name);
+	});
     function initHYAnalysis(){
 		var selectedVal = [];
 		$("input[name='analysis-input']:checked").each(function(i,item){

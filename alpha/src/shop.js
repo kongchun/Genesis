@@ -76,3 +76,52 @@ function getColorByPrice(price) {
 function getPoint(it) {
 	return new BMap.Point(it.lng, it.lat);
 }
+//获得图形分析页的商铺租金数据
+export  var getShopData = function(dName,bName){
+	$.get("api/getShopDataByDistrictAndName",{districtName:dName,bisName:bName},function(data){
+		shopPriceCallBack(data.data);
+	})
+}
+function shopPriceCallBack(data){
+	if(data && data.length > 0){
+		var all_data = getSorted10Data(data);
+		CreateTable(all_data);
+	}else{
+		$("#pie-content").html("<div class='no-tips'>暂无该区域的商铺租金数据</div>");
+	}
+}
+function getSorted10Data(arr){
+	return arr.sort(sortArr("averalPrice")).slice(0,10);
+	function sortArr(property){
+		return function(a,b){
+			var value1 = a[property];
+			var value2 = b[property];
+			return value2 - value1;
+		}
+	}
+}
+//构建表格
+function CreateTable(arr) {
+	$("#pie-content").empty();
+	$("#pie-content-all").empty().height(0);
+	var table=$("<table class='houseTable'>");
+	table.appendTo($("#pie-content"));
+	var caption = $("<caption class='center table-title '>"+arr[0].district+arr[0].area+"商铺租金</caption>");
+	caption.appendTo(table);
+	var thr = $("<tr class='houseTableTr'></tr>");
+	thr.appendTo(table);
+	var th = $("<th class='center'>#</th><th class='center'>地点</th><th class='center'>单位平米租金(㎡)</th>");
+	th.appendTo(thr);
+	for(var i=0;i<arr.length;i++) {
+		var tr=$("<tr class='houseTableTr'></tr>");
+		tr.appendTo(table);
+		var tdNo = $("<td>"+(i+1)+"</td>");
+		var tdAds = $("<td>"+arr[i].name+"</td>");
+		var averPrice = $("<td>"+arr[i].averalPrice+"/㎡</td>");
+		tdNo.appendTo(tr);
+		tdAds.appendTo(tr);
+		averPrice.appendTo(tr);
+	}
+	$("#pie-content").append("</table>");
+}
+
