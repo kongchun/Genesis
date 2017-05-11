@@ -85,8 +85,14 @@ var data_src = ["src/data/district",
 
 gulp.task("app-js", function() {
 	//gulp.src(['node_modules/build/qrcode.min.js']).pipe(uglify()).pipe(gulp.dest('public/js'));
-	gulp.src(['node_modules/qrcode/build/qrcode.min.js', 'src/app/*.js', '!src/app/login.js',"!src/app/marketing_create.js"]).pipe(uglify()).pipe(gulp.dest('public/js'));
+	gulp.src(['node_modules/qrcode/build/qrcode.min.js', 'src/app/*.js', '!src/app/quan.js','!src/app/login.js',"!src/app/marketing_create.js"]).pipe(uglify()).pipe(gulp.dest('public/js'));
 
+	browserify('src/app/quan.js').transform(babelify, {
+			presets: ['es2015', 'react', 'stage-0']
+		}).bundle()
+		.pipe(source('quan.js'))
+		.pipe(streamify(uglify()))
+		.pipe(gulp.dest('public/js'));
 
 	browserify('src/app/login.js').transform(babelify, {
 			presets: ['es2015', 'react', 'stage-0']

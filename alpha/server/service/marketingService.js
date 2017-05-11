@@ -82,4 +82,48 @@ var getById = function(id) {
     })
 }
 
+var getWithCondById = function(id,cond={}) {
+    return db.open("marketing").then(function() {
+        return db.collection.findOne({
+            _id: db.ObjectId(id)
+        },cond)
+    }).then(function(data) {
+        db.close()
+        return (data);
+    }).catch(function(e) {
+        db.close();
+        return null;
+    })
+}
+
+exports.updateViewCountById = function(id){
+    return updateCount(id,"viewCount")
+}
+
+exports.updateDownCountById = function(id){
+    return updateCount(id,"downCount")
+}
+
+
+var updateCount = function(id,key){
+
+    return getById(id).then(function(data) {
+        return data;
+    }).then(function(marketingPO){
+        var obj ={};
+        obj[key]= ++ marketingPO[key];
+        return db.open("marketing").then(function() {
+            return db.collection.update({ _id: marketingPO._id }, { $set: obj })
+        })
+    }).then(function(data) {
+        db.close()
+        return;
+    }).catch(function(e) {
+        db.close();
+        console.log(e)
+        return;
+    })
+}
+
 exports.getById = getById;
+exports.getWithCondById = getWithCondById;
