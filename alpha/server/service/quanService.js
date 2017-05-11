@@ -3,7 +3,7 @@ var db = require('../db.js')(DB_URL, "alpha");
 var helper = require('../helper.js');
 var marketingService = require('./marketingService.js');
 var customerService = require('./customerService.js');
-var QuanPO = require('../model/QuanPO.js')
+var QuanPO = require('../model/QuanPO.js');
 
 exports.getOrInsertByTelAndMarketingId = function(tel,marketingId){
 
@@ -12,8 +12,10 @@ exports.getOrInsertByTelAndMarketingId = function(tel,marketingId){
             return data;
         }
         return customerService.getOrInsertByTel(tel).then(function(customerPO){
-            var quanPO = new QuanPO({customer:customerPO,marketingId:marketingId});
-            return insert(quanPO);
+            return marketingService.updateDownCountById(marketingId).then(function(){
+                var quanPO = new QuanPO({customer:customerPO,marketingId:marketingId});
+                return insert(quanPO);
+            })
         })
 	})
 
@@ -62,7 +64,7 @@ var getCanUseByCustomerId = function(id){
          db.close()
         return helper.iteratorArr(arr,function(i){
             return marketingService.getWithCondById(i.marketingId,{
-                title:1,shop:1,endDate:1,type:1
+                title:1,shop:1,endDate:1,type:1,percent:1
             }).then(function(marketing){
                 i.marketing = marketing;
             })
@@ -76,5 +78,41 @@ var getCanUseByCustomerId = function(id){
     })
 }
 
+var getById = function(id) {
+    return db.open("quan").then(function() {
+        return db.collection.findOne({
+            _id: db.ObjectId(id)
+        })
+    }).then(function(data) {
+        db.close()
+        return new Quan(data);
+    }).catch(function(e) {
+        db.close();
+        return null;
+    })
+}
+
+var getWithMarketingById = function(id) {
+    return db.open("quan").then(function() {
+        return db.collection.findOne({
+            _id: db.ObjectId(id)
+        })
+    }).then(function(data) {
+        db.close()
+        return new QuanPO(data);
+    }).then(function(quan){
+        return marketingService.getById(quan.marketingId).then(function(marketing){
+                quan.marketing = marketing;
+                return quan;
+        })
+    }).catch(function(e) {
+        db.close();
+        console.log(e)
+        return null;
+    })
+}
+
+exports.getById = getById;
+exports.getWithMarketingById = getWithMarketingById;
 exports.getByTelAndMarketingId = getByTelAndMarketingId;
 exports.getCanUseByCustomerId =getCanUseByCustomerId ;

@@ -149,6 +149,8 @@
                                                 <th>浏览数</th>
                                                 <th>下载数</th>
                                                 <th>转换率</th>
+                                                <th>优惠券</th>
+                                                <th>消费</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -161,9 +163,11 @@
                                                                 <%= i.endDate%></td>
                                                         <td> <%= i.title%></td>
                                                         <td>进行中</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
+                                                        <td><%= i.viewCount%></td>
+                                                        <td><%= i.downCount%></td>
+                                                        <td><%= i.usedCount%></td>
+                                                        <td><a href="/quan/invite/<%=i._id%>">发送券</a></td>
+                                                        <td><a href="/quan/manager">销核券</a></td>
                                                     </tr>
                                                     <% }) %>
                                                         <% } %>

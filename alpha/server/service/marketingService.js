@@ -72,7 +72,7 @@ var getById = function(id) {
     return db.open("marketing").then(function() {
         return db.collection.findOne({
             _id: db.ObjectId(id)
-        },cond)
+        })
     }).then(function(data) {
         db.close()
         return new MarketingPO(data);
@@ -98,6 +98,10 @@ var getWithCondById = function(id,cond={}) {
 
 exports.updateViewCountById = function(id){
     return updateCount(id,"viewCount")
+}
+
+exports.updateDownCountById = function(id){
+    return updateCount(id,"downCount")
 }
 
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>优惠券-七只狸猫</title>
+    <link rel="stylesheet" href="/css/vendor.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/quan.css" />
+</head>
+
+<body>
+    <div id="app">
+        <div id="main" data-id="<%=(quan.marketing._id)%>">
+            <div class="top-header">
+                <div style="padding: 30px 0;background:#E35D4C">
+                    <p><h1><%=(quan.marketing.type==1)?"优惠券":"试用券"%></h1></p>
+                    <p><h2><%=(quan.marketing.shop.name)%></h2></p>
+                    <p><h4><%=(quan.marketing.shop.address)%></h4></p>
+                </div>
+            </div>
+            <div id="main-content">
+                <section id="main-logo"><img src="/images/ad1.png" id="main-logo-img"></section>
+                <p id="main-title">券号码</p>
+                <p id="main-sub" style="font-size:32px;color:white"><%=(quan.code)%></p>
+                <!---->
+                <section class="main-wrap">
+                    <canvas id="canvas-qrcode"></canvas>
+                </section>
+             
+            </div>
+            <!---->
+        </div>
+        <!---->
+        <!---->
+        <footer id="footer">
+        </footer>
+        <script src="/js/vendor.js"></script>
+        <script src="/js/qrcode.min.js"></script>
+        <script>
+        $(function(){
+              qrcodelib.toCanvas(document.getElementById('canvas-qrcode'), '<%=(quan.code)%>',{ errorCorrectionLevel: 'H'}, function (error) {
+            if (error) console.error(error)
+            console.log('success!');
+
+            $('#canvas-qrcode').css({"width":"250","height":"250"})
+          })
+        })
+        </script>
+    </div>
+</body>
+
+</html>

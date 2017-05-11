@@ -27,26 +27,37 @@
                 </div>
                 <div  id="receive-container">
                     <p  id="receive-title">快乐优惠 狸猫优惠</p>
-                    <p  id="receive-desc">优惠券已放入账号: <span  id="receive-phone">13913554077</span> <span  id="change-phone-btn">编辑</span></p>
+                    <p  id="receive-desc">优惠券已放入账号: <span  id="receive-phone"><%=customer.tel%></span> 
+                    <span  id="change-phone-btn">编辑</span></p>
 <!--                     <section  class="receive-wrap"><span  id="receive-btn-default" style="display: none;"></span></section>
                     <section  class="receive-wrap"><span  id="receive-btn-partner">更多红包攻略 </span></section> -->
                     <section  id="voucher">
+                        <% if (list.length==0) {%>
+                            <p style="height:80px;color:white">当前没有可用的优惠券</p>
+                         <% }else {%>
                         <ul  id="voucher-wrap">
-                            <li data-v-03e3b63c="" class="voucher-list voucher-list-kuaiche"><img data-v-03e3b63c="" src="https://coupons.didistatic.com/static/coupons/99-taxi-valid.png" class="voucher-list-bg">
-                                <div data-v-03e3b63c="" class="voucher-list-wrap">
-                                    <div data-v-03e3b63c="" class="vouhcer-list-info">
-                                        <p data-v-03e3b63c="" class="voucher-list-name">快车券</p>
-                                        <p data-v-03e3b63c="" class="voucher-list-time">有效期至：2017-05-13</p>
-                                    </div>
-                                    <div data-v-03e3b63c="" class="voucher-list-amount"><span data-v-03e3b63c="" class="voucher-list-yuan">¥</span> <span data-v-03e3b63c="" class="voucher-list-int">1</span></div>
-                                    <!---->
-                                    <p data-v-03e3b63c="" class="voucher-remark">限10:00-16:00,20:00-23:59可用</p>
-                                </div>
-                            </li>
                            
+                             <% list.forEach(function(quan){ %>
+                            <li  class="voucher-list voucher-list-kuaiche">
+                            <a href="/quan/code/<%=(quan._id)%>">
+                            <img  src="/images/quan/quan_item.png" class="voucher-list-bg">
+                                <div  class="voucher-list-wrap">
+                                    <div  class="vouhcer-list-info">
+                                        <p  class="voucher-list-name"><%=(quan.marketing.type==1)?"优惠券":"试用券"%></p>
+                                        <p  class="voucher-list-time">有效期至：<%=(quan.marketing.endDate)%></p>
+                                    </div>
+                                    <div  class="voucher-list-amount"> <span  class="voucher-list-int"><%=quan.marketing.percent%></span><span  class="voucher-list-yuan">折</span></div>
+                                    <!---->
+                                    <p  class="voucher-remark"><%=(quan.marketing.shop.name)%></p>
+                                    <p  class="voucher-remark" style="right:0">点击使用</p>
+                                </div>
+                            </a>
+                            </li>
+                             <% }) %>
                         </ul>
+                        <%}%>
                     </section>
-                    <p  id="receive-tip">若出行券未到账，将自动在24小时补发。同一用户限使用1份礼包。（同一设备号、支付账号、银行卡号等均视为同一用户）</p>
+                    <p  id="receive-tip">若券未到账，将自动在24小时补发。同一用户限使用1份礼包。（同一设备号、支付账号、银行卡号等均视为同一用户）</p>
                 </div>
             </div>
         </div>

@@ -41,6 +41,20 @@ var getOrInsertByTel = function(tel){
     })
 }
 
+var getById = function(id) {
+    return db.open("customer").then(function() {
+        return db.collection.findOne({
+            _id: db.ObjectId(id)
+        })
+    }).then(function(data) {
+        db.close()
+        return new CustomerPO(data);
+    }).catch(function(e) {
+        db.close();
+        return null;
+    })
+}
 
+exports.getById = getById;
 exports.getByTel = getByTel;
 exports.getOrInsertByTel = getOrInsertByTel;

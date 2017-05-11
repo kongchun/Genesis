@@ -16,7 +16,7 @@ $(function(){
         }
         $.post("/quan/invite/"+id,{tel:val},function(data){
             if(data.result){
-                location.href="/quan/customer/"+data.customer._id;
+                location.href="/quan/receive/"+data.customer._id;
             }else{
                 location.reload();
             }

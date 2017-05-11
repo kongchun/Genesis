@@ -205,7 +205,7 @@ input,textarea {
 }
 
 #receive-amount {
-    background: url(//static.udache.com/channel-gift/imgs/receive.9612d34d.png) 0 0 no-repeat;
+    background: url(/images/quan/receive.png) 0 0 no-repeat;
     background-size: 100% auto;
     position: relative
 }

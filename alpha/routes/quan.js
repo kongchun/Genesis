@@ -3,6 +3,7 @@ var router = express.Router();
 
 var marketingService = require('../server/service/marketingService.js');
 var quanService = require('../server/service/quanService.js');
+var customerService = require('../server/service/customerService.js');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     res.redirect('/quan/invite/590ac16bd4b6571d3848d3ba');
@@ -14,9 +15,11 @@ router.get('/invite/:id', function(req, res, next) {
     var tel = (req.cookies.tel) || "";
     quanService.getByTelAndMarketingId(tel, id).then(function(quan) {
         if (quan) {
-            res.redirect('../customer/' + quan.customer._id.toString());
+            res.redirect('../receive/' + quan.customer._id.toString());
         } else {
-            marketingService.getById(id).then(function(marketing) {
+            console.log(id, 111)
+            return marketingService.getById(id).then(function(marketing) {
+
                 if (marketing && 　marketing.status == 1) {
                     marketingService.updateViewCountById(id);
 
@@ -66,20 +69,32 @@ router.post('/invite/:id', function(req, res, next) {
 });
 
 
-router.get('/customer/:id', function(req, res, next) {
-	var id = req.params.id;
-    quanService.getCanUseByCustomerId(id).then(function(arr){
-    	console.log(arr);
-    	res.render('quan/customer', {
-             list:arr
+router.get('/receive/:id', function(req, res, next) {
+    var id = req.params.id;
+
+    customerService.getById(id).then(function(customer) {
+        quanService.getCanUseByCustomerId(id).then(function(arr) {
+            res.render('quan/receive', {
+                customer: customer,
+                list: arr
+            });
         });
     })
 
 });
 
-router.get('/list', function(req, res, next) {
-    res.redirect('../quan_list.html');
+router.get('/code/:id', function(req, res, next) {
+    var id = req.params.id;
+    quanService.getWithMarketingById(id).then(function(data) {
+        console.log(data)
+        res.render('quan/code', {
+            quan:data
+        });
+    });
+
+
 });
+
 
 router.get('/manager', function(req, res, next) {
     res.redirect('../quan_manager.html');
