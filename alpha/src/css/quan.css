@@ -80,15 +80,15 @@ input,textarea {
     background-size: 100% auto
 }
 .top-header h1{
-    font-size:32px;
+    font-size:1.8em;
     color:white;
 }
 .top-header h2{
-    font-size:24px;
+    font-size:1.4em;
     color:white;
 }
 .top-header h4{
-    font-size:14px;
+    font-size:0.8em;
     color:white;
 }
 .top-header p{
