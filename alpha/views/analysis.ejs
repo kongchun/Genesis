@@ -103,7 +103,7 @@
                           </li>
                           <%industry.forEach(function(industry_item){
 
-                            var h = "";
+                            var h = "亲子,酒店,宠物,丽人,K歌,周边游,宴会,家装,结婚,电影,运动健身,学习培训,爱车,医疗健康";
                              if(h.indexOf(industry_item.industry_name)>-1){}else{
 %>
                              <li class="brand-item">
@@ -113,7 +113,8 @@
                                              <h4 style="letter-spacing: 3px"><%=industry_item.industry_name%></h4>
                                          </div>
                                          <%industry_item.sub_industry.forEach(function(sub_industry_item){
-                                            var t = "轰趴馆,中医养生,茶馆,VR,洗浴,真人CS,采摘/农家乐,酒吧";
+                                            var t = "轰趴馆,中医养生,茶馆,VR,洗浴,真人CS,采摘/农家乐,酒吧,"
+                                            +"运动户外,水果生鲜,特色集市,品牌折扣店,花店,化妆品,家居建材,亲子购物,综合商场,更多购物场所,江西菜,贵州菜,回收,电脑维修,小区,开锁,房屋地产,售票点,政府机构,家电维修,网站,管道疏通,送水/送奶站,商圈,医院,体检中心,商务楼,公司企业,交通,物流快递";
                                             if(t.indexOf(sub_industry_item.sub_industry_name)>-1){}else{
 
                                          %>
