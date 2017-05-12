@@ -14,8 +14,13 @@ exports.getOrInsertByTelAndMarketingId = function(tel,marketingId){
         return customerService.getOrInsertByTel(tel).then(function(customerPO){
             return marketingService.updateDownCountById(marketingId).then(function(){
                 var quanPO = new QuanPO({customer:customerPO,marketingId:marketingId});
+
+                console.log(quanPO,111)
                 return insert(quanPO);
             })
+        }).then(function(data){
+            console.log(data,555)
+            return data;
         })
 	})
 
@@ -27,7 +32,7 @@ var insert = function(quanPO){
         return db.collection.insert(quanPO);
     }).then(function(data) {
         db.close()
-        return new QuanPO(data);
+        return quanPO;
     }).catch(function(e) {
         db.close();
         return null;

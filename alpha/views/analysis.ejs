@@ -101,20 +101,30 @@
                           <li class="firm-item">
                               <span>当前行业：</span><span class="firm-name">未选择</span>
                           </li>
-                          <%industry.forEach(function(industry_item){%>
+                          <%industry.forEach(function(industry_item){
+
+                            var h = "";
+                             if(h.indexOf(industry_item.industry_name)>-1){}else{
+%>
                              <li class="brand-item">
                                  <div class="item-body">
                                      <ul class="nav-children" style="display:block">
                                          <div class="line">
                                              <h4 style="letter-spacing: 3px"><%=industry_item.industry_name%></h4>
                                          </div>
-                                         <%industry_item.sub_industry.forEach(function(sub_industry_item){%>
+                                         <%industry_item.sub_industry.forEach(function(sub_industry_item){
+                                            var t = "轰趴馆,中医养生,茶馆,VR,洗浴,真人CS,采摘/农家乐,酒吧";
+                                            if(t.indexOf(sub_industry_item.sub_industry_name)>-1){}else{
+
+                                         %>
+                                            
+
                                             <li><a><input type="radio" name="industry" value="<%=sub_industry_item.sub_industry_name%>"/><%=sub_industry_item.sub_industry_name%></a></li>
-                                         <%})%>
+                                         <%}})%>
                                      </ul>
                                  </div>
                              </li>
-                          <%})%>
+                          <%}})%>
                       </ul>
                     <ul class="nav nav-second analysis">
                         <li class="analysis-item">

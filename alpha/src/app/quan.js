@@ -18,7 +18,7 @@ $(function(){
             if(data.result){
                 location.href="/quan/receive/"+data.customer._id;
             }else{
-                location.reload();
+                //location.reload();
             }
         })
     })

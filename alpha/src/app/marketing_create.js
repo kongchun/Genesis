@@ -171,7 +171,7 @@ $(function() {
             shop: shop,
             type: type,
             startDate: startDate,
-            endDate: startDate,
+            endDate: endDate,
             percent: percent,
             time: time,
             interval: interval,

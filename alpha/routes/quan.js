@@ -56,6 +56,7 @@ router.post('/invite/:id', function(req, res, next) {
                 result: result
             });
         }).catch(function(e) {
+            console.log(e)
             res.send({
                 result: result
             });
