@@ -54,9 +54,10 @@
     padding:0px;
 }
 .btn-next{
-    padding:10px;
-    border-top:1px solid #e7e7e7;
     text-align: center;
+    position: fixed;
+    bottom: 30px;
+    left: 0px;
 }
 .btn-next button{
     border-radius: 0px;
@@ -166,4 +167,12 @@ ul.district,ul.brand,ul.analysis{
 .houseTable td,.houseTable th{
     width: 4%;
     padding: 10px 0px;
+}
+#mapLayer{
+    width: 150px;
+    height: 40px;
+    border: 1px solid seagreen;
+    position: absolute;
+    top: 20px;
+    left: 165px;
 }

@@ -26,7 +26,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
-                <li>
+               <!-- <li>
                     <a href="map?id=<%=id%>">
                         <span class="name">云数据</span>
                     </a>
@@ -35,21 +35,32 @@
                     <a class="no-hover">
                         <span class="name">商业分析</span>
                     </a>
+                </li>-->
+                <li>
+                    <a class="no-hover">
+                        <span class="name">当前商圈 ：</span><span class="cur-bussiness">未选择</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="no-hover">
+                        <span class="name">当前行业 ：</span><span class="cur-industry">未选择</span>
+                    </a>
                 </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
+                    <!--
                      <li>
                     <a class="no-hover">
-                        <span class="name"><%=map.mapName%></span>
+                        <span class="name"></span>
                     </a>
                     </li>
                    <li>
-                <a href="#" id="analysis_save" data-id="<%=map._id%>">
+                <a href="#" id="analysis_save" data-id="">
                     <i class="fa fa-save"></i>
                     <span class="name">保存</span>
                 </a>
-                </li>
+                </li>-->
                     <li class="dropdown user" id="header-user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                            <i class="fa fa-user"></i>
@@ -70,24 +81,27 @@
             <div class="col-sm-1 col-md-1 sidebar">
                 <div class="sidebar-menu">
                     <ul class="nav nav-sidebar">
-                    <li class="first-category business-tab"><a href="#">商圈</a></li>
-                    <li class="first-category"><a href="#">行业</a></li>
-                    <li class="first-category"><a href="#">分析</a></li>
-                </ul>
+                        <li class="first-category business-tab"><a href="#">商圈</a></li>
+                        <li class="first-category"><a href="#">行业</a></li>
+                        <li class="first-category"><a href="#">分析</a></li>
+                    </ul>
+                    <div class="btn-next">
+                        <button href="#" class="btn btn-default">开始图表分析</button>
+                    </div>
                 </div>
             </div>
             <div id="second-category" class="col-md-2 col-sm-2" style="display: none;">
                   <div class="second-category">
-                    <div class="select-analy">
+                    <!--<div class="select-analy">
                         <div class="select-analy-bg"></div>
-                    </div>
+                    </div>-->
                     <ul class="nav nav-second district nav-children" id="district">
                           <%districts.forEach(function(item){%>
                                 <li class="district-item">
                                     <a class="district-title" style="color:#555;background: #f5f5f5;">
-                                        <span class="text" style="letter-spacing:3px;font-weight: bold;font-size: 17px;"><%=item.district%></span>
+                                        <span class="text" style="font-size: 16px;"><%=item.district%></span>
                                     </a>
-                                    <div class="business-area" style="display: block">
+                                    <div class="business-area" style="display: none;">
                                         <ul>
                                            <%item.bussiness.forEach(function(bname){%>
                                                <li><input type="radio" name="business-area" value="<%=bname.bussiness_name%>"/><%=bname.bussiness_name%></li>
@@ -98,9 +112,9 @@
                          <%})%>
                         </ul>
                     <ul class="nav nav-second brand-analy">
-                          <li class="firm-item">
+                          <!--<li class="firm-item">
                               <span>当前行业：</span><span class="firm-name">未选择</span>
-                          </li>
+                          </li>-->
                           <%industry.forEach(function(industry_item){
 
                             var h = "亲子,酒店,宠物,丽人,K歌,周边游,宴会,家装,结婚,电影,运动健身,学习培训,爱车,医疗健康";
@@ -133,6 +147,9 @@
                             <div class="item-body">
                                 <ul class="nav-children industry-common" style="display:block">
                                     <div class="line"><h4>行业分析</h4></div>
+                                    <div class="industry-common-div">
+
+                                    </div>
                                 </ul>
                             </div>
                         </li>
@@ -158,9 +175,9 @@
                         </li>
                       </ul>
                     <div>
-                      <div class="btn-next">
+                     <!-- <div class="btn-next">
                           <button href="#" class="btn btn-default">图形分析</button>
-                      </div>
+                      </div>-->
                   </div>
                   </div>
             </div>
@@ -176,36 +193,12 @@
                       <div id="tab-form-content">
                            <div id="pie-content"></div>
                            <div id="pie-content-all"></div>
-                           <!--<div id="table-content" style="display: none;">
-                              <table class="table table-bordered">
-                                  <caption class="center table-title">XX区住宅均价</caption>
-                                  <tr>
-                                      <th class="center">#</th>
-                                      <th class="center">地点</th>
-                                      <th class="center">单位平米租金(㎡)</th>
-                                  </tr>
-                                  <tr>
-                                      <td>1</td>
-                                      <td>亿丰时代广场</td>
-                                      <td>93333元/㎡</td>
-                                  </tr>
-                                  <tr>
-                                      <td>2</td>
-                                      <td>上南路商铺</td>
-                                      <td>52632元/㎡</td>
-                                  </tr>
-                              </table>
-                           </div>-->
                       </div>
                       </div>
-                     <!-- <div id="pie-content"></div>
-                      <div id="line-content"></div>-->
-
-
-                <!--<div class="colapsed-arrow"><button class="btn btn-primary">收起</button></div>-->
             </div>
             <div class="col-sm-11 col-sm-offset-1 col-md-11 col-md-offset-1 main">
                 <div id="map"></div>
+
             </div>
         </div>
     </div>

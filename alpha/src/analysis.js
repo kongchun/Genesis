@@ -7,7 +7,7 @@ export var drawCircle = function(map,centerPoint,radius,radiusOut){
       map.addOverlay(marker);
       map.addOverlay(circleOut);
       map.addOverlay(circle);
-      map.centerAndZoom(cPoint,14);
+      map.centerAndZoom(cPoint,15);
 }
 
 export var clearMapOverlays = function(map){

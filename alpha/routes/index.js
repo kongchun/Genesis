@@ -90,12 +90,12 @@ router.get('/analysis', function(req, res, next) {
 		res.redirect('login.html');
 	}
 	var id = req.param("id");
-	//console.log(id, "id")
 	read.getMapById(id).then(function(data) {
-		//console.log(data)
 		if (data) {
 			read.getAllDistrictWithBusniss("上海").then(function(district) {
+				district = formatDistrict(district,"district","徐汇区");
 				read.getAllIndustryWithBussiness().then(function(industry) {
+					industry = formatDistrict(industry,"industry_name","美食");
 					res.render('analysis', {
 						id: id,
 						user: req.session.user,
@@ -112,8 +112,16 @@ router.get('/analysis', function(req, res, next) {
 	})
 
 });
-
-
+function formatDistrict(arr,key,value){
+	for(var i = 0;i < arr.length ;i++){
+		if(arr[i][key] == value){
+			var item = arr.splice(i,1)[0];
+			break;
+		}
+	}
+	arr.unshift(item);
+	return arr;
+}
 router.get('/logout', function(req, res, next) {
 	if (!req.session.user) {
 		res.redirect('login.html');

@@ -28,6 +28,15 @@ $(function() {
 	initEvent(chart, map);
 	initPageEvent();
 	initTabNav();
+	//演示数据
+	$(".district-title")[0].click();
+	$("input:radio[name='business-area'][value='徐家汇']").prop("checked", "checked").change();
+	$("input:radio[name='industry'][value='私房菜']").prop("checked", "checked").change();
+	setTimeout(function(){
+		$("input:checkbox[name='analysis-input'][value='川菜']").prop("checked", "checked").change();
+		$("input:checkbox[name='analysis-input'][value='台湾菜']").prop("checked", "checked").change();
+		$("input:checkbox[name='analysis-input'][value='自助餐']").prop("checked", "checked").change();
+	},0);
 })
 
 function initPageEvent() {
@@ -307,17 +316,14 @@ function initNav() {
 		if (index == 0) {
 			openTabIndex = 0;
 			$("ul.district").show();
-			$(".select-analy-bg").text("选择商圈");
 			$(".btn-next").hide();
 		} else if (index == 1) {
 			openTabIndex = 1;
 			$("ul.brand-analy").show();
-			$(".select-analy-bg").text("选择行业");
 			$(".btn-next").hide();
 		} else {
 			openTabIndex = 2;
 			$("ul.analysis").show();
-			$(".select-analy-bg").text("商业分析");
 			$(".btn-next").show();
 		}
 		openCurrentTab();
@@ -372,10 +378,6 @@ function initNav() {
 		}
 	}
 	$(".btn-next button").click(function() {
-		/*if($(".movie-panel-ul").css("display")=='none'){
-			alert("请先去选择所在的行业,否则不能进行分析哦");
-			return false;
-		}*/
 		var fc_width = $(".sidebar").width();
 		var sc_width = $("#second-category").width();
 		var left_width = fc_width + sc_width;
@@ -399,20 +401,27 @@ function initNav() {
 			$(this).parents(".district-item").children(".business-area").toggle("slow");
 		})
 	})
+
+
 	//选择商圈
 	var businessRadio = $("input:radio[name='business-area']");
 	businessRadio.change(function() {
+		    /*$("input:radio[name='industry']").prop("checked",false);*/
+		    $("input:radio[name='industry'][value='私房菜']").prop("checked", "checked").change();
+		   /* $(".cur-industry").text("未选择");*/
 			var dName = $(this).closest("li.district-item").find("a>span.text").text();
 		    var bName = $(this).val();
 		    //当前所在区
 		    cur_district_name = dName;
 		    cur_bis_name = bName;
+		   $(".cur-bussiness").text(cur_bis_name);
 			 if(dName){
 				 $.get("api/getBussinessPoint",{d_name:dName},function(data){
 					 drawBussinessCircle(data,bName);
 				 },"json")
 			 }
 		})
+
 	function drawBussinessCircle(data,bName){
 		var iterator_arr = data.data[0].bussiness;
 		for(let i = 0;i < iterator_arr.length;i++){
@@ -436,8 +445,10 @@ function initNav() {
 	//选择行业
 	var bisNatureRadio = $("input:radio[name='industry']");
 	bisNatureRadio.change(function() {
+		$(".industry-common-div").empty();
 		var selectVal = $(this).val();
-		$(".firm-name").text(selectVal);
+		//$(".firm-name").text(selectVal);
+		$(".cur-industry").text(selectVal);
 		//选择行业后，分析面板的行业分析出现
         var childrens = $(this).parents("ul.nav-children").find("li>a");
 		for(let i = 0;i < childrens.length ; i++){
@@ -446,7 +457,7 @@ function initNav() {
 				continue;
 			}
 			var li = "<li><a><input type='checkbox'  name='analysis-input' value='"+val+"'/>"+val+"</a></li>";
-			$(".industry-common").append(li);
+			$(".industry-common-div").append(li);
 		}
 		$(".movie-panel-ul").show();
 	});
