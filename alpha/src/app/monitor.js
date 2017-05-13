@@ -4,12 +4,13 @@ var points =[{"center":[120.90716368925686,31.000851562090638],"grids":[[120.854
 $(function() {
 	
 	$("#map").height($(window).height() - 50);
+	
 	ChartMap.init();
 	var chart = ChartMap.getChart();
 	var map = ChartMap.getMap();
 
-	console.log(chart)
-		console.log(map)
+	//console.log(chart)
+		//console.log(map)
 
 		makerPoint(map);
 })
@@ -135,9 +136,13 @@ var ChartMap = {
 
 function makerPoint(map) {
     var arr= [];
+    console.log(points.length)
     for (var i = 0; i < points.length; i++) {
+
         var center = points[i].center;
         arr.push(new BMap.Point(center[0], center[1]))
+
+
         var pt = points[i].grids;
         var polygon = new BMap.Polygon([
             new BMap.Point(pt[0][0], pt[0][1]),
@@ -152,6 +157,20 @@ function makerPoint(map) {
             strokeOpacity: 0.5
         });
         map.addOverlay(polygon);
+
+        if (i == 35 || i == 36 || i==64) {
+            var marker2 = new BMap.Marker(new BMap.Point(center[0], center[1]), {
+                // 初始化闹钟形状的symbol
+                icon: new BMap.Symbol(BMap_Symbol_SHAPE_SMILE, {
+                    scale: 1,
+                    strokeWeight: 1,
+                    fillColor: 'yellow',
+                    fillOpacity: 0.8
+                })
+            }); // 创建标注
+            map.addOverlay(marker2);
+        }
+
     }
     // var polyline = new BMap.Polyline(arr);
       //map.addOverlay(polyline);
