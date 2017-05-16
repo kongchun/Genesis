@@ -587,24 +587,28 @@ function initNav() {
 		}
 	}
 	function getIndustryValue(selectedVal,callback){
-		for(var i = 0; i < selectedVal.length ;i++){
-			$.get("api/getIndustryValue",{disName:cur_district_name,selectName:selectedVal[i]},function(data){
-				var new_data = {
-					name:selectedVal[i],
-					value:data.data.length
-				}
-				callback(new_data);
-			},"json")
-		}
-	}
-	function getXFIdustryPrice(selectedVal,callback){
-		allData = [];
-		for(var i = 0; i < selectedVal.length ;i++){
-			$.get("api/getIndustryValue",{disName:cur_district_name,selectName:selectedVal[i]},function(data){
-				if(data && data.data.length > 0){
+			$.get("api/getIndustryValue",{disName:cur_district_name,selectName:selectedVal},function(data){
+				var result = data.data;
+				for(let i = 0;i < result.length;i++){
 					var new_data = {
-						name:selectedVal[i],
-						value:meanPrice(data.data)
+						name:result[i][0].category,
+						value:result[i].length
+					}
+					callback(new_data);
+				}
+			},"json")
+	}
+ function getXFIdustryPrice(selectedVal,callback){
+		    allData = [];
+			$.get("api/getIndustryValue",{disName:cur_district_name,selectName:selectedVal},function(data){
+				var result = data.data;
+				if(data && result.length > 0){
+					for(let i = 0;i < result.length;i++){
+						var new_data = {
+							name:result[i][0].category,
+							value:meanPrice(result[i])
+						}
+						callback(new_data);
 					}
 					function meanPrice(arr){
 						var sum = 0;
@@ -616,10 +620,9 @@ function initNav() {
 						}
 						return sum/arr.length;
 					}
-					callback(new_data);
+
 				}
 			},"json")
-		}
 	}
 
 	function initAnalyChart(contentID,data,text) {
@@ -627,6 +630,8 @@ function initNav() {
 		for(let i = 0;i < data.length;i++){
 			dataNames.push(data[i].name);
 		}
+		console.log("legend names");
+		console.log(dataNames);
 		var mChart = echarts.init(document.getElementById(contentID));
 		var option = {
 			title: {

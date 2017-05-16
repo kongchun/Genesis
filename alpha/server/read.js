@@ -129,6 +129,18 @@ exports.getIndustryValue =function(selectName,dis_name){
 			district:{$regex:dis_name,$options:'i'},
 			category:{$regex:selectName,$options:'i'}
 		}).toArray()
+		/*var newArr = [];
+		for(let j = 0;j < selectNameArr.length;j++){
+			return db.collection.find({
+				district:{$regex:dis_name,$options:'i'},
+				category:{$regex:selectNameArr[j],$options:'i'}
+			}).toArray().then(function(tempResult){
+				console.log(tempResult);
+				newArr.push(tempResult);
+				/!*return newArr;*!/
+				return "haha";
+			})
+		}*/
 	}).then(function(data) {
 		db.close();
 		return data;

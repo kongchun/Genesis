@@ -118,11 +118,23 @@ router.get("/getAreaData",function(req,res,next){
 router.get("/getIndustryValue",function(req,res,next){
 	var selectName = req.query.selectName;
 	var disName = req.query.disName;
-	read.getIndustryValue(selectName,disName).then(function(data){
+	var len = selectName.length;
+	var result = [];
+	for(let j = 0;j < len;j++){
+		read.getIndustryValue(selectName[j],disName).then(function(data){
+			result.push(data);
+			if(result.length >= len){
+				res.send({
+					data:result
+				})
+			}
+		})
+	}
+	/*read.getIndustryValue(selectName,disName).then(function(data){
 		res.send({
 			data:data
 		})
-	})
+	})*/
 })
 //根据行政区和商圈名称查找住宅信息
 router.get("/getAreabByDistrictAndName",function(req,res,next){
