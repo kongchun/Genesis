@@ -11,7 +11,7 @@ var cssmin = require('gulp-cssmin');
 var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
 var server = require('gulp-express');
-
+var through2 = require('through2');
 
 gulp.task('vendor-css', function() {
 	gulp.src('node_modules/bootstrap/fonts/*.*')
@@ -61,52 +61,26 @@ gulp.task('vendor-map-js', function() {
 		.pipe(gulp.dest('public/js'));
 });
 
-// var data_src = ["src/data/brand", "src/data/district",
-// 	"src/data/district_data", "src/data/house", "src/data/line", "src/data/shop",
-// 	"src/data/trading"
-// ];
+
 var data_src = ["src/data/district",
 	"src/data/district_data", "src/data/house", "src/data/line", "src/data/shop",
 	"src/data/trading"
 ];
 
 
-// gulp.task('data-js', function() {
-// 	return browserify(data_src)
-// 		.transform(babelify, {
-// 			presets: ['es2015', 'react', 'stage-0']
-// 		})
-// 		.bundle()
-// 		.pipe(source('data.js'))
-// 		.pipe(streamify(uglify()))
-// 		//.pipe(gulpif(production, streamify(uglify({mangle: false}))))
-// 		.pipe(gulp.dest('public/js'));
-// });
-
 gulp.task("app-js", function() {
-	//gulp.src(['node_modules/build/qrcode.min.js']).pipe(uglify()).pipe(gulp.dest('public/js'));
-	gulp.src(['node_modules/qrcode/build/qrcode.min.js', 'src/app/*.js', '!src/app/quan.js','!src/app/login.js',"!src/app/marketing_create.js"]).pipe(uglify()).pipe(gulp.dest('public/js'));
-
-	browserify('src/app/quan.js').transform(babelify, {
+	return gulp.src(['node_modules/qrcode/build/qrcode.min.js', 'src/app/*.js']).pipe(
+	 through2.obj(function(file, enc, next) {
+      browserify(file.path).transform(babelify, {
 			presets: ['es2015', 'react', 'stage-0']
-		}).bundle()
-		.pipe(source('quan.js'))
-		.pipe(streamify(uglify()))
-		.pipe(gulp.dest('public/js'));
-
-	browserify('src/app/login.js').transform(babelify, {
-			presets: ['es2015', 'react', 'stage-0']
-		}).bundle()
-		.pipe(source('login.js'))
-		.pipe(streamify(uglify()))
-		.pipe(gulp.dest('public/js'));
-
-	return browserify('src/app/marketing_create.js').transform(babelify, {
-			presets: ['es2015', 'react', 'stage-0']
-		}).bundle()
-		.pipe(source('marketing_create.js'))
-		.pipe(streamify(uglify()))
-		.pipe(gulp.dest('public/js'));
+		}).bundle(function(err, res) {
+          err && console.log(err.stack);
+          file.contents = res;
+          next(null, file);
+        });
+    }))
+    .pipe(uglify()) // uglify
+    .pipe(gulp.dest('public/js'));
 })
 
 gulp.task('bundle-js', ["app-js"], function() {
