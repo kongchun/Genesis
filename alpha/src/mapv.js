@@ -966,7 +966,12 @@
 
                 context.beginPath();
                 context.rect(gridKey[0] * size + .5 + offset.x, gridKey[1] * size + .5 + offset.y, size, size);
-                context.fillStyle = intensity.getColor(grids[gridKey]);
+                var text = grids[gridKey];
+                if (options.label.average) {
+                    text = parseInt(grids[gridKey] / gridIndexData[gridKey].length)
+                }
+                
+                context.fillStyle = intensity.getColor(text);
                 context.fill();
                 if (options.strokeStyle && options.lineWidth) {
                     context.stroke();

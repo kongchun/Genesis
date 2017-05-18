@@ -6,9 +6,9 @@ var options = {
 	size: 60,
 	globalAlpha: 0.8,
 	gradient: {
-		0.2: "rgba(64, 134, 181,0.25)",
-		0.5: "rgba(64, 134, 181,0.5)",
-		0.8: "rgba(64, 134, 181,0.75)",
+		0.4: "rgba(64, 134, 181,0.7)",
+		0.6: "rgba(64, 134, 181,0.8)",
+		0.8: "rgba(64, 134, 181,0.9)",
 		1.0: "rgba(64, 134, 181,1)"
 	},
 	label: {
@@ -19,7 +19,7 @@ var options = {
 		// font: '20px Arial',
 		//shadowBlur: 10,
 	},
-	max: 80000,
+	max: 70000,
 
 	draw: 'grid'
 }
