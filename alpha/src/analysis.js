@@ -49,20 +49,19 @@ export var AnalysisPage = {
                   $(".industry-common-div").empty();
                   var selectVal = $(this).val();
                   $(".cur-industry").text(selectVal);
-                  var childrens = $(this).parents("ul.nav-children").find("li>a");
+                  var childrens = $(this).parents("ul.industry-area").find("a.industy-area-item");
                   for(let i = 0;i < childrens.length ; i++){
                         var val = childrens[i].text;
                         if(val == selectVal){
                               continue;
                         }
-                        var li = "<li><a><input type='checkbox'  name='analysis-input' value='"+val+"'/>"+val+"</a></li>";
+                        var li = "<span class='analy-area-item'><a><input type='checkbox'  name='analysis-input' value='"+val+"'/>"+val+"</a></span>";
                         $(".industry-common-div").append(li);
                   }
-                  $(".movie-panel-ul").show();
             });
       },
       selectAnalysisItem:function(){
-            $(".industry-common").on("change","li input[name='analysis-input']",function(){
+            $(".industry-common").on("change",".analy-area-item input[name='analysis-input']",function(){
                   var arr = [];
                   //选择
                   var businessRadio = ($("input[name='business-area']:checked").length == 0);
@@ -362,7 +361,6 @@ export var AnalysisPage = {
       },
       firstCheckeEvent:function(){
             if($(".district-title").length > 0){
-                  $(".district-title")[0].click();
                   $("input:radio[name='business-area'][value='徐家汇']").prop("checked", "checked").change();
                   $("input:radio[name='industry'][value='私房菜']").prop("checked", "checked").change();
                   setTimeout(function(){

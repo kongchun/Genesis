@@ -51,6 +51,7 @@ body {
 
 .sidebar-menu{
    padding: 20px;
+   padding-top:0px;
 }
 
 /* Sidebar navigation */

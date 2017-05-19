@@ -22,7 +22,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index"> <img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="images/logo.png"></a>
+                <a class="navbar-brand" href="index"><img width="300" height="30" class="img-responsive" alt="Genesis 商业地理" src="images/logo.png"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
@@ -81,30 +81,24 @@
             <div class="col-sm-1 col-md-1 sidebar">
                 <div class="sidebar-menu">
                     <ul class="nav nav-sidebar">
-                        <li class="first-category business-tab"><a href="#">商圈</a></li>
-                        <li class="first-category"><a href="#">行业</a></li>
-                        <li class="first-category"><a href="#">分析</a></li>
+                        <li class="first-category business-tab"><img width="20" height="20" src="images/business.png" alt="商圈"/><a href="#">商圈</a></li>
+                        <li class="first-category"><img width="20" height="20" src="images/industry.png" alt="行业"/><a href="#">行业</a></li>
+                        <li class="first-category"><img width="20" height="20" src="images/analy.png" alt="分析"/><a href="#">分析</a></li>
                     </ul>
-                    <div class="btn-next">
-                        <button href="#" class="btn btn-default">开始图表分析</button>
-                    </div>
                 </div>
             </div>
-            <div id="second-category" class="col-md-2 col-sm-2" style="display: none;">
+            <div id="second-category" class="col-md-4 col-sm-4" style="display: none;">
                   <div class="second-category">
-                    <!--<div class="select-analy">
-                        <div class="select-analy-bg"></div>
-                    </div>-->
                     <ul class="nav nav-second district nav-children" id="district">
                           <%districts.forEach(function(item){%>
                                 <li class="district-item">
-                                    <a class="district-title" style="color:#555;background: #f5f5f5;">
+                                    <a class="district-title" >
                                         <span class="text" style="font-size: 16px;"><%=item.district%></span>
                                     </a>
-                                    <div class="business-area" style="display: none;">
+                                    <div class="business-area" style="display: block;">
                                         <ul>
                                            <%item.bussiness.forEach(function(bname){%>
-                                               <li><input type="radio" name="business-area" value="<%=bname.bussiness_name%>"/><%=bname.bussiness_name%></li>
+                                               <a ><input type="radio" name="business-area" value="<%=bname.bussiness_name%>"/><%=bname.bussiness_name%></a>
                                             <%})%>
                                         </ul>
                                     </div>
@@ -112,9 +106,6 @@
                          <%})%>
                         </ul>
                     <ul class="nav nav-second brand-analy">
-                          <!--<li class="firm-item">
-                              <span>当前行业：</span><span class="firm-name">未选择</span>
-                          </li>-->
                           <%industry.forEach(function(industry_item){
 
                             var h = "亲子,酒店,宠物,丽人,K歌,周边游,宴会,家装,结婚,电影,运动健身,学习培训,爱车,医疗健康";
@@ -122,9 +113,11 @@
 %>
                              <li class="brand-item">
                                  <div class="item-body">
-                                     <ul class="nav-children" style="display:block">
+                                     <ul class="nav-children industry-area" style="display:block">
                                          <div class="line">
-                                             <h4 style="letter-spacing: 3px"><%=industry_item.industry_name%></h4>
+                                             <a class="industy-title" >
+                                                 <span class="text" style="font-size: 16px;"><%=industry_item.industry_name%></span>
+                                             </a>
                                          </div>
                                          <%industry_item.sub_industry.forEach(function(sub_industry_item){
                                             var t = "轰趴馆,中医养生,茶馆,VR,洗浴,真人CS,采摘/农家乐,酒吧,"
@@ -132,9 +125,7 @@
                                             if(t.indexOf(sub_industry_item.sub_industry_name)>-1){}else{
 
                                          %>
-                                            
-
-                                            <li><a><input type="radio" name="industry" value="<%=sub_industry_item.sub_industry_name%>"/><%=sub_industry_item.sub_industry_name%></a></li>
+                                            <a class="industy-area-item"><input type="radio" name="industry" value="<%=sub_industry_item.sub_industry_name%>"/><%=sub_industry_item.sub_industry_name%></a>
                                          <%}})%>
                                      </ul>
                                  </div>
@@ -146,7 +137,11 @@
                  
                             <div class="item-body">
                                 <ul class="nav-children industry-common" style="display:block">
-                                    <div class="line"><h4>行业分析</h4></div>
+                                    <div class="line">
+                                        <a class="analy-area-title" >
+                                            <span class="text" style="font-size: 16px;">选择行业分析项</span>
+                                        </a>
+                                    </div>
                                     <div class="industry-common-div">
 
                                     </div>
@@ -157,9 +152,13 @@
 
                             <div class="item-body">
                                 <ul class="nav-children house" style="display:block">
-                                    <div class="line"><h4>房产指数</h4></div>
-                                    <li> <a><input type="checkbox" class="housePrice" value="住宅价格"/> 住宅价格</a></li>
-                                    <li> <a><input type="checkbox" class="shopPrice" value="商铺租金"/> 商铺租金</a></li>
+                                    <div class="line">
+                                        <a class="analy-area-title" >
+                                            <span class="text" style="font-size: 16px;">选择房产指数分析项</span>
+                                        </a>
+                                    </div>
+                                    <span class="analy-area-item"> <a><input type="checkbox" class="housePrice" value="住宅价格"/> 住宅价格</a></span>
+                                    <span class="analy-area-item"> <a><input type="checkbox" class="shopPrice" value="商铺租金"/> 商铺租金</a></span>
                                 </ul>
                             </div>
                         </li>
@@ -167,18 +166,21 @@
                            
                             <div class="item-body">
                                 <ul class="nav-children" style="display:block">
-                                    <div class="line"><h4>公共设施</h4></div>
-                                    <li> <a><input type="checkbox" name="analysis-input" value="加油站" /> 加油站</a></li>
-                                    <li> <a><input type="checkbox" name="analysis-input" value="ATM" /> ATM机</a></li>
+                                    <div class="line">
+                                        <a class="analy-area-title" >
+                                            <span class="text" style="font-size: 16px;">选择公共设施分析项</span>
+                                        </a>
+                                    </div>
+                                    <span class="analy-area-item"> <a><input type="checkbox" name="analysis-input" value="加油站" /> 加油站</a></span>
+                                    <span class="analy-area-item"> <a><input type="checkbox" name="analysis-input" value="ATM" /> ATM机</a></span>
                                 </ul>
                             </div>
                         </li>
+                        <div class="fa-analy-div">
+                            <div class="btn-next start-analy-button"><span>开始进行图表分析</span></div>
+                        </div>
                       </ul>
-                    <div>
-                     <!-- <div class="btn-next">
-                          <button href="#" class="btn btn-default">图形分析</button>
-                      </div>-->
-                  </div>
+
                   </div>
             </div>
             <div class="third-category">
@@ -189,6 +191,7 @@
                           <li class="analysis-tab analysis-tab-sp"><span>商铺租金</span></li>
                           <li class="analysis-tab analysis-tab-zz"><span>住宅价格</span></li>
                           <li class="analysis-tab analysis-tab-rq"><span>人群分析</span></li>
+                          <a><img class="close-btn" width = "20" height = "20" src="images/close.png" alt="关闭"/></a>
                       </ul>
                       <div id="tab-form-content">
                            <div id="pie-content"></div>

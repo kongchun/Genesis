@@ -224,7 +224,7 @@ var MainPageEvent = {
 			}
 
 			function toggleTab() {
-				if (mapParent.hasClass("col-md-9")) {
+				if (mapParent.hasClass("col-md-7")) {
 					toggleMapSize(false);
 					contentCategory.css('left', 0);
 					$(".third-category").hide();
@@ -241,16 +241,16 @@ var MainPageEvent = {
 				if (zoomOrNot) {
 					mapParent.removeClass("col-md-offset-1").removeClass("col-sm-offset-1");
 					mapParent.removeClass("col-md-11").removeClass("col-sm-11");
-					mapParent.addClass("col-md-offset-3").addClass("col-sm-offset-3");
-					mapParent.addClass("col-md-9").removeClass("col-sm-9");
+					mapParent.addClass("col-md-offset-5").addClass("col-sm-offset-5");
+					mapParent.addClass("col-md-7").removeClass("col-sm-7");
 				} else {
-					mapParent.removeClass("col-md-offset-3").removeClass("col-sm-offset-3");
-					mapParent.removeClass("col-md-9").removeClass("col-sm-9");
+					mapParent.removeClass("col-md-offset-5").removeClass("col-sm-offset-5");
+					mapParent.removeClass("col-md-7").removeClass("col-sm-7");
 					mapParent.addClass("col-md-offset-1").addClass("col-sm-offset-1");
 					mapParent.addClass("col-md-11").removeClass("col-sm-11");
 				}
 			}
-			$(".btn-next button").click(function() {
+			$(".btn-next").click(function() {
 				var fc_width = $(".sidebar").width();
 				var sc_width = $("#second-category").width();
 				var left_width = fc_width + sc_width;
@@ -261,7 +261,7 @@ var MainPageEvent = {
 				analysis.GlobalMain.allData = [];
 				$(".analysis-tab-hy").click();
 			})
-			$(".colapsed-arrow").click(function() {
+			$(".close-btn").click(function() {
 				var thirdCategory = $(".third-category");
 				thirdCategory.toggle();
 				thirdCategory.css("left", 0);
