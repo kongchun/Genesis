@@ -115,7 +115,7 @@ export var AnalysisPage = {
       initAnalysisHy:function(){
             var that = this;
             $(".analysis-tab-hy").click(function(){
-                  $("#pie-content").empty();
+                  $("#pie-content").empty().height(400);
                   $("#pie-content-all").empty().height(400);
                   that.analysis_tabs.removeClass("box-shadow-tab");
                   $(this).addClass("box-shadow-tab");
@@ -127,7 +127,7 @@ export var AnalysisPage = {
       initAnalysisXF:function(){
             var that = this;
             $("li.analysis-tab-xf").on("click",function(){
-                  $("#pie-content").empty();
+                  $("#pie-content").empty().height(400);
                   $("#pie-content-all").empty().height(400);
                   that.analysis_tabs.removeClass("box-shadow-tab");
                   $(this).addClass("box-shadow-tab");
@@ -151,7 +151,7 @@ export var AnalysisPage = {
             var that = this;
             $("li.analysis-tab-rq").on("click",function(){
                   $("#pie-content").empty().height(0);
-                  $("#pie-content-all").empty();
+                  $("#pie-content-all").empty().height(550);
                   that.analysis_tabs.removeClass("box-shadow-tab");
                   $(this).addClass("box-shadow-tab");
                   GlobalMain.allData = [];
@@ -416,13 +416,12 @@ export var AnalysisPage = {
                               tooltip: {
                                     show: true,
                                     formatter: function(params) {
-                                          console.log(params);
                                           return params.name + '月份数据统计';
                                     }
                               },
                               autoPlay: true,
                               currentIndex: 6,
-                              playInterval: 1000,
+                              playInterval: 3000,
                               label: {
                                     normal: {
                                           show: true,
@@ -444,7 +443,7 @@ export var AnalysisPage = {
                               top: 4,
                               right: '10%',
                               textStyle: {
-                                    color: '#fff',
+                                    color: '#000',
                               },
                         },
                         tooltip: {
@@ -458,14 +457,14 @@ export var AnalysisPage = {
                         toolbox: {
                               feature: {
                                     dataView: {
-                                          show: true,
+                                          show: false,
                                           readOnly: false
                                     },
                                     restore: {
-                                          show: true
+                                          show: false
                                     },
                                     saveAsImage: {
-                                          show: true
+                                          show: false
                                     }
                               }
                         },
