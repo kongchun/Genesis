@@ -18,7 +18,7 @@ $(function() {
 	line.init(map);
 	pie.init(chart, map);
 
-	MainPageEvent.initAllEvent();
+	MainPageEvent.initAllEvent(chart,map);
 	analysis.AnalysisPage.init();
 })
 
@@ -70,9 +70,9 @@ var MainFrame = {
  * Author:@Lindandan 2017-5-18
  * */
 var MainPageEvent = {
-    initAllEvent:function(){
+    initAllEvent:function(chart,map){
 		this.initPageEvent();
-		this.initSelectEvent();
+		this.initSelectEvent(chart,map);
 		this.initCategory();
 		this.initTabNav();
 		/*MainFrame.initNav;*/
@@ -215,7 +215,7 @@ var MainPageEvent = {
 			}
 			//关闭打开的tab
 			function closeTab() {
-				if (mapParent.hasClass("col-md-offset-3")) {
+				if (mapParent.hasClass("col-md-offset-5")) {
 					toggleMapSize(false);
 					contentCategory.css('left', 0);
 					$(".third-category").hide();

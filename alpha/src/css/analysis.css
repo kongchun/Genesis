@@ -215,7 +215,8 @@ ul.district,ul.brand,ul.analysis{
   padding: 10px 15px;
 }
 .start-analy-button{
-    width: 415px;
+    position: absolute;
+    width: 90%;
     height: 40px;
     border-radius: 4px;
     text-align: center;
@@ -225,5 +226,6 @@ ul.district,ul.brand,ul.analysis{
     font-size: 16px;
     background-color: #2e6da4;
     color: #f5f5f5;
+    cursor: pointer;
 }
 

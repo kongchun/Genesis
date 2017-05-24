@@ -12,7 +12,6 @@ class DB {
 	open(table) {
 		return new Promise((resolve, reject) => {
 			if (this.db && this.db != null) {
-
 				resolve(this.collection);
 				return;
 			}
