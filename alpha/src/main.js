@@ -262,6 +262,7 @@ var MainPageEvent = {
 				$(".analysis-tab-hy").click();
 			})
 			$(".close-btn").click(function() {
+				console.log("close click....");
 				var thirdCategory = $(".third-category");
 				thirdCategory.toggle();
 				thirdCategory.css("left", 0);
