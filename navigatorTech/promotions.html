@@ -1,0 +1,566 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>NavgatorTech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="css/cloud-admin.css">
+    <link rel="stylesheet" type="text/css" href="css/themes/default.css" id="skin-switcher">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <!-- STYLESHEETS --><!--[if lt IE 9]>
+    <script src="js/flot/excanvas.min.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+    <!-- JQUERY UI-->
+    <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.10.3.custom/css/custom-theme/jquery-ui-1.10.3.custom.min.css" />
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- ANIMATE -->
+    <link rel="stylesheet" type="text/css" href="css/animatecss/animate.min.css"/>
+    <!-- DATE RANGE PICKER -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <!-- TODO -->
+    <link rel="stylesheet" type="text/css" href="js/jquery-todo/css/styles.css"/>
+    <!-- FULL CALENDAR -->
+    <link rel="stylesheet" type="text/css" href="js/fullcalendar/fullcalendar.min.css"/>
+    <!-- GRITTER -->
+    <link rel="stylesheet" type="text/css" href="js/gritter/css/jquery.gritter.css"/>
+    <!-- FONTS -->
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+
+        <!-- DATE PICKER -->
+
+</head>
+<style>
+.nt-title{
+    margin-bottom: 10px;
+    color:#70afc4;
+}
+.nt-row .box{
+    text-align: center;
+}
+.nt-row .box.border > .box-title h4{
+    text-align:center;
+    font-size: 16px;
+}
+.nt-row .box .number{
+    font-size:34px;
+    color:#A7D4D1;
+}
+
+.nt-row .box .sub-text{
+    font-size:14px;
+    color:#70afc4;
+}
+
+.navbar-brand a{
+    color:white;
+    text-decoration: none;
+}
+
+#create-bar{
+    padding:20px;
+    margin:0 20px;
+    border-radius: 6px;
+    text-align: center;
+    background: #70afc4;
+    color:white;
+    cursor: pointer;
+}
+</style>
+<body>
+<!-- HEADER -->
+<header class="navbar clearfix" id="header">
+    <div class="container">
+        <div class="navbar-brand">
+            <!-- COMPANY LOGO -->
+            <a href="index.html">
+                Navgator
+            </a>
+            <!-- /COMPANY LOGO -->
+            <!-- TEAM STATUS FOR MOBILE -->
+
+            <!-- /TEAM STATUS FOR MOBILE -->
+            <!-- SIDEBAR COLLAPSE -->
+            <!-- /SIDEBAR COLLAPSE -->
+        </div>
+        <!-- NAVBAR LEFT -->
+        
+        <!-- /NAVBAR LEFT -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <ul class="nav navbar-nav pull-right">
+
+            <!-- END NOTIFICATION DROPDOWN -->
+           
+            <!-- END INBOX DROPDOWN -->
+            <!-- BEGIN TODO DROPDOWN -->
+          
+            <!-- END TODO DROPDOWN -->
+            <!-- BEGIN USER LOGIN DROPDOWN -->
+            <li class="dropdown user" id="header-user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img alt="" src="img/avatars/avatar3.jpg"/>
+                    <span class="username">Charles</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="fa fa-user"></i> My Profile</a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> Account Settings</a></li>
+                    <li><a href="#"><i class="fa fa-eye"></i> Privacy Settings</a></li>
+                    <li><a href="login.html"><i class="fa fa-power-off"></i> Log Out</a></li>
+                </ul>
+            </li>
+            <!-- END USER LOGIN DROPDOWN -->
+        </ul>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+    <!-- /TEAM STATUS -->
+</header>
+<!--/HEADER -->
+<!-- PAGE -->
+<section id="page">
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-menu nav-collapse">
+            <div class="divide-20"></div>
+            <!-- SEARCH BAR -->
+            <div id="create-bar" class="alert-info">
+                <a href="create.html" style="color:white;text-decoration: none"><h4>创建促销</h4></a>
+            </div>
+            <!-- /SEARCH BAR -->
+
+            <!-- SIDEBAR QUICK-LAUNCH -->
+            <!-- <div id="quicklaunch">
+            <!-- /SIDEBAR QUICK-LAUNCH -->
+
+            <!-- SIDEBAR MENU -->
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-tachometer fa-fw"></i> <span class="menu-text">总览</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+
+                 <li  class="active">
+                    <a href="promotions.html">
+                        <i class="fa fa-bookmark-o fa-fw"></i> <span class="menu-text">营销管理</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+
+                 <li>
+                    <a href="reviews.html">
+                        <i class="fa fa-pencil-square-o fa-fw"></i> <span class="menu-text">评论分析</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+
+
+                 <li>
+                    <a href="#">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> <span class="menu-text">业务分析</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- /SIDEBAR MENU -->
+        </div>
+    </div>
+    <!-- /SIDEBAR -->
+    <div id="main-content">
+        <!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+        <div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Box Settings</h4>
+                    </div>
+                    <div class="modal-body">
+                        Here goes box setting content.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+        <div class="container">
+            <div class="row">
+                <div id="content" class="col-lg-12">
+                    <!-- PAGE HEADER-->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-header">
+
+                                <div class="clearfix">
+                                    <h3 class="content-title pull-left">营销管理</h3>
+										<span class="date-range pull-right">
+											
+                                                <a id="reportrange" class="btn btn-info">
+                                                    <span>四季悦温泉</span>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                        
+										</span>
+                                    <!-- /DATE RANGE PICKER -->
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /PAGE HEADER -->
+                    <!-- DASHBOARD CONTENT -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                          <div class="nt-title">
+                            <div class="description">营销统计 (3)</div>
+                          </div>
+                        </div>
+                    </div>
+
+
+                     <div class="row nt-row">
+                        <div class="col-md-4">
+                            <div class="box border blue">
+                                <div class="box-title">
+                                <h4>
+                                   访问概要
+                                </h4>
+                                </div>
+                                <div class="box-body">
+                                    <div class="number">2034</div>
+                                    <div class="sub-text">访问数</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="box border blue">
+                                <div class="box-title">
+                                <h4>
+                                   优惠券下载
+                                </h4>
+                                </div>
+                                <div class="box-body">
+                                    <div class="number">36</div>
+                                    <div class="sub-text">下载数</div>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="col-md-4">
+                            <div class="box border blue">
+                                <div class="box-title">
+                                <h4>
+                                   优惠转换率
+                                </h4>
+                                </div>
+                                <div class="box-body">
+                                    <div class="number">2%</div>
+                                    <div class="sub-text">转换率</div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+   <div class="row">
+                        <div class="col-sm-12">
+                        <div class="box border blue">
+                                <div class="box-title">
+                                <h4>
+                                   促销列表
+                                </h4>
+                                </div>
+                                <div class="box-body">
+
+
+                                <div class="tabbable header-tabs">
+                                    <ul class="nav nav-tabs">
+                                             <li><a href="#box_tab3" data-toggle="tab"><i class="fa fa-file-text-o"></i> <span class="hidden-inline-mobile">草稿</span></a></li>
+                                             <li><a href="#box_tab2" data-toggle="tab"><i class="fa fa-calendar"></i> <span class="hidden-inline-mobile">计划中</span></a></li>
+                                             <li class="active"><a href="#box_tab1" data-toggle="tab"><i class="fa fa-play-circle"></i> <span class="hidden-inline-mobile">进行中</span></a></li>
+                                    </ul>
+
+
+
+                                        <div class="row">
+                                          <div class="col-xs-4 ">
+                                            <div class="input-group">
+                                            <input type="text" size="20" name="regular" class="form-control" placeholder="请输入查询条件">
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-light-grey" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                            </span>
+                                            </div>
+                                          </div>
+                                        <div class="col-xs-4">
+                                        <div class="input-group">
+                                             <input type="text" size="10" name="regular" class="form-control datepicker" placeholder="开始时间" >
+                                             <span class="input-group-btn">
+                                             <button class="btn btn-light-grey" type="submit">
+                                                <i class="fa fa-calendar"></i>
+
+                                            </button>
+                                            </span>
+                                            </div>
+                                             
+                                          </div>
+                                           <div class="col-xs-4">
+                                            <div class="input-group">
+                                             <input type="text" size="10" name="regular" class="form-control datepicker"  placeholder="结束时间">
+                                              <span class="input-group-btn">
+                                             <button class="btn btn-light-grey" type="submit">
+                                                <i class="fa fa-calendar"></i>
+
+                                            </button>
+                                            </span>
+                                            </div>
+                                          </div>
+                                         
+                                        </div>
+
+                                         <table class="table table-hover">
+                                            <thead>
+                                              <tr>
+                                                <th>日期</th>
+                                                <th>名称</th>
+                                                <th>状态</th>
+                                                <th>浏览数</th>
+                                                <th>下载数</th>
+                                                <th>转换率</th>
+                                                <th>比较</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td>15/08/27-15/09/15</td>
+                                                <td>5周年促销</td>
+                                                <td>即将到期</td>
+                                                <td>1234</td>
+                                                <td>493</td>
+                                                <td>39%</td>
+                                                <td class="width-10">
+                                                    <input type="checkbox">
+                                                </td>
+                                              </tr>
+                                              <tr style="height: 250px;">
+                                              <td colspan="7">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div style="padding:40px 20px">
+                                                          <a href="info.html">
+                                                        <img src="img/t1.jpg" height="140" />
+                                                        </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                      <div id="chart1" style="height:250px"></div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                      <div id="chart2" style="height:250px"></div>
+                                                    </div>
+                                                </div>
+                                                 <div class="row">
+                                                 <div class="pull-right" style="padding-right: 80px;">
+                                                 <button title="" class="btn btn-info tip" data-original-title="Tooltip at top">停止活动</button>
+                                                 <a href="info.html">
+                                                 <button title="" class="btn btn-warning tip" data-original-title="Tooltip at top">活动详情</button>
+                                                 </a>
+                                                 </div>
+                                                 </div>
+                                              </td>
+                                              </tr>
+
+
+
+                                                     <tr>
+                                                        <td>15/09/01-15/09/30</td>
+                                                        <td>9月促销</td>
+                                                        <td>进行中</td>
+                                                        <td>451</td>
+                                                        <td>341</td>
+                                                        <td>75%</td>
+                                                        <td class="width-10">
+                                                            <input type="checkbox">
+                                                        </td>
+                                                      </tr>
+                                                     <tr>
+                                                        <td>15/09/05-15/12/15</td>
+                                                        <td>年终促销</td>
+                                                        <td>进行中</td>
+                                                        <td>4321</td>
+                                                        <td>256</td>
+                                                        <td>16%</td>
+                                                        <td class="width-10">
+                                                            <input type="checkbox">
+                                                        </td>
+                                                      </tr>
+                                                      
+                                                    </tbody>
+                                                  </table>
+                                           </div>
+                                           </div>
+                            </div>
+                        </div>
+                    </div>
+
+               
+                    <div class="footer-tools">
+							<span class="go-top">
+								<i class="fa fa-chevron-up"></i> Top
+							</span>
+                    </div>
+                </div>
+                <!-- /CONTENT-->
+            </div>
+        </div>
+    </div>
+</section>
+<!--/PAGE -->
+<!-- JAVASCRIPTS -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- JQUERY -->
+<script src="js/jquery/jquery-2.0.3.min.js"></script>
+<!-- JQUERY UI-->
+<script src="js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+<!-- BOOTSTRAP -->
+<script src="bootstrap-dist/js/bootstrap.min.js"></script>
+
+
+<!-- DATE RANGE PICKER -->
+<script src="js/bootstrap-daterangepicker/moment.min.js"></script>
+
+<script src="js/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+<!-- SLIMSCROLL -->
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+<!-- SLIMSCROLL -->
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script>
+<!-- BLOCK UI -->
+<script type="text/javascript" src="js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+<!-- SPARKLINES -->
+<script type="text/javascript" src="js/sparklines/jquery.sparkline.min.js"></script>
+<!-- EASY PIE CHART -->
+<script src="js/jquery-easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="js/easypiechart/jquery.easypiechart.min.js"></script>
+<!-- FLOT CHARTS -->
+<script src="js/flot/jquery.flot.min.js"></script>
+<script src="js/flot/jquery.flot.time.min.js"></script>
+<script src="js/flot/jquery.flot.selection.min.js"></script>
+<script src="js/flot/jquery.flot.resize.min.js"></script>
+<script src="js/flot/jquery.flot.pie.min.js"></script>
+<script src="js/flot/jquery.flot.stack.min.js"></script>
+<script src="js/flot/jquery.flot.crosshair.min.js"></script>
+<!-- TODO -->
+<script type="text/javascript" src="js/jquery-todo/js/paddystodolist.js"></script>
+<!-- TIMEAGO -->
+<script type="text/javascript" src="js/timeago/jquery.timeago.min.js"></script>
+<!-- FULL CALENDAR -->
+<script type="text/javascript" src="js/fullcalendar/fullcalendar.min.js"></script>
+<!-- COOKIE -->
+<script type="text/javascript" src="js/jQuery-Cookie/jquery.cookie.min.js"></script>
+<!-- GRITTER -->
+<script type="text/javascript" src="js/gritter/js/jquery.gritter.min.js"></script>
+
+<script src="js/echarts/echarts-all.js"></script>
+<!-- CUSTOM SCRIPT -->
+<script src="js/script.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        App.setPage("index");  //Set current page
+       // App.init(); //Initialise plugins and elements
+           $(".datepicker").datepicker();
+        
+        chart1();
+         chart2();
+
+             
+    });
+
+
+        function chart1(){
+          var myChart = echarts.init(document.getElementById('chart1')); 
+          myChart.setTheme("macarons")
+           option = {
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['访问数']
+        },
+        calculable : true,
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : ['8.27','8.30','9.2','9.5','9.8','9.11','9.15']
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'访问数',
+                type:'line',
+                stack: '总量',
+                data:[120, 132, 101, 134, 90, 230, 210]
+            }
+               
+        ]
+    };
+                                
+             myChart.setOption(option); 
+         }
+
+
+           function chart2(){
+          var myChart = echarts.init(document.getElementById('chart2')); 
+          myChart.setTheme("macarons")
+           option = {
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['下载数']
+        },
+        calculable : true,
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : ['8.27','8.30','9.2','9.5','9.8','9.11','9.15']
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'下载数',
+                type:'line',
+                stack: '总量',
+                data:[80, 92, 71, 94, 70, 130, 110]
+            }
+               
+        ]
+    };
+                                
+             myChart.setOption(option); 
+         }
+</script>
+<!-- /JAVASCRIPTS -->
+</body>
+</html>

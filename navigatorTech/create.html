@@ -1,0 +1,464 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>NavgatorTech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="css/cloud-admin.css">
+    <link rel="stylesheet" type="text/css" href="css/themes/default.css" id="skin-switcher">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <!-- STYLESHEETS --><!--[if lt IE 9]>
+    <script src="js/flot/excanvas.min.js"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+    <!-- JQUERY UI-->
+    <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.10.3.custom/css/custom-theme/jquery-ui-1.10.3.custom.min.css" />
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- ANIMATE -->
+    <link rel="stylesheet" type="text/css" href="css/animatecss/animate.min.css"/>
+    <!-- DATE RANGE PICKER -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <!-- TODO -->
+    <link rel="stylesheet" type="text/css" href="js/jquery-todo/css/styles.css"/>
+    <!-- FULL CALENDAR -->
+    <link rel="stylesheet" type="text/css" href="js/fullcalendar/fullcalendar.min.css"/>
+    <!-- GRITTER -->
+    <link rel="stylesheet" type="text/css" href="js/gritter/css/jquery.gritter.css"/>
+    <!-- FONTS -->
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link href="js/bootstrap-wizard/wizard.css" type="text/css" rel="stylesheet">
+        <!-- DATE PICKER -->
+         <link href="js/jquery-upload/css/jquery.fileupload.css" type="text/css" rel="stylesheet">
+
+</head>
+<style>
+.nt-title{
+    margin-bottom: 10px;
+    color:#70afc4;
+}
+.nt-row .box{
+    text-align: center;
+}
+.nt-row .box.border > .box-title h4{
+    text-align:center;
+    font-size: 16px;
+}
+.nt-row .box .number{
+    font-size:34px;
+    color:#A7D4D1;
+}
+
+.nt-row .box .sub-text{
+    font-size:14px;
+    color:#70afc4;
+}
+
+.navbar-brand a{
+    color:white;
+    text-decoration: none;
+}
+
+#create-bar{
+    padding:20px;
+    margin:0 20px;
+    border-radius: 6px;
+    text-align: center;
+    background: #70afc4;
+    color:white;
+    cursor: pointer;
+}
+</style>
+<body>
+<!-- HEADER -->
+<header class="navbar clearfix" id="header">
+    <div class="container">
+        <div class="navbar-brand">
+            <!-- COMPANY LOGO -->
+            <a href="index.html">
+                Navgator
+            </a>
+            <!-- /COMPANY LOGO -->
+            <!-- TEAM STATUS FOR MOBILE -->
+
+            <!-- /TEAM STATUS FOR MOBILE -->
+            <!-- SIDEBAR COLLAPSE -->
+            <!-- /SIDEBAR COLLAPSE -->
+        </div>
+        <!-- NAVBAR LEFT -->
+        
+        <!-- /NAVBAR LEFT -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <ul class="nav navbar-nav pull-right">
+
+            <!-- END NOTIFICATION DROPDOWN -->
+           
+            <!-- END INBOX DROPDOWN -->
+            <!-- BEGIN TODO DROPDOWN -->
+          
+            <!-- END TODO DROPDOWN -->
+            <!-- BEGIN USER LOGIN DROPDOWN -->
+            <li class="dropdown user" id="header-user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img alt="" src="img/avatars/avatar3.jpg"/>
+                    <span class="username">Charles</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="fa fa-user"></i> My Profile</a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> Account Settings</a></li>
+                    <li><a href="#"><i class="fa fa-eye"></i> Privacy Settings</a></li>
+                    <li><a href="login.html"><i class="fa fa-power-off"></i> Log Out</a></li>
+                </ul>
+            </li>
+            <!-- END USER LOGIN DROPDOWN -->
+        </ul>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+    <!-- /TEAM STATUS -->
+</header>
+<!--/HEADER -->
+<!-- PAGE -->
+<section id="page">
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-menu nav-collapse">
+            <div class="divide-20"></div>
+            <!-- SEARCH BAR -->
+            <div id="create-bar" class="alert-info">
+                <h4>创建促销</h4>
+            </div>
+            <!-- /SEARCH BAR -->
+
+            <!-- SIDEBAR QUICK-LAUNCH -->
+            <!-- <div id="quicklaunch">
+            <!-- /SIDEBAR QUICK-LAUNCH -->
+
+            <!-- SIDEBAR MENU -->
+            <ul>
+                <li >
+                    <a href="index.html">
+                        <i class="fa fa-tachometer fa-fw"></i> <span class="menu-text">总览</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+
+                 <li>
+                    <a href="promotions.html">
+                        <i class="fa fa-bookmark-o fa-fw"></i> <span class="menu-text">营销管理</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+
+                 <li class="active">
+                    <a href="reviews.html">
+                        <i class="fa fa-pencil-square-o fa-fw"></i> <span class="menu-text">评论分析</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+
+
+                 <li>
+                    <a href="#">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> <span class="menu-text">业务分析</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- /SIDEBAR MENU -->
+        </div>
+    </div>
+    <!-- /SIDEBAR -->
+    <div id="main-content">
+        <!-- SAMPLE BOX CONFIGURATION MODAL FORM-->
+        <div class="modal fade" id="box-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Box Settings</h4>
+                    </div>
+                    <div class="modal-body">
+                        Here goes box setting content.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
+        <div class="container">
+            <div class="row">
+                <div id="content" class="col-lg-12">
+                    <!-- PAGE HEADER-->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-header">
+
+                                <div class="clearfix">
+                                    <h3 class="content-title pull-left">创建促销</h3>
+                                    <!-- DATE RANGE PICKER -->
+										<span class="date-range pull-right">
+											
+                                                <a id="reportrange" class="btn btn-info">
+                                                    <span>四季悦温泉</span>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                        
+										</span>
+                                    <!-- /DATE RANGE PICKER -->
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /PAGE HEADER -->
+                    <!-- DASHBOARD CONTENT -->
+                   <div class="row">
+                    <div class="col-md-12">
+                <form id="wizForm" class="form-horizontal" action="#" novalidate="novalidate">
+                    <div class="wizard-form">
+                      <div class="wizard-content">
+                            <ul class="nav nav-pills nav-justified steps">
+                                 <li class="active">
+                                    <a class="wiz-step" data-toggle="tab" href="#account">
+                                    <span class="step-number">1</span>
+                                    <span class="step-name"><i class="fa fa-check"></i> 选择类型 </span>   
+                                    </a>
+                                 </li>
+
+                                <li class="active">
+                                    <a class="wiz-step" data-toggle="tab" href="#account">
+                                    <span class="step-number">2</span>
+                                    <span class="step-name"><i class="fa fa-check"></i> 优惠信息 </span>   
+                                    </a>
+                                 </li>
+
+                                 <li>
+                                    <a class="wiz-step active" data-toggle="tab" href="#payment">
+                                    <span class="step-number">3</span>
+                                    <span class="step-name"><i class="fa fa-check"></i> 条件与限制</span>   
+                                    </a>
+                                 </li>
+                                          <li>
+                                    <a class="wiz-step active" data-toggle="tab" href="#payment">
+                                    <span class="step-number">4</span>
+                                    <span class="step-name"><i class="fa fa-check"></i> 渠道</span>   
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a class="wiz-step" data-toggle="tab" href="#confirm">
+                                    <span class="step-number">5</span>
+                                    <span class="step-name"><i class="fa fa-check"></i> 预览&发布 </span>   
+                                    </a> 
+                                 </li>
+                              </ul>
+                      </div>
+                        <div id="bar" class="progress progress-striped progress-sm active" role="progressbar">
+                            <div class="progress-bar progress-bar-warning" style="width: 40%;"></div>
+                        </div>
+
+                        <div id="account" class="tab-pane active">
+                            <div class="form-group">
+                               <label class="control-label col-md-3">标题<span class="required">*</span></label>
+                               <div class="col-md-4">
+                                  <input type="text" placeholder="" name="title" class="form-control">
+                                  <span class="error-span"></span>
+                               </div>
+                            </div>
+
+                             <div class="form-group">
+                               <label class="control-label col-md-3">图片上传<span class="required"></span></label>
+                               <div class="col-md-4">
+
+                                  <img src="img/upload.png" style="margin:10px 0;"/>
+                                  
+                                  <div>
+                                 <span class="btn btn-success fileinput-button">
+                                    <i class="fa fa-plus"></i>
+                                    <span>上传图片</span>
+                                    <input type="file" multiple="" name="files[]">
+                                    </span>
+                                    </div>
+                               </div>
+                            </div>
+
+                            <div class="form-group">
+                               <label class="control-label col-md-3">折扣<span class="required">*</span></label>
+                               <div class="col-xs-2">
+                               <div class="input-group">
+                                  <input type="text" placeholder="" name="title" class="form-control">
+                                <span class="input-group-btn">
+                                     
+                                    <button type="submit" class="btn btn-light-grey">
+                                                <i>%</i>
+
+                                            </button>
+                                </span>
+
+                                  </div>
+                                  <span class="error-span"></span>
+                               </div>
+                            </div>
+
+                            <div class="form-group">
+                               <label class="control-label col-md-3">日期<span class="required">*</span></label>
+                               <div class="col-xs-2">
+                                <div class="input-group">
+                                  <input type="text" placeholder="开始时间" name="title" class="form-control">
+                                  <span class="input-group-btn">
+                                     
+                                    <button type="submit" class="btn btn-light-grey">
+                                                <i class="fa fa-calendar"></i>
+
+                                            </button>
+                                </span>
+                                </div>
+                                  <span class="error-span"></span>
+                               </div>
+                               <div class="col-xs-2">
+                                <div class="input-group">
+                                  <input type="text" placeholder="结束时间" name="title" class="form-control">
+                                  <span class="input-group-btn">
+                                     
+                                    <button type="submit" class="btn btn-light-grey">
+                                                <i class="fa fa-calendar"></i>
+
+                                            </button>
+                                </span>
+                                </div>
+                                  <span class="error-span"></span>
+                               </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-2">
+                             <label class="checkbox-inline">
+                              <input type="checkbox" value="option1" id="inlineCheckbox1"> 重复周期
+                            </label>
+                            </div>
+                            <div class="col-sm-2">
+                            <div class="input-group">
+                                  <input type="text" class="form-control">
+                                  <div class="input-group-btn">
+                                    <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">年 <span class="caret"></span></button>
+                                    <ul class="dropdown-menu pull-right context">
+                                      <li><a href="#">年</a></li>
+                                                   
+                                    </ul>
+                                  </div>
+                                </div>
+                                </div>
+                          </div>
+
+
+                          <div class="form-group">
+                             <label class="col-md-3 control-label">描述</label> 
+                             <div class="col-md-4"><textarea class="form-control" name="textarea" cols="3" rows="3"></textarea></div>
+                          </div>
+
+                            <div class="form-group">
+                               <label class="control-label col-md-3">优惠码<span class="required">*</span></label>
+                               <div class="col-md-4">
+                                  <input type="text" placeholder="" name="title" class="form-control">
+                                  <span class="error-span"></span>
+                               </div>
+                            </div>
+
+                     </div>
+
+                     </form>
+                    </div>
+                    </div>
+
+
+
+                 
+                
+
+                    <div class="footer-tools">
+							<span class="go-top">
+								<i class="fa fa-chevron-up"></i> Top
+							</span>
+                    </div>
+                </div>
+                <!-- /CONTENT-->
+            </div>
+        </div>
+    </div>
+</section>
+<!--/PAGE -->
+<!-- JAVASCRIPTS -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- JQUERY -->
+<script src="js/jquery/jquery-2.0.3.min.js"></script>
+<!-- JQUERY UI-->
+<script src="js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+<!-- BOOTSTRAP -->
+<script src="bootstrap-dist/js/bootstrap.min.js"></script>
+
+
+<!-- DATE RANGE PICKER -->
+<script src="js/bootstrap-daterangepicker/moment.min.js"></script>
+
+<script src="js/bootstrap-daterangepicker/daterangepicker.min.js"></script>
+<!-- SLIMSCROLL -->
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+<!-- SLIMSCROLL -->
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="js/jQuery-slimScroll-1.3.0/slimScrollHorizontal.min.js"></script>
+<!-- BLOCK UI -->
+<script type="text/javascript" src="js/jQuery-BlockUI/jquery.blockUI.min.js"></script>
+<!-- SPARKLINES -->
+<script type="text/javascript" src="js/sparklines/jquery.sparkline.min.js"></script>
+<!-- EASY PIE CHART -->
+<script src="js/jquery-easing/jquery.easing.min.js"></script>
+<script type="text/javascript" src="js/easypiechart/jquery.easypiechart.min.js"></script>
+<!-- FLOT CHARTS -->
+<script src="js/flot/jquery.flot.min.js"></script>
+<script src="js/flot/jquery.flot.time.min.js"></script>
+<script src="js/flot/jquery.flot.selection.min.js"></script>
+<script src="js/flot/jquery.flot.resize.min.js"></script>
+<script src="js/flot/jquery.flot.pie.min.js"></script>
+<script src="js/flot/jquery.flot.stack.min.js"></script>
+<script src="js/flot/jquery.flot.crosshair.min.js"></script>
+    <!-- RATY -->
+    <script type="text/javascript" src="js/jquery-raty/jquery.raty.min.js"></script>
+<!-- TODO -->
+<script type="text/javascript" src="js/jquery-todo/js/paddystodolist.js"></script>
+<!-- TIMEAGO -->
+<script type="text/javascript" src="js/timeago/jquery.timeago.min.js"></script>
+<!-- FULL CALENDAR -->
+<script type="text/javascript" src="js/fullcalendar/fullcalendar.min.js"></script>
+<!-- COOKIE -->
+<script type="text/javascript" src="js/jQuery-Cookie/jquery.cookie.min.js"></script>
+<!-- GRITTER -->
+<script type="text/javascript" src="js/gritter/js/jquery.gritter.min.js"></script>
+<!-- CUSTOM SCRIPT -->
+
+<script src="js/script.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        App.setPage("index");  //Set current page
+       // App.init(); //Initialise plugins and elements
+
+       $(".datepicker").datepicker();
+
+       $.fn.raty.defaults.path = 'js/jquery-raty/img';
+       $('#raty0').raty({ readOnly: true, score: 4 });
+       $('#raty1').raty({ readOnly: true, score: 3.5 });
+       $('#raty2').raty({ readOnly: true, score: 3 });
+    });
+</script>
+<!-- /JAVASCRIPTS -->
+</body>
+</html>
