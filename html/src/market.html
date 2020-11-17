@@ -1,0 +1,255 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <title> Genesis </title>
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/cloud-admin.css">
+    <link rel="stylesheet" type="text/css" href="css/themes/default.css" id="skin-switcher">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css" />
+    <link rel="stylesheet" href="http://cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.css" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<style>
+.nt-title {
+    color: #70afc4;
+    margin-bottom: 10px;
+}
+
+.nt-title .description {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.nt-row .box {
+    text-align: center;
+}
+
+.nt-row .box.border > .box-title h4 {
+    font-size: 16px;
+    text-align: center;
+}
+
+.nt-row .box .number {
+    color: #a7d4d1;
+    font-size: 34px;
+}
+
+.nt-row .box .number .label {
+    font-size: 8px;
+    position: relative;
+    top: -10px;
+}
+
+.nt-row .box .sub-text {
+    color: #70afc4;
+    font-size: 14px;
+}
+
+.navbar-brand a {
+    color: white;
+    text-decoration: none;
+}
+
+#chart1 {
+    width: 100%;
+    height: 300px;
+}
+
+#chart3-1 {
+    height: 400px;
+    width: 100%;
+}
+
+#chart3-2 {
+    height: 400px;
+    width: 100%;
+}
+
+#chart2-1,
+#chart2-2 {
+    height: 300px;
+    width: 100%;
+}
+
+#chart1-1,
+#chart1-2,
+#chart1-3,
+#chart1-4 {
+    width: 100%;
+    height: 200px;
+}
+</style>
+
+<body>
+    <header id="header" class="navbar clearfix">
+        <div class="container">
+            <div class="navbar-brand">
+                <!-- COMPANY LOGO -->
+                <a href="index.html">
+                    <img width="120" height="30" class="img-responsive" alt="Cloud Admin Logo" src="images/logo.png">
+                </a>
+                <!-- /COMPANY LOGO -->
+                <!-- SIDEBAR COLLAPSE -->
+                <div class="sidebar-collapse btn" id="sidebar-collapse">
+                    <i data-icon2="fa fa-bars" data-icon1="fa fa-bars" class="fa fa-bars"></i>
+                </div>
+                <!-- /SIDEBAR COLLAPSE -->
+            </div>
+            <!-- /NAVBAR LEFT -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <ul class="nav navbar-nav pull-right">
+                <!-- BEGIN USER LOGIN DROPDOWN -->
+                <li id="header-user" class="dropdown user">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <img src="images/avatar.jpg" alt="">
+                        <span class="username">荒野猎人</span>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:alert('模拟退出')"><i class="fa fa-power-off"></i> 退出</a></li>
+                    </ul>
+                </li>
+                <!-- END USER LOGIN DROPDOWN -->
+            </ul>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+    </header>
+    <section id="page">
+        <div id="sidebar" class="sidebar">
+            <div class="sidebar-menu nav-collapse">
+                <!-- SIDEBAR MENU -->
+                <ul>
+                    <li class="has-sub">
+                        <a class="" href="index.html">
+                            <i class="fa fa-tachometer fa-fw"></i> <span class="menu-text">全局概览</span>
+                        </a>
+                    </li>
+                    <li class="has-sub">
+                        <a class="" href="javascript:;">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> <span class="menu-text">市场洞察</span>
+                            <span class="arrow open"></span>
+                        </a>
+                        <ul class="sub" style="display: block;">
+                            <li><a class="" href="hotmap.html"><span class="sub-menu-text">战略地图</span></a></li>
+                            <li class="current"><a class="" href="market.html"><span class="sub-menu-text">周边洞察</span></a></li>
+                            <li><a class="" href="business.html"><span class="sub-menu-text">行业分析</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="has-sub">
+                        <a class="" href="javascript:;">
+                            <i class="fa fa-user fa-fw"></i> <span class="menu-text">用户分析</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub" style="display: none;">
+                            <li><a class="" href="portrait.html"><span class="sub-menu-text">用户画像</span></a></li>
+                            <li><a class="" href="coming.html"><span class="sub-menu-text">用户来源</span></a></li>
+                            <li><a class="" href="customer.html"><span class="sub-menu-text">忠诚度</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="has-sub">
+                        <a class="" href="javascript:;">
+                            <i class="fa fa-bookmark-o fa-fw"></i> <span class="menu-text">市场营销</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub" style="display: none;">
+                            <li><a class="" href="promotions.html"><span class="sub-menu-text">营销活动</span></a></li>
+                            <li><a class="" href="review.html"><span class="sub-menu-text">营销度量</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- /SIDEBAR MENU -->
+            </div>
+        </div>
+        <div id="main-content" class="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12" id="content">
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- BOX -->
+                                <div class="box border clearfix">
+                                    <div class="box-body">
+                                        <div class="col-md-12">
+                                            <h4>四大商圈群体特征</h4>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div id="chart1"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /BOX -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- BOX -->
+                                <div class="box border clearfix">
+                                    <div class="box-body">
+                                        <div class="col-md-3">
+                                            <div id="chart1-1"></div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div id="chart1-2"></div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div id="chart1-3"></div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div id="chart1-4"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /BOX -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="box border">
+                                    <div class="box-body">
+                                        <div id="chart2-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="box border">
+                                    <div class="box-body">
+                                        <div id="chart2-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box border">
+                                    <div class="box-body">
+                                        <div id="chart3-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box border">
+                                    <div class="box-body">
+                                        <div id="chart3-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script data-main="js/market.js" src="js/require.min.js"></script>
+
+</html>
